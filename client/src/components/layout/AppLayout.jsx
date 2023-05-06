@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { Box } from "@mui/material";
+import { Box, Hidden } from "@mui/material";
 import authUtils from "../../utils/authUtils";
 import Sidebar from "../common/Sidebar";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/features/userSlice";
+import ResponsiveAppBar from "../common/ResponsiveAppBar";
 
 const AppLayout = () => {
   const navigate = useNavigate();
@@ -28,8 +29,13 @@ const AppLayout = () => {
 
   return (
     <div>
+      <Hidden lgUp implementation="css">
+        <ResponsiveAppBar />
+      </Hidden>
       <Box sx={{ display: "flex" }}>
-        <Sidebar />
+        <Hidden lgDown implementation="css">
+          <Sidebar />
+        </Hidden>
         {/* flexGrow を1に設定して、Box要素が可能な限りスペースを占めるようにする。 */}
         {/* p を1に設定して、上下左右のパディングを1に設定する。 */}
         {/* width を max-content に設定して、Box要素の幅をその中身に合わせるようにする */}
