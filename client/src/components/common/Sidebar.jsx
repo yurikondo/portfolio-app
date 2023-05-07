@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { setMemo } from "../../redux/features/memoSlice";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import memoApi from "../../api/memoApi";
-import { Box } from "@mui/system";
 import LogoutOutlined from "@mui/icons-material/LogoutOutlined";
-import AddBoxOutlined from "@mui/icons-material/AddBoxOutlined";
-import assets from "../../assets/index";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import HomeIcon from "@mui/icons-material/Home";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import {
+  Box,
   Divider,
   Drawer,
   IconButton,
@@ -22,6 +18,7 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
+import SidebarListItem from "./SidebarListItem";
 
 const Sidebar = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -29,12 +26,19 @@ const Sidebar = () => {
   const navigate = useNavigate();
   // react-router-domのuseParamsでURLのパラメーターを受け取れる
   const user = useSelector((state) => state.user.value);
-  const memos = useSelector((state) => state.memo.value);
 
-  const listData = [
-    { id: "home", text: "ホーム", icon: <HomeIcon /> },
-    { id: "profile", text: "プロフィールページ", icon: <EmojiEmotionsIcon /> },
+  const apperListData = [
+    { id: "home", text: "ホーム", icon: <HomeIcon />, path: "/" },
+    {
+      id: "profile",
+      text: "プロフィールページ",
+      icon: <EmojiEmotionsIcon />,
+      path: "profile",
+    },
     { id: "favorite", text: "お気に入り", icon: <FavoriteIcon /> },
+  ];
+
+  const bottomListData = [
     { id: "share", text: "このサイトをシェア", icon: <ShareIcon /> },
     { id: "logout", text: "ログアウト", icon: <LogoutOutlined /> },
   ];
@@ -79,31 +83,66 @@ const Sidebar = () => {
           </Box>
         </ListItemButton>
         <Divider />
-        <Box sx={{ paddingTop: "10px" }}></Box>
-        {listData.map((item) => (
-          <ListItem disablePadding>
-            <ListItemButton
-            // component={Link}
-            // to={`memo/${item._id}`}
-            // key={item._id}
-            // selected={index === activeIndex}
-            >
-              <Box
-                sx={{
-                  width: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <ListItemIcon>{item.icon}</ListItemIcon>
-
-                <ListItemText variant="body2" fontWeight="700">
-                  {item.text}
-                </ListItemText>
-              </Box>
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <Box
+          sx={{
+            paddingTop: "10px",
+            display: "flex",
+            justifyContent: "space-between",
+            flexDirection: "column",
+            height: "93%",
+          }}
+        >
+          <Box>
+            {apperListData.map((item) => (
+              <SidebarListItem
+                key={item.id}
+                id={item.id}
+                text={item.text}
+                icon={item.icon}
+                path={item.path}
+              />
+            ))}
+          </Box>
+          <Box>
+            <Divider />
+            <ListItem disablePadding>
+              <ListItemButton>
+                <Box
+                  sx={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <ListItemIcon>
+                    <ShareIcon />
+                  </ListItemIcon>
+                  <ListItemText variant="body2" fontWeight="700">
+                    このサイトをシェア
+                  </ListItemText>
+                </Box>
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton onClick={logout}>
+                <Box
+                  sx={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <ListItemIcon>
+                    <LogoutOutlined />
+                  </ListItemIcon>
+                  <ListItemText variant="body2" fontWeight="700">
+                    ログアウト
+                  </ListItemText>
+                </Box>
+              </ListItemButton>
+            </ListItem>
+          </Box>
+        </Box>
       </List>
     </Drawer>
   );
