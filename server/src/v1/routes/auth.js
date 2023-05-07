@@ -14,13 +14,13 @@ router.post(
   //express-validatorでバリデーション処理(https://express-validator.github.io/docs/6.14.0/)
   body("username")
     .isLength({ min: 2 })
-    .withMessage("ユーザー名は2文字以上である必要があります"),
+    .withMessage("ユーザー名は2文字以上で入力してください"),
   body("password")
     .isLength({ min: 8 })
-    .withMessage("パスワードは8文字以上である必要があります"),
+    .withMessage("パスワードは8文字以上で入力してください"),
   body("confirmPassword")
     .isLength({ min: 8 })
-    .withMessage("確認用パスワードは8文字以上である必要があります"),
+    .withMessage("確認用パスワードは8文字以上で入力してください"),
   //DBにすでに同じユーザー名が登録されていないか確認(https://express-validator.github.io/docs/6.14.0/custom-error-messages#custom-validator-level)
   body("username").custom((value) => {
     return User.findOne({ username: value }).then((user) => {
@@ -41,11 +41,11 @@ router.post(
 router.post(
   "/login",
   body("username")
-    .isLength({ min: 8 })
-    .withMessage("ユーザー名は8文字以上である必要があります"),
+    .isLength({ min: 2 })
+    .withMessage("ユーザー名は2文字以上で入力してください"),
   body("password")
     .isLength({ min: 8 })
-    .withMessage("パスワードは8文字以上である必要があります"),
+    .withMessage("パスワードは8文字以上で入力してください"),
 
   //エラー文をerrorsに入れる
   validation.validate,
