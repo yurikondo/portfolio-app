@@ -13,8 +13,8 @@ router.post(
 
   //express-validatorでバリデーション処理(https://express-validator.github.io/docs/6.14.0/)
   body("username")
-    .isLength({ min: 8 })
-    .withMessage("ユーザー名は8文字以上である必要があります"),
+    .isLength({ min: 2 })
+    .withMessage("ユーザー名は2文字以上である必要があります"),
   body("password")
     .isLength({ min: 8 })
     .withMessage("パスワードは8文字以上である必要があります"),
