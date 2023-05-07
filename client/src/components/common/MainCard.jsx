@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Box } from "@mui/material";
+import { AvatarGroup, Box } from "@mui/material";
 
 const MainCard = () => {
   return (
@@ -54,7 +54,6 @@ const MainCard = () => {
                   </IconButton>
                 }
                 title="ゆりです"
-                subheader="2023/05/01"
               />
               <CardContent sx={{ py: 0 }}>
                 <Typography variant="body" color="text.secondary">
@@ -64,15 +63,30 @@ const MainCard = () => {
                 </Typography>
               </CardContent>
             </Box>
-            <Box>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
               <CardActions disableSpacing>
-                <IconButton aria-label="お気に入りに追加">
-                  <FavoriteIcon />
-                </IconButton>
                 <IconButton aria-label="この投稿をシェアする">
                   <ShareIcon />
                 </IconButton>
+                <IconButton aria-label="お気に入りに追加">
+                  <FavoriteIcon />
+                </IconButton>
+                <AvatarGroup max={4}>
+                  <Avatar alt="いいねしたユーザーのアイコン">😇</Avatar>
+                  <Avatar alt="いいねしたユーザーのアイコン">😇</Avatar>
+                  <Avatar alt="いいねしたユーザーのアイコン">😇</Avatar>
+                  <Avatar alt="いいねしたユーザーのアイコン">😇</Avatar>
+                  <Avatar alt="いいねしたユーザーのアイコン">😇</Avatar>
+                  <Avatar alt="いいねしたユーザーのアイコン">😇</Avatar>
+                </AvatarGroup>
               </CardActions>
+              <Typography sx={{ mr: 3 }}>2023/05/01</Typography>
             </Box>
           </Box>
         </Box>
