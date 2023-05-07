@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { LoadingButton } from "@mui/lab";
 import authApi from "../api/authApi";
+import EmojiPicker from "../components/common/EmojiPicker";
 
 const Register = () => {
   const [usernameErrText, setUsernameErrText] = useState("");
   const [passwordErrText, setPasswordErrText] = useState("");
   const [confirmPasswordErrText, setConfirmPasswordErrText] = useState("");
+  const [icon, setIcon] = useState("😃");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -82,8 +84,19 @@ const Register = () => {
     }
   };
 
+  const onIconChange = async () => {};
+
   return (
     <>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <EmojiPicker icon={icon} onChange={onIconChange} />
+        <Typography variant="body1"  sx={{ ml: 3 }}>👈  アイコン選択</Typography>
+      </Box>
       <Box component="form" onSubmit={handleSubmit} noValidate>
         <TextField
           fullWidth
