@@ -10,7 +10,7 @@ const Register = () => {
   const [usernameErrText, setUsernameErrText] = useState("");
   const [passwordErrText, setPasswordErrText] = useState("");
   const [confirmPasswordErrText, setConfirmPasswordErrText] = useState("");
-  const [icon, setIcon] = useState("😃");
+  const [icon, setIcon] = useState("🙂");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -59,6 +59,7 @@ const Register = () => {
         username,
         password,
         confirmPassword,
+        icon,
       });
       setLoading(false);
       //ローカルストレージにトークンを保存
@@ -84,7 +85,9 @@ const Register = () => {
     }
   };
 
-  const onIconChange = async () => {};
+  const onIconChange = async (newIcon) => {
+    setIcon(newIcon);
+  };
 
   return (
     <>
