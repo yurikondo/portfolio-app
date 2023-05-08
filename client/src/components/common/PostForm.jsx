@@ -12,8 +12,33 @@ const PostForm = () => {
   const navigate = useNavigate();
 
   const onItemUrlChange = async (e) => {
-    setItemUrl(e.target.value);
-    console.log(itemUrl);
+    setItemUrlErrText("");
+    const newItemUrl = e.target.value;
+    if (!newItemUrl.includes("/dp/")) {
+      setItemUrlErrText("Amazon商品のURLを貼り付けてください");
+    }
+    const startIndex = newItemUrl.indexOf("/dp/") + 4; // "/dp/"の後の文字のインデックスを取得
+    if (startIndex === -1) {
+      setItemUrlErrText("Amazon商品のURLを貼り付けてください");
+      return;
+    }
+    const endIndex = startIndex + 10; // 10桁の数字の終了インデックスを計算
+
+    const productId = newItemUrl.substring(startIndex, endIndex); // インデックスを使用して部分文字列を抽出
+    const extractNumbers = (id) => {
+      const regex = /\d+/g; // 正規表現を使用して数字を抽出する
+      const numbers = id.match(regex);
+      return numbers ? numbers[0] : 0;
+    };
+
+    const checkedProductId = extractNumbers(productId);
+
+    console.log(checkedProductId);
+    if (checkedProductId.length !== 10) {
+      setItemUrlErrText("Amazon商品のURLを貼り付けてください");
+      return;
+    }
+    setItemUrl(`https://images-fe.ssl-images-amazon.com/images/P/${productId}`);
   };
 
   //フォームから入力されたデータを取得するための処理
@@ -77,7 +102,7 @@ const PostForm = () => {
     >
       <CardMedia
         component="img"
-        image="https://images-fe.ssl-images-amazon.com/images/P/4763136739"
+        image={itemUrl}
         alt="投稿したい商品の画像"
         sx={{
           display: itemUrl ? "block" : "none",
@@ -97,7 +122,7 @@ const PostForm = () => {
         helperText={itemUrlErrText}
         error={itemUrlErrText !== ""}
         disabled={loading}
-        value={itemUrl}
+        // value={itemUrl}
         onChange={onItemUrlChange}
       />
       <TextField
