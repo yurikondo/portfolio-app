@@ -4,7 +4,7 @@ require("dotenv").config();
 
 const User = require("../models/user");
 const validation = require("../handlers/validation");
-const userController = require("../controllers/user");
+const authController = require("../controllers/auth");
 const tokenHandler = require("../handlers/tokenHandler");
 
 //ユーザー新規登録API
@@ -34,7 +34,7 @@ router.post(
   validation.validate,
 
   //パスワードの暗号化・ユーザーの新規作成・JWT発行
-  userController.register
+  authController.register
 );
 
 //ログイン用API
@@ -51,7 +51,7 @@ router.post(
   validation.validate,
 
   //DBからユーザーが存在するか探してくる・パスワードが合っているか照合(複号化)・JWT発行
-  userController.login
+  authController.login
 );
 
 //JWT認証API
