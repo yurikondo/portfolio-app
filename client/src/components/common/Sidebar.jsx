@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import LogoutOutlined from "@mui/icons-material/LogoutOutlined";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
@@ -22,7 +22,6 @@ import SidebarListItem from "./SidebarListItem";
 
 const Sidebar = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   // react-router-domのuseParamsでURLのパラメーターを受け取れる
   const user = useSelector((state) => state.user.value);
@@ -109,6 +108,7 @@ const Sidebar = () => {
               <ListItemButton>
                 <Box
                   sx={{
+                    paddingTop: "5px",
                     width: "100%",
                     display: "flex",
                     alignItems: "center",

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box } from "@mui/material";
-import { LoadingButton } from "@mui/lab";
+import { Grid } from "@mui/material";
 import memoApi from "../api/memoApi";
+import MainCard from "../components/common/MainCard";
+import PostForm from "../components/common/PostForm";
 
 function Home() {
   const navigate = useNavigate();
@@ -21,22 +22,14 @@ function Home() {
   };
 
   return (
-    <Box
-      sx={{
-        height: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <LoadingButton
-        variant="outlined"
-        onClick={() => createMemo()}
-        loading={loading}
-      >
-        最初のメモを作成
-      </LoadingButton>
-    </Box>
+    <Grid container spacing={3}>
+      <Grid item xs={8}>
+        <MainCard />
+      </Grid>
+      <Grid item xs={4}>
+        <PostForm />
+      </Grid>
+    </Grid>
   );
 }
 

@@ -39,7 +39,7 @@ const AppLayout = () => {
         {/* flexGrow を1に設定して、Box要素が可能な限りスペースを占めるようにする。 */}
         {/* p を1に設定して、上下左右のパディングを1に設定する。 */}
         {/* width を max-content に設定して、Box要素の幅をその中身に合わせるようにする */}
-        <Box sx={{ flexGrow: 1, p: 1, width: "max-content" }}>
+        <Box sx={{ flexGrow: 1, px: 3, py: 2, width: "max-content" }}>
           {/* Homeコンポーネントを表示 */}
           <Outlet />
         </Box>

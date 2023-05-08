@@ -33,7 +33,6 @@ const PostForm = () => {
 
     const checkedProductId = extractNumbers(productId);
 
-    console.log(checkedProductId);
     if (checkedProductId.length !== 10) {
       setItemUrlErrText("Amazon商品のURLを貼り付けてください");
       return;

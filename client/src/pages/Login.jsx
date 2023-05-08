@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { LoadingButton } from "@mui/lab";
 import authApi from "../api/authApi";
 
-const Login  = () => {
+const Login = () => {
   const [usernameErrText, setUsernameErrText] = useState("");
   const [passwordErrText, setPasswordErrText] = useState("");
   const [loading, setLoading] = useState(false);
@@ -69,11 +69,12 @@ const Login  = () => {
 
   return (
     <>
+      <Typography variant="h4">ログイン</Typography>
       <Box component="form" onSubmit={handleSubmit} noValidate>
         <TextField
           fullWidth
           id="username"
-          label="お名前"
+          label="ユーザーネーム"
           margin="normal"
           name="username"
           required

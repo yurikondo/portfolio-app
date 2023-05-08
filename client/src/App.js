@@ -8,10 +8,11 @@ import { blue } from "@mui/material/colors";
 import AppLayout from "./components/layout/AppLayout";
 import Home from "./pages/Home";
 import Memo from "./pages/Memo";
+import Profile from "./pages/Profile";
 
 function App() {
   const theme = createTheme({
-    palette: { primary: blue },
+    palette: { mode: "dark", primary: blue },
   });
 
   // テーマ(https://mui.com/material-ui/customization/theming/)
@@ -29,9 +30,7 @@ function App() {
             <Route path="/" element={<AppLayout />}>
               {/* indexは親と同じpathを指定する */}
               <Route index element={<Home />} />
-              <Route path="memo" element={<Home />} />
-              {/* :memoId とすることで任意の文字列を設定できる */}
-              <Route path="memo/:memoId" element={<Memo />}/>
+              <Route path="profile" element={<Profile />}/>
             </Route>
           </Routes>
         </BrowserRouter>

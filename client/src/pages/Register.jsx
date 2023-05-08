@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import authApi from "../api/authApi";
+import EmojiPicker from "../components/common/EmojiPicker";
 import { Button, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { LoadingButton } from "@mui/lab";
-import authApi from "../api/authApi";
-import EmojiPicker from "../components/common/EmojiPicker";
 
 const Register = () => {
   const [usernameErrText, setUsernameErrText] = useState("");
@@ -95,16 +95,19 @@ const Register = () => {
         sx={{
           display: "flex",
           alignItems: "center",
+          flexDirection: "column",
         }}
       >
         <EmojiPicker icon={icon} onChange={onIconChange} />
-        <Typography variant="body1"  sx={{ ml: 3 }}>👈  アイコン選択</Typography>
+        <Typography variant="body1" sx={{ my: 3 }}>
+          👆 アイコン選択
+        </Typography>
       </Box>
       <Box component="form" onSubmit={handleSubmit} noValidate>
         <TextField
           fullWidth
           id="username"
-          label="お名前"
+          label="ユーザーネーム"
           margin="normal"
           name="username"
           required
