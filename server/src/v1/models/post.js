@@ -16,7 +16,7 @@ const postSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
-  description: {
+  desc: {
     type: String,
     required: true,
   },
