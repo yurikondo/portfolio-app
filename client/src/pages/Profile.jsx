@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import { Avatar, Box, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import EmojiPicker from "../components/common/EmojiPicker";
+import userApi from "../api/userApi";
+import { useSelector } from "react-redux";
+import { Box, Typography } from "@mui/material";
 
 const Profile = () => {
-  const [icon, setIcon] = useState("🙂");
+  const user = useSelector((state) => state.user.value);
+  const [icon, setIcon] = useState("");
   const userProfile = {
     username: "ゆり",
     userIcon: "😊",
@@ -13,8 +16,19 @@ const Profile = () => {
     postCount: 10,
   };
 
+  useEffect(() => {
+    if (user.icon) {
+      setIcon(user.icon);
+    }
+  }, [user.icon]);
+
   const onIconChange = async (newIcon) => {
     setIcon(newIcon);
+    try {
+      await userApi.updateIcon({ icon: newIcon });
+    } catch (err) {
+      alert(err);
+    }
   };
 
   return (
