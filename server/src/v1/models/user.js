@@ -14,6 +14,7 @@ const userSchema = new mongoose.Schema({
   icon: {
     type: String,
     default: "🙂",
+    required: true,
   },
 });
 
