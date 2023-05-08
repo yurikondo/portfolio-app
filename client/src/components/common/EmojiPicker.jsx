@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Avatar, Box, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Picker from "@emoji-mart/react";
 
@@ -29,18 +29,20 @@ const EmojiPicker = (props) => {
 
   return (
     <Box>
-      <Typography
-        variant="h3"
-        fontWeight="700"
-        sx={{ cursor: "pointer" }}
+      <Avatar
+        sx={{ width: 100, height: 100, mt: -5, cursor: "pointer" }}
         onClick={showPicker}
       >
-        {props.icon}
-      </Typography>
+        <Typography variant="h3" fontWeight="700">
+          {props.icon}
+        </Typography>
+      </Avatar>
+
       <Box
         sx={{
           display: isShowPicker ? "block" : "none",
           position: "absolute",
+          ml: "-8.5%",
           zIndex: "100",
         }}
       >
