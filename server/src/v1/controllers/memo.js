@@ -41,10 +41,10 @@ exports.getOne = async (req, res) => {
 exports.update = async (req, res) => {
   // URLのパラメーターを取得
   const { memoId } = req.params;
-  const { title, description } = req.body;
+  const { title, desc } = req.body;
   try {
     if (title === "") req.body.title = "無題";
-    if (description === "") req.body.description = "自由に記入してください";
+    if (desc === "") req.body.desc = "自由に記入してください";
 
     //メモの内容を取得
     const memo = await Memo.findOne({ user: req.user._id, _id: memoId });
