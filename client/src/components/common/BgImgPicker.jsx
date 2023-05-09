@@ -12,18 +12,18 @@ const BgImgPicker = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(ref.current.value);
 
     const endpointURL = `https://pixabay.com/api/?key=31060671-8619a1a4b4b3edab2b473b7fc&q=${ref.current.value}&image_type=photo`;
     // APIを叩く（データフェッチング）：fetch関数はJSの関数
     fetch(endpointURL)
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
-        setFetchData(data);
+        console.log(data.hits); // データの取得結果を確認
+        setFetchData(data.hits);
       });
   };
+
+  console.log(fetchData); // データの取得結果を確認
 
   return (
     <Box sx={{ width: 500, height: 450 }}>
@@ -50,7 +50,7 @@ const BgImgPicker = () => {
           検索
         </Button>
       </Paper>
-      <ImageGallery/>
+      <ImageGallery fetchData={fetchData} />
     </Box>
   );
 };

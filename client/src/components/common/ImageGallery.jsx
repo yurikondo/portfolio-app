@@ -1,8 +1,7 @@
-import React from 'react'
+import React from "react";
 import { ImageList, ImageListItem } from "@mui/material";
 
-
-const ImageGallery = () => {
+const ImageGallery = (fetchData) => {
   const itemData = [
     {
       id: 1,
@@ -26,21 +25,21 @@ const ImageGallery = () => {
     },
   ];
 
-
   return (
-    <ImageList sx={{ width: "100%", height: "100%" }} cols={3} rowHeight={16}>
-    {itemData.map((item) => (
-      <ImageListItem key={item.id}>
-        <img
-          src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-          srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-          alt={item.title}
-          loading="lazy"
-        />
-      </ImageListItem>
-    ))}
-  </ImageList>
-)
-}
+    <></>
+    // <ImageList sx={{ width: "100%", height: "100%" }} cols={3} rowHeight={16}>
+    //   {fetchData.map((data) => (
+    //     <ImageListItem key={data.id}>
+    //       <img
+    //         src={`${data.largeImageURL}?w=164&h=164&fit=crop&auto=format`}
+    //         srcSet={`${data.largeImageURL}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+    //         alt="画像"
+    //         loading="lazy"
+    //       />
+    //     </ImageListItem>
+    //   ))}
+    // </ImageList>
+  );
+};
 
-export default ImageGallery
+export default ImageGallery;
