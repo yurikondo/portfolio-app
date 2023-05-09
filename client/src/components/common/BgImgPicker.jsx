@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Box, ImageList, ImageListItem } from "@mui/material";
+import { Box, Button, ImageList, ImageListItem } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
@@ -54,23 +54,24 @@ const BgImgPicker = () => {
     <Box sx={{ width: 500, height: 450 }}>
       <Paper
         component="form"
-        sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 400 }}
+        sx={{
+          p: "2px 4px",
+          display: "flex",
+          alignItems: "center",
+          width: "100%",
+        }}
       >
-        <IconButton sx={{ p: "10px" }} aria-label="menu">
-          <MenuIcon />
+        <IconButton type="button" sx={{ p: "10px" }} aria-label="検索">
+          <SearchIcon />
         </IconButton>
         <InputBase
           sx={{ ml: 1, flex: 1 }}
-          placeholder="Search Google Maps"
-          inputProps={{ "aria-label": "search google maps" }}
+          placeholder="画像を検索"
+          inputProps={{ "aria-label": "画像を検索" }}
         />
-        <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
-          <SearchIcon />
-        </IconButton>
-        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-        <IconButton color="primary" sx={{ p: "10px" }} aria-label="directions">
-          <DirectionsIcon />
-        </IconButton>
+        <Button variant="contained" size="small">
+          検索
+        </Button>
       </Paper>
       <ImageList sx={{ width: "100%", height: "100%" }} cols={3} rowHeight={16}>
         {itemData.map((item) => (
