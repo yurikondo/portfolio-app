@@ -3,6 +3,7 @@ import EmojiPicker from "../components/common/EmojiPicker";
 import userApi from "../api/userApi";
 import { useSelector } from "react-redux";
 import { Box, Typography } from "@mui/material";
+import BgImgPicker from "../components/common/BgImgPicker";
 
 const Profile = () => {
   const user = useSelector((state) => state.user.value);
@@ -12,7 +13,7 @@ const Profile = () => {
     userIcon: "😊",
     accountCreated: "2023/05/01",
     backgroundImage:
-      "url(https://images-fe.ssl-images-amazon.com/images/P/4763136739)",
+      "url(https://pixabay.com/get/gc7d91fd704e08d39c6dfb3d7b5b71d31d2713b9f5d3413bdfcddb150441f7286e049673ea7fc6a2bb12872356f7b0d1265d86f7be07c5dca228f9010a7aa9756_1280.jpg)",
     postCount: 10,
   };
 
@@ -51,6 +52,7 @@ const Profile = () => {
       <Typography variant="subtitle1" sx={{ marginTop: 2 }}>
         投稿数: {userProfile.postCount}
       </Typography>
+      <BgImgPicker />
     </Box>
   );
 };
