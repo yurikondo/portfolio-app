@@ -1,10 +1,15 @@
 const Post = require("../models/post");
 
 exports.create = async (req, res) => {
+  const itemURL = req.body.itemUrl;
+  const desc = req.body.desc;
+
   try {
     //投稿の新規作成
     const post = await Post.create({
       user: req.user._id,
+      itemURL: itemURL,
+      desc: desc,
     });
     return res.status(201).json(post);
   } catch (err) {
