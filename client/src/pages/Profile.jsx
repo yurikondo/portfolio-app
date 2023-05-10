@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import EmojiPicker from "../components/common/EmojiPicker";
-import userApi from "../api/userApi";
 import { useSelector } from "react-redux";
-import { Box, Typography } from "@mui/material";
+import userApi from "../api/userApi";
+import EmojiPicker from "../components/common/EmojiPicker";
 import BgImgPicker from "../components/common/BgImgPicker";
+import { Box, Button, Typography } from "@mui/material";
+import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 
 const Profile = () => {
-  const user = useSelector((state) => state.user.value);
   const [icon, setIcon] = useState("");
+  const [isShowBgImgPicker, setIsShowBgImgPicker] = useState(false);
+  const user = useSelector((state) => state.user.value);
   const userProfile = {
     username: "ゆり",
     userIcon: "😊",
@@ -32,6 +34,8 @@ const Profile = () => {
     }
   };
 
+  const showBgImgPicker = () => setIsShowBgImgPicker(!isShowBgImgPicker);
+
   return (
     <Box
       sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
@@ -43,16 +47,29 @@ const Profile = () => {
           backgroundImage: userProfile.backgroundImage,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          position: "relative",
         }}
-      />
+      >
+        <Button
+          onClick={showBgImgPicker}
+          variant="contained"
+          size="large"
+          sx={{ zIndex: 100, position: "absolute", right: 5, bottom: 5 }}
+          startIcon={<AddAPhotoIcon fontSize="inherit" />}
+        >
+          画像を変更
+        </Button>
+      </Box>
       <EmojiPicker icon={icon} onChange={onIconChange} sx={{ mt: -5 }} />
       <Typography variant="h4" sx={{ marginTop: 2 }}>
         {userProfile.username}
       </Typography>
-      <Typography variant="subtitle1" sx={{ marginTop: 2 }}>
+      <Typography variant="subtitle1" sx={{ marginTop: 1 }}>
         投稿数: {userProfile.postCount}
       </Typography>
-      <BgImgPicker />
+      <Box sx={{ display: isShowBgImgPicker ? "block" : "none", mt: 3 }}>
+        <BgImgPicker />
+      </Box>
     </Box>
   );
 };
