@@ -18,12 +18,9 @@ const BgImgPicker = () => {
     fetch(endpointURL)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.hits); // データの取得結果を確認
         setFetchData(data.hits);
       });
   };
-
-  console.log(fetchData); // データの取得結果を確認
 
   return (
     <Box sx={{ width: 500, height: 450 }}>
