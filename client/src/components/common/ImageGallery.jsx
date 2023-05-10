@@ -9,8 +9,8 @@ const ImageGallery = (props) => {
       {fetchData.map((data) => (
         <ImageListItem key={data.id}>
           <img
-            src={`${data.largeImageURL}?w=164&h=164&fit=crop&auto=format`}
-            srcSet={`${data.largeImageURL}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+            src={`${data.webformatURL}?w=164&h=164&fit=crop&auto=format`}
+            srcSet={`${data.webformatURL}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
             alt="画像"
             loading="lazy"
           />

@@ -13,7 +13,7 @@ const BgImgPicker = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const endpointURL = `https://pixabay.com/api/?key=31060671-8619a1a4b4b3edab2b473b7fc&q=${ref.current.value}&image_type=photo`;
+    const endpointURL = `https://pixabay.com/api/?key=31060671-8619a1a4b4b3edab2b473b7fc&q=${ref.current.value}&image_type=photo&orientation=horizontal&per_page=12`;
     // APIを叩く（データフェッチング）：fetch関数はJSの関数
     fetch(endpointURL)
       .then((res) => res.json())
