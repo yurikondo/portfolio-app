@@ -1,5 +1,4 @@
 import * as React from "react";
-import assets from "../../assets/index";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -39,9 +38,9 @@ const MainCard = () => {
                 avatar={
                   <Avatar
                     sx={{
-                      bgcolor: assets.colors.secondary,
-                      width: 56,
-                      height: 56,
+                      width: 48,
+                      height: 48,
+                      fontSize: 24
                     }}
                     aria-label="recipe"
                   >
