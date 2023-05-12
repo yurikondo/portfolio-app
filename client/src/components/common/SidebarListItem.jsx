@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Box,
   ListItem,
@@ -8,15 +8,24 @@ import {
   ListItemText,
 } from "@mui/material";
 
-const SidebarListItem = (props) => {
+const SidebarListItem = ({ id, text, icon, path, onItemClick }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (onItemClick) {
+      onItemClick();
+    }
+    if (path) {
+      navigate(path);
+    }
+  };
+
   return (
     <ListItem disablePadding>
       <ListItemButton
         component={Link}
-        to={props.path}
-        key={props.id}
-        id={props.id}
-        // selected={index === activeIndex}
+        to={path}
+        onClick={handleClick}
       >
         <Box
           sx={{
@@ -25,9 +34,9 @@ const SidebarListItem = (props) => {
             alignItems: "center",
           }}
         >
-          <ListItemIcon>{props.icon}</ListItemIcon>
+          <ListItemIcon>{icon}</ListItemIcon>
           <ListItemText variant="body2" fontWeight="700">
-            {props.text}
+            {text}
           </ListItemText>
         </Box>
       </ListItemButton>

@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { Box, Hidden } from "@mui/material";
-import authUtils from "../../utils/authUtils";
-import Sidebar from "../common/Sidebar";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/features/userSlice";
+import authUtils from "../../utils/authUtils";
+import Sidebar from "../common/Sidebar";
 import ResponsiveAppBar from "../common/ResponsiveAppBar";
+import { Box, Hidden } from "@mui/material";
 
 const AppLayout = () => {
   const navigate = useNavigate();
@@ -17,10 +17,8 @@ const AppLayout = () => {
     const checkAuth = async () => {
       //認証チェック
       const user = await authUtils.isAuthenticated();
-      if (!user) {
-        navigate("/login");
-      } else {
-        //ログインしていたら、userを保存する（グローバルに使えるようになる）レッスン73
+      //ログインしていたら、userを保存する（グローバルに使えるようになる）レッスン73
+      if (user) {
         dispatch(setUser(user));
       }
     };

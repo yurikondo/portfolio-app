@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { Box } from "@mui/material";
-import { Container } from "@mui/system";
 import authUtils from "../../utils/authUtils";
+import { Container } from "@mui/system";
+import { Box } from "@mui/material";
 
 const AuthLayout = () => {
   const navigate = useNavigate();

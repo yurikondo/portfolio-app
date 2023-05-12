@@ -10,12 +10,8 @@ import {
   Box,
   Divider,
   Drawer,
-  IconButton,
   List,
-  ListItem,
   ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Typography,
 } from "@mui/material";
 import SidebarListItem from "./SidebarListItem";
@@ -37,14 +33,8 @@ const Sidebar = () => {
     { id: "favorite", text: "お気に入り", icon: <FavoriteIcon /> },
   ];
 
-  const bottomListData = [
-    { id: "share", text: "このサイトをシェア", icon: <ShareIcon /> },
-    { id: "logout", text: "ログアウト", icon: <LogoutOutlined /> },
-  ];
-
   const logout = () => {
     localStorage.removeItem("token");
-    navigate("/login");
   };
 
   return (
@@ -60,12 +50,13 @@ const Sidebar = () => {
         sx={{
           width: 250,
           height: "100vh",
-          // backgroundColor: assets.colors.secondary,
         }}
       >
         <ListItemButton>
           <Box
             sx={{
+              pt: "10px",
+              pb: "10px",
               width: "100%",
               display: "flex",
               alignItems: "center",
@@ -74,73 +65,74 @@ const Sidebar = () => {
           >
             {/* variant プロパティは、テキストの見出しの種類を指定 */}
             <Typography variant="body1" fontWeight="700">
-              {user.username}
+              {user.username ? user.username : "ゲストユーザー"}
             </Typography>
-            <IconButton onClick={logout}>
-              <LogoutOutlined />
-            </IconButton>
           </Box>
         </ListItemButton>
-        <Divider />
         <Box
           sx={{
-            paddingTop: "10px",
             display: "flex",
             justifyContent: "space-between",
             flexDirection: "column",
-            height: "93%",
           }}
         >
+          {user.username ? (
+            <>
+              <Divider />
+              <Box sx={{ pt: "10px" }}>
+                {apperListData.map((item) => (
+                  <SidebarListItem
+                    key={item.id}
+                    id={item.id}
+                    text={item.text}
+                    icon={item.icon}
+                    path={item.path}
+                  />
+                ))}
+              </Box>
+            </>
+          ) : (
+            <></>
+          )}
           <Box>
-            {apperListData.map((item) => (
-              <SidebarListItem
-                key={item.id}
-                id={item.id}
-                text={item.text}
-                icon={item.icon}
-                path={item.path}
-              />
-            ))}
-          </Box>
-          <Box>
+            {user.username ? <Box sx={{ pt: "10px" }}></Box> : <></>}
             <Divider />
-            <ListItem disablePadding>
-              <ListItemButton>
-                <Box
-                  sx={{
-                    paddingTop: "5px",
-                    width: "100%",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <ListItemIcon>
-                    <ShareIcon />
-                  </ListItemIcon>
-                  <ListItemText variant="body2" fontWeight="700">
-                    このサイトをシェア
-                  </ListItemText>
-                </Box>
-              </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton onClick={logout}>
-                <Box
-                  sx={{
-                    width: "100%",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <ListItemIcon>
-                    <LogoutOutlined />
-                  </ListItemIcon>
-                  <ListItemText variant="body2" fontWeight="700">
-                    ログアウト
-                  </ListItemText>
-                </Box>
-              </ListItemButton>
-            </ListItem>
+            <Box sx={{ pt: "10px" }}>
+              <SidebarListItem
+                key={12}
+                id={12}
+                text="このサイトをシェア"
+                icon={<ShareIcon />}
+                // path={item.path}
+              />
+            </Box>
+            {user.username ? (
+              <SidebarListItem
+                key={13}
+                id={13}
+                text="ログアウト"
+                icon={<LogoutOutlined />}
+                onItemClick={logout}
+                path="/login"
+              />
+            ) : (
+              <>
+                <SidebarListItem
+                  key={14}
+                  id={14}
+                  text="ログイン"
+                  icon={<ShareIcon />}
+                  path="/login"
+                />
+                <SidebarListItem
+                  key={15}
+                  id={15}
+                  text="新規会員登録"
+                  icon={<ShareIcon />}
+                  path="/register"
+                />
+              </>
+            )}
           </Box>
         </Box>
       </List>

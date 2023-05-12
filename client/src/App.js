@@ -22,15 +22,15 @@ function App() {
       <CssBaseline>
         <BrowserRouter>
           <Routes>
-            {/* AuthLayoutはLoginとRegisterに共通するコンポーネント */}
-            <Route path="/" element={<AuthLayout />}>
-              <Route path="login" element={<Login />} />
-              <Route path="register" element={<Register />} />
-            </Route>
             <Route path="/" element={<AppLayout />}>
               {/* indexは親と同じpathを指定する */}
               <Route index element={<Home />} />
               <Route path="profile" element={<Profile />}/>
+            </Route>
+            {/* AuthLayoutはLoginとRegisterに共通するコンポーネント */}
+            <Route path="/" element={<AuthLayout />}>
+              <Route path="login" element={<Login />} />
+              <Route path="register" element={<Register />} />
             </Route>
           </Routes>
         </BrowserRouter>
