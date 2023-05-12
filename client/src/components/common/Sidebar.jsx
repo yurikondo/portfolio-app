@@ -7,6 +7,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import HomeIcon from "@mui/icons-material/Home";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import {
+  Avatar,
   Box,
   Divider,
   Drawer,
@@ -60,11 +61,11 @@ const Sidebar = () => {
               width: "100%",
               display: "flex",
               alignItems: "center",
-              justifyContent: "space-between",
             }}
           >
             {/* variant プロパティは、テキストの見出しの種類を指定 */}
-            <Typography variant="body1" fontWeight="700">
+            <Avatar alt="ログインユーザーのアイコン">{user.icon}</Avatar>
+            <Typography variant="body1" fontWeight="700" sx={{ ml: 2 }}>
               {user.username ? user.username : "ゲストユーザー"}
             </Typography>
           </Box>
