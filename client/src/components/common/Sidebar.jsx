@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import SidebarListItem from "./SidebarListItem";
 import LogoutOutlined from "@mui/icons-material/LogoutOutlined";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import HomeIcon from "@mui/icons-material/Home";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
+import LoginIcon from '@mui/icons-material/Login';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 import {
   Avatar,
   Box,
@@ -15,11 +17,9 @@ import {
   ListItemButton,
   Typography,
 } from "@mui/material";
-import SidebarListItem from "./SidebarListItem";
 
 const Sidebar = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const navigate = useNavigate();
   // react-router-domのuseParamsでURLのパラメーターを受け取れる
   const user = useSelector((state) => state.user.value);
 
@@ -122,14 +122,14 @@ const Sidebar = () => {
                   key={14}
                   id={14}
                   text="ログイン"
-                  icon={<ShareIcon />}
+                  icon={<LoginIcon />}
                   path="/login"
                 />
                 <SidebarListItem
                   key={15}
                   id={15}
                   text="新規会員登録"
-                  icon={<ShareIcon />}
+                  icon={<HowToRegIcon />}
                   path="/register"
                 />
               </>
