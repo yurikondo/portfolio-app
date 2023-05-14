@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
   },
   bgImg: {
     type: String,
-    default: "https://pixabay.com/get/g2a9f517799f1959586ae1429b2c076511317c68d484e8fd293c1deb38df644436eaac5e23ca9f4b68ca70ab6d8aca97c54ad6542382a7cb6dcb4c23497db360a_1280.jpg",
+    default: "https://pixabay.com/get/g8e041aa4548c8a7c93a04000433929f7d8a03ecb6cbd0e7458921d2f003a990c392343a0b4695449a47589dcbc569e6cdb82812ae03ee798fcc1b50264f3a3b2_640.jpg?w=164&h=100&fit=crop&auto=format&dpr=2",
     required: true,
   },
 

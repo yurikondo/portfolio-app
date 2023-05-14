@@ -1,11 +1,29 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { setUser } from "../../redux/features/userSlice";
+import userApi from "../../api/userApi";
 import { ImageList, ImageListItem } from "@mui/material";
 
 const ImageGallery = (props) => {
   const { fetchData } = props;
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.value);
 
-  const handleClick = (e) => {
-    console.log(e);
+  const handleClick = async (e) => {
+    const selectedImgURL = e.target.src;
+    dispatch(
+      setUser({
+        username: user.username,
+        icon: user.icon,
+        bgImg: selectedImgURL,
+      })
+    );
+    try {
+      await userApi.updateBgImg({ bgImg: selectedImgURL });
+    } catch (err) {
+      alert(err);
+    }
   };
 
   return (

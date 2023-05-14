@@ -19,7 +19,13 @@ const AppLayout = () => {
       const user = await authUtils.isAuthenticated();
       //ログインしていたら、userを保存する（グローバルに使えるようになる）レッスン73
       if (user) {
-        dispatch(setUser(user));
+        dispatch(
+          setUser({
+            username: user.username,
+            icon: user.icon,
+            bgImg: user.bgImg,
+          })
+        );
       }
     };
     checkAuth();
@@ -35,7 +41,6 @@ const AppLayout = () => {
           <Sidebar />
         </Hidden>
         {/* flexGrow を1に設定して、Box要素が可能な限りスペースを占めるようにする。 */}
-        {/* p を1に設定して、上下左右のパディングを1に設定する。 */}
         {/* width を max-content に設定して、Box要素の幅をその中身に合わせるようにする */}
         <Box sx={{ flexGrow: 1, px: 3, py: 2, width: "max-content" }}>
           {/* Homeコンポーネントを表示 */}
