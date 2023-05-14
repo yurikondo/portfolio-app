@@ -11,23 +11,51 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { AvatarGroup, Box } from "@mui/material";
+import { grey } from "@mui/material/colors";
+import HideImageIcon from "@mui/icons-material/HideImage";
 
 const MainCard = () => {
   return (
     <>
       <Card sx={{ width: "100%" }}>
         <Box sx={{ display: "flex" }}>
-          <Box sx={{ width: 250, height: 250, flexShrink: 0 }}>
-            <CardMedia
-              component="img"
-              image="https://images-fe.ssl-images-amazon.com/images/P/4763136739"
-              alt="商品の画像"
-              sx={{ p: 2, width: 250, height: 250, objectFit: "contain" }}
-            />
+          <Box sx={{ width: "30%", height: 250, flexShrink: 0 }}>
+            <Box
+              sx={{
+                width: "100%",
+                backgroundColor: grey[800],
+                borderRadius: "3px",
+                height: 250,
+                position: "relative",
+              }}
+            >
+              <CardMedia
+                component="img"
+                image="https://images.amazon.com/images/P/4798066915.jpg"
+                alt="商品の画像"
+                sx={{
+                  p: 2,
+                  width: "100%",
+                  height: 250,
+                  objectFit: "contain",
+                }}
+              />
+              <HideImageIcon
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: -100,
+                }}
+                fontSize="large"
+              />
+            </Box>
           </Box>
           <Box
             sx={{
-              flexGrow: 1,
+              // flexGrow: 1,
+              width: "70%",
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
@@ -40,7 +68,7 @@ const MainCard = () => {
                     sx={{
                       width: 48,
                       height: 48,
-                      fontSize: 24
+                      fontSize: 24,
                     }}
                     aria-label="recipe"
                   >
