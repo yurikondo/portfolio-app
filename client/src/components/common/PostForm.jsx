@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import postApi from "../../api/postApi";
 import { LoadingButton } from "@mui/lab";
-import { Box, CardMedia, TextField, Typography } from "@mui/material";
+import { Box, CardMedia, TextField } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import HideImageIcon from "@mui/icons-material/HideImage";
@@ -12,7 +12,6 @@ const PostForm = () => {
   const [itemUrlErrText, setItemUrlErrText] = useState("");
   const [descErrText, setDescErrText] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const onItemUrlChange = async (e) => {
     setItemUrlErrText("");
