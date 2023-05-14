@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import postApi from "../../api/postApi";
 import { LoadingButton } from "@mui/lab";
-import { Box, CardMedia, TextField } from "@mui/material";
+import { Box, CardMedia, TextField, Typography } from "@mui/material";
+import { grey } from "@mui/material/colors";
+import ImageSearchIcon from "@mui/icons-material/ImageSearch";
+import HideImageIcon from "@mui/icons-material/HideImage";
 
 const PostForm = () => {
   const [itemUrl, setItemUrl] = useState("");
@@ -92,18 +95,51 @@ const PostForm = () => {
       noValidate
       sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <CardMedia
-        component="img"
-        image={itemUrl}
-        alt="投稿したい商品の画像"
+      <Box
         sx={{
-          display: itemUrl ? "block" : "none",
-          p: 2,
-          width: 250,
+          width: "100%",
+          backgroundColor: grey[900],
+          borderRadius: "3px",
           height: 250,
-          objectFit: "contain",
+          position: "relative",
+          // display: "flex",
+          // justifyContent: "center",
+          // alignItems: "center",
         }}
-      />
+      >
+        <ImageSearchIcon
+          sx={{
+            display: itemUrl ? "none" : "block",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+          fontSize="large"
+        />
+        <HideImageIcon
+          sx={{
+            display: itemUrl ? "block" : "none",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+          fontSize="large"
+        />
+        <CardMedia
+          component="img"
+          image={itemUrl}
+          alt="投稿したい商品の画像"
+          sx={{
+            display: itemUrl ? "block" : "none",
+            p: 2,
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+          }}
+        />
+      </Box>
       <TextField
         fullWidth
         id="itemUrl"
