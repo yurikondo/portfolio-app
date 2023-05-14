@@ -4,13 +4,13 @@ import Picker from "@emoji-mart/react";
 
 // npm i @emoji-mart/react
 // https://www.npmjs.com/package/emoji-mart
-const EmojiPicker = (props) => {
+const EmojiPicker = ({ icon, onChange }) => {
   const [selectedEmoji, setSelectedEmoji] = useState();
   const [isShowPicker, setIsShowPicker] = useState(false);
 
   useEffect(() => {
-    setSelectedEmoji(props.icon);
-  }, [props.icon]);
+    setSelectedEmoji(icon);
+  }, [icon]);
 
   const showPicker = () => setIsShowPicker(!isShowPicker);
 
@@ -24,7 +24,7 @@ const EmojiPicker = (props) => {
     const emoji = String.fromCodePoint(...codesArray);
     setIsShowPicker(false);
     // propsで受けとったonChange関数を呼び出す
-    props.onChange(emoji);
+    onChange(emoji);
   };
 
   return (
@@ -34,7 +34,7 @@ const EmojiPicker = (props) => {
         onClick={showPicker}
       >
         <Typography variant="h3" fontWeight="700">
-          {props.icon}
+          {icon}
         </Typography>
       </Avatar>
 
