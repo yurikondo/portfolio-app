@@ -10,14 +10,6 @@ const Profile = () => {
   const [icon, setIcon] = useState("");
   const [isShowBgImgPicker, setIsShowBgImgPicker] = useState(false);
   const user = useSelector((state) => state.user.value);
-  const userProfile = {
-    username: "ゆり",
-    userIcon: "😊",
-    accountCreated: "2023/05/01",
-    backgroundImage:
-      "url(https://pixabay.com/get/g2a9f517799f1959586ae1429b2c076511317c68d484e8fd293c1deb38df644436eaac5e23ca9f4b68ca70ab6d8aca97c54ad6542382a7cb6dcb4c23497db360a_1280.jpg)",
-    postCount: 10,
-  };
 
   useEffect(() => {
     if (user.icon) {
@@ -37,14 +29,13 @@ const Profile = () => {
   const showBgImgPicker = () => setIsShowBgImgPicker(!isShowBgImgPicker);
 
   return (
-    <Box
-      sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
+    <Box>
       <Box
         sx={{
           width: "100%",
           height: 200,
-          backgroundImage: userProfile.backgroundImage,
+          backgroundImage:
+            "url(https://pixabay.com/get/g8e041aa4548c8a7c93a04000433929f7d8a03ecb6cbd0e7458921d2f003a990c392343a0b4695449a47589dcbc569e6cdb82812ae03ee798fcc1b50264f3a3b2_640.jpg?w=164&h=100&fit=crop&auto=format&dpr=2)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           position: "relative",
@@ -60,15 +51,19 @@ const Profile = () => {
           画像を変更
         </Button>
       </Box>
-      <EmojiPicker icon={icon} onChange={onIconChange} sx={{ mt: -5 }} />
-      <Typography variant="h4" sx={{ marginTop: 2 }}>
-        {userProfile.username}
-      </Typography>
-      <Typography variant="subtitle1" sx={{ marginTop: 1 }}>
-        投稿数: {userProfile.postCount}
-      </Typography>
-      <Box sx={{ display: isShowBgImgPicker ? "block" : "none", mt: 3 }}>
-        <BgImgPicker />
+      <Box
+        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      >
+        <EmojiPicker icon={icon} onChange={onIconChange} sx={{ mt: -5 }} />
+        <Typography variant="h4" sx={{ marginTop: 2 }}>
+          {user.username}
+        </Typography>
+        <Typography variant="subtitle1" sx={{ marginTop: 1 }}>
+          投稿数: 10
+        </Typography>
+        <Box sx={{ display: isShowBgImgPicker ? "block" : "none", mt: 3 }}>
+          <BgImgPicker />
+        </Box>
       </Box>
     </Box>
   );
