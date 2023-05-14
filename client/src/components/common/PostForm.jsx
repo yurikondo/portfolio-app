@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import postApi from "../../api/postApi";
 import { LoadingButton } from "@mui/lab";
 import { Box, CardMedia, TextField } from "@mui/material";
@@ -13,31 +13,24 @@ const PostForm = () => {
 
   const onItemUrlChange = async (e) => {
     setItemUrlErrText("");
-    const newItemUrl = e.target.value;
-    if (!newItemUrl.includes("/dp/")) {
-      setItemUrlErrText("Amazon商品のURLを貼り付けてください");
-    }
-    const startIndex = newItemUrl.indexOf("/dp/") + 4; // "/dp/"の後の文字のインデックスを取得
-    if (startIndex === -1) {
-      setItemUrlErrText("Amazon商品のURLを貼り付けてください");
-      return;
-    }
-    const endIndex = startIndex + 10; // 10桁の数字の終了インデックスを計算
+    const inputAmazonURL = e.target.value;
 
-    const productId = newItemUrl.substring(startIndex, endIndex); // インデックスを使用して部分文字列を抽出
-    const extractNumbers = (id) => {
-      const regex = /\d+/g; // 正規表現を使用して数字を抽出する
-      const numbers = id.match(regex);
-      return numbers ? numbers[0] : 0;
+    const isValidAmazonUrl = (url) => {
+      const pattern =
+        /^(https?:\/\/)?(www\.)?amazon\.[a-z]{2,3}(\.[a-z]{2})?\/.*$/;
+      return pattern.test(url);
     };
 
-    const checkedProductId = extractNumbers(productId);
-
-    if (checkedProductId.length !== 10) {
+    if (!isValidAmazonUrl(inputAmazonURL)) {
       setItemUrlErrText("Amazon商品のURLを貼り付けてください");
-      return;
     }
-    setItemUrl(`https://images-fe.ssl-images-amazon.com/images/P/${productId}`);
+
+    const startIndex = inputAmazonURL.indexOf("/dp/") + 4; // "/dp/"の後の文字のインデックスを取得
+    const endIndex = startIndex + 10; // 10桁の数字の終了インデックスを計算
+    const productId = inputAmazonURL.substring(startIndex, endIndex); // インデックスを使用して部分文字列を抽出
+    // setItemUrl(`https://images-fe.ssl-images-amazon.com/images/P/${productId}`);
+    // setItemUrl(`https://images.amazon.com/images/P/${productId}._SCTZZZZZZZ_.jpg`);
+    setItemUrl(`https://images.amazon.com/images/P/${productId}.jpg`);
   };
 
   //フォームから入力されたデータを取得するための処理
