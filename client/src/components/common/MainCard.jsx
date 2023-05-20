@@ -10,9 +10,10 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { AvatarGroup, Box } from "@mui/material";
+import { Box } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import HideImageIcon from "@mui/icons-material/HideImage";
+import AvatarList from "./AvatarList";
 
 const MainCard = ({ desc, itemImgURL, user }) => {
   return (
@@ -101,14 +102,7 @@ const MainCard = ({ desc, itemImgURL, user }) => {
               <IconButton aria-label="お気に入りに追加">
                 <FavoriteIcon />
               </IconButton>
-              <AvatarGroup max={4}>
-                <Avatar alt="いいねしたユーザーのアイコン">😇</Avatar>
-                <Avatar alt="いいねしたユーザーのアイコン">😇</Avatar>
-                <Avatar alt="いいねしたユーザーのアイコン">😇</Avatar>
-                <Avatar alt="いいねしたユーザーのアイコン">😇</Avatar>
-                <Avatar alt="いいねしたユーザーのアイコン">😇</Avatar>
-                <Avatar alt="いいねしたユーザーのアイコン">😇</Avatar>
-              </AvatarGroup>
+              <AvatarList />
             </CardActions>
             <Typography sx={{ mr: 3 }}>2023/05/01</Typography>
           </Box>
