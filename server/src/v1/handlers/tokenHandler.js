@@ -12,6 +12,7 @@ const tokenDecode = (req) => {
       const decodedToken = JWT.verify(bearer, process.env.TOKEN_SECRET_KEY);
       return decodedToken;
     } catch (err) {
+      console.log(err);
       return false;
     }
   } else {
@@ -26,11 +27,11 @@ exports.verifyToken = async (req, res, next) => {
     //そのJWTと一致するユーザーを探してくる
     const user = await User.findById(tokenDecoded.id);
     if (!user) {
-      return res.status(401).json("権限がありません❌");//401 不許可
+      return res.status(401).json("権限がありません❌"); //401 不許可
     }
     req.user = user;
     next();
   } else {
-    return res.status(401).json("権限がありません❌");//401 不許可
+    return res.status(401).json("権限がありません❌"); //401 不許可
   }
 };

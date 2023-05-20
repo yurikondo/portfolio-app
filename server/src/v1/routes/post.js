@@ -14,8 +14,9 @@ router.post(
   //   .isLength({ max: 100 })
   //   .withMessage("コメントは100文字以内で入力してください"),
 
+  tokenHandler.verifyToken,
   //エラー文をerrorsに入れる
-  // validation.validate,
+  validation.validate,
 
   postController.create
 );

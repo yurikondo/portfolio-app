@@ -63,7 +63,7 @@ const PostForm = () => {
 
     setLoading(true);
 
-    //ユーザー新規登録API
+    //投稿API
     try {
       const res = await postApi.create({
         itemUrl,
