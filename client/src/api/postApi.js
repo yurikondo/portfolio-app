@@ -5,6 +5,7 @@ const postApi = {
   getAll: () => axiosClient.get("post"),
   getOne: (id) => axiosClient.get(`post/${id}`),
   update: (id, params) => axiosClient.put(`post/${id}`, params),
+  like: (id, params) => axiosClient.put(`post/${id}/like`, params),
   delete: (id) => axiosClient.delete(`post/${id}`),
 };
 

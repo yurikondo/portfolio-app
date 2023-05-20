@@ -3,7 +3,6 @@ const Post = require("../models/post");
 exports.create = async (req, res) => {
   const itemImgURL = req.body.itemImgURL;
   const desc = req.body.desc;
-
   try {
     //投稿の新規作成
     const post = await Post.create({
@@ -13,6 +12,7 @@ exports.create = async (req, res) => {
     });
     return res.status(201).json(post);
   } catch (err) {
+    console.log(err);
     return res.status(500).json(err);
   }
 };
@@ -72,5 +72,33 @@ exports.delete = async (req, res) => {
     return res.status(200).json("投稿を削除しました🗑️");
   } catch (err) {
     return res.status(500).json(err);
+  }
+};
+
+exports.like = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    //まだいいねをしてなかったらいいねできる
+    //配列なのでincludes関数が使える
+    if (!post.likes.includes(req.body.userId)) {
+      await post.updateOne({
+        //配列にpushする
+        $push: {
+          likes: req.body.userId,
+        },
+      });
+      return res.status(200).json("投稿にいいねしました🎉");
+      // すでにいいねが押されていたらいいねしているユーザーIDを取り除く
+    } else {
+      await post.updateOne({
+        //配列にpushする
+        $pull: {
+          likes: req.body.userId,
+        },
+      });
+      return res.status(403).json("投稿のいいねを外しました🎉");
+    }
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
   }
 };

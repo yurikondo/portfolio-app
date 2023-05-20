@@ -9,7 +9,7 @@ const postSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    itemURL: {
+    itemImgURL: {
       type: String,
       required: true,
     },

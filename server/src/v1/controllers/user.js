@@ -75,9 +75,7 @@ exports.unfollow = async (req, res) => {
   if (req.body.userId !== req.params.id) {
     try {
       const user = await User.findById(req.params.id);
-      console.log(user);
       const currentUser = await User.findById(req.body.userId);
-      console.log(currentUser);
       //フォロワーに自分がいたらフォロー解除できる
       //配列なのでincludes関数が使える
       if (user.followers.includes(req.body.userId)) {

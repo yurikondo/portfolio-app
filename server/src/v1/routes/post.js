@@ -30,6 +30,9 @@ router.get("/:postId", tokenHandler.verifyToken, postController.getOne);
 //投稿を更新
 router.put("/:postId", tokenHandler.verifyToken, postController.update);
 
+//投稿にいいね
+router.put("/:id/like", tokenHandler.verifyToken, postController.like);
+
 //投稿を削除
 router.delete("/:postId", tokenHandler.verifyToken, postController.delete);
 
