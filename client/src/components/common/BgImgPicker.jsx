@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import ImageGallery from "./ImageGallery";
 
-const BgImgPicker = () => {
+const BgImgPicker = ({ isShowBgImgPicker, setIsShowBgImgPicker }) => {
   const [fetchData, setFetchData] = useState([]);
   const ref = useRef();
 
@@ -47,7 +47,11 @@ const BgImgPicker = () => {
           検索
         </Button>
       </Paper>
-      <ImageGallery fetchData={fetchData} />
+      <ImageGallery
+        fetchData={fetchData}
+        isShowBgImgPicker={isShowBgImgPicker}
+        setIsShowBgImgPicker={setIsShowBgImgPicker}
+      />
     </Box>
   );
 };

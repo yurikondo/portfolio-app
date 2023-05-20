@@ -8,8 +8,15 @@ import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 
 const Profile = () => {
   const [icon, setIcon] = useState("");
+  const [bgImg, setBgImg] = useState("");
   const [isShowBgImgPicker, setIsShowBgImgPicker] = useState(false);
   const user = useSelector((state) => state.user.value);
+
+  useEffect(() => {
+    if (user.bgImg) {
+      setBgImg(user.bgImg);
+    }
+  }, [user.bgImg]);
 
   useEffect(() => {
     if (user.icon) {
@@ -34,8 +41,7 @@ const Profile = () => {
         sx={{
           width: "100%",
           height: 200,
-          backgroundImage:
-          `url(${user.bgImg})`,
+          backgroundImage: `url(${bgImg})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           position: "relative",
@@ -62,7 +68,10 @@ const Profile = () => {
           投稿数: 10
         </Typography>
         <Box sx={{ display: isShowBgImgPicker ? "block" : "none", mt: 3 }}>
-          <BgImgPicker />
+          <BgImgPicker
+            isShowBgImgPicker={isShowBgImgPicker}
+            setIsShowBgImgPicker={setIsShowBgImgPicker}
+          />
         </Box>
       </Box>
     </Box>

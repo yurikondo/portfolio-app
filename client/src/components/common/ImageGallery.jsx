@@ -22,7 +22,7 @@ const ImageGallery = (props) => {
     try {
       await userApi.updateBgImg({ bgImg: selectedImgURL });
     } catch (err) {
-      alert(err);
+      console.log(err);
     }
   };
 
