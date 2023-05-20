@@ -19,8 +19,8 @@ exports.create = async (req, res) => {
 
 exports.getAll = async (req, res) => {
   try {
-    //ログインしているユーザーの投稿を全て取得
-    const posts = await Post.find({ user: req.user._id });
+    //投稿を全取得
+    const posts = await Post.find({});
     return res.status(200).json(posts);
   } catch (err) {
     return res.status(500).json(err);

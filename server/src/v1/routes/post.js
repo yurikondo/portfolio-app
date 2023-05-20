@@ -21,16 +21,16 @@ router.post(
   postController.create
 );
 
-//ログインしているユーザーの投稿を全て取得
+//投稿を全て取得
 router.get("/", tokenHandler.verifyToken, postController.getAll);
 
-//ログインしているユーザーの投稿を１つ取得
+//投稿を取得
 router.get("/:postId", tokenHandler.verifyToken, postController.getOne);
 
-//ログインしているユーザーの投稿を１つ更新
+//投稿を更新
 router.put("/:postId", tokenHandler.verifyToken, postController.update);
 
-//ログインしているユーザーの投稿を１つ削除
+//投稿を削除
 router.delete("/:postId", tokenHandler.verifyToken, postController.delete);
 
 module.exports = router;
