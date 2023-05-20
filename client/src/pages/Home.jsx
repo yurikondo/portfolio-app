@@ -27,7 +27,7 @@ function Home() {
           <MainCard
             key={post._id}
             desc={post.desc}
-            itemURL={post.itemURL}
+            itemImgURL={post.itemImgURL}
             user={post.user}
           />
         ))}

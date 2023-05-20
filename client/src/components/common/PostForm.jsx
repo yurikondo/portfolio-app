@@ -8,13 +8,13 @@ import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import HideImageIcon from "@mui/icons-material/HideImage";
 
 const PostForm = () => {
-  const [itemUrl, setItemUrl] = useState("");
-  const [itemUrlErrText, setItemUrlErrText] = useState("");
+  const [itemImgURL, setItemImgURL] = useState("");
+  const [itemImgURLErrText, setItemImgURLErrText] = useState("");
   const [descErrText, setDescErrText] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const onItemUrlChange = async (e) => {
-    setItemUrlErrText("");
+  const onItemImgURLChange = async (e) => {
+    setItemImgURLErrText("");
     const inputAmazonURL = e.target.value;
 
     const isValidAmazonUrl = (url) => {
@@ -24,20 +24,18 @@ const PostForm = () => {
     };
 
     if (!isValidAmazonUrl(inputAmazonURL)) {
-      setItemUrlErrText("Amazon商品のURLを貼り付けてください");
+      setItemImgURLErrText("Amazon商品のURLを貼り付けてください");
     }
 
     const startIndex = inputAmazonURL.indexOf("/dp/") + 4; // "/dp/"の後の文字のインデックスを取得
     const endIndex = startIndex + 10; // 10桁の数字の終了インデックスを計算
     const productId = inputAmazonURL.substring(startIndex, endIndex); // インデックスを使用して部分文字列を抽出
-    // setItemUrl(`https://images-fe.ssl-images-amazon.com/images/P/${productId}`);
-    // setItemUrl(`https://images.amazon.com/images/P/${productId}._SCTZZZZZZZ_.jpg`);
-    setItemUrl(`https://images.amazon.com/images/P/${productId}.jpg`);
+    setItemImgURL(`https://images.amazon.com/images/P/${productId}.jpg`);
   };
 
   //フォームから入力されたデータを取得するための処理
   const handleSubmit = async (e) => {
-    setItemUrlErrText("");
+    setItemImgURLErrText("");
     setDescErrText("");
 
     //デフォルトのフォーム送信動作をキャンセル
@@ -50,9 +48,9 @@ const PostForm = () => {
 
     let error = false;
 
-    if (itemUrl === "") {
+    if (itemImgURL === "") {
       error = true;
-      setItemUrlErrText("Amazon商品のURLを貼り付けてください");
+      setItemImgURLErrText("Amazon商品のURLを貼り付けてください");
     }
     if (desc === "") {
       error = true;
@@ -66,7 +64,7 @@ const PostForm = () => {
     //投稿API
     try {
       const res = await postApi.create({
-        itemUrl,
+        itemImgURL,
         desc,
       });
       setLoading(false);
@@ -76,8 +74,8 @@ const PostForm = () => {
       // const errors = err.data.errors;
 
       // errors.forEach((err) => {
-      //   if (err.param === "itemUrl") {
-      //     setItemUrlErrText(err.msg);
+      //   if (err.param === "itemImgURL") {
+      //     setItemImgURLErrText(err.msg);
       //   }
       //   if (err.param === "desc") {
       //     setDescErrText(err.msg);
@@ -108,7 +106,7 @@ const PostForm = () => {
       >
         <ImageSearchIcon
           sx={{
-            display: itemUrl ? "none" : "block",
+            display: itemImgURL ? "none" : "block",
             position: "absolute",
             top: "50%",
             left: "50%",
@@ -118,7 +116,7 @@ const PostForm = () => {
         />
         <HideImageIcon
           sx={{
-            display: itemUrl ? "block" : "none",
+            display: itemImgURL ? "block" : "none",
             position: "absolute",
             top: "50%",
             left: "50%",
@@ -128,10 +126,10 @@ const PostForm = () => {
         />
         <CardMedia
           component="img"
-          image={itemUrl}
+          image={itemImgURL}
           alt="投稿したい商品の画像"
           sx={{
-            display: itemUrl ? "block" : "none",
+            display: itemImgURL ? "block" : "none",
             p: 2,
             width: "100%",
             height: "100%",
@@ -141,16 +139,16 @@ const PostForm = () => {
       </Box>
       <TextField
         fullWidth
-        id="itemUrl"
+        id="itemImgURL"
         label="Amazon商品のURL"
         margin="normal"
-        name="itemUrl"
+        name="itemImgURL"
         required
-        helperText={itemUrlErrText}
-        error={itemUrlErrText !== ""}
+        helperText={itemImgURLErrText}
+        error={itemImgURLErrText !== ""}
         disabled={loading}
-        // value={itemUrl}
-        onChange={onItemUrlChange}
+        // value={itemImgURL}
+        onChange={onItemImgURLChange}
       />
       <TextField
         fullWidth

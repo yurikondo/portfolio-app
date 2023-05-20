@@ -7,7 +7,7 @@ const validation = require("../handlers/validation");
 //メモを作成
 router.post(
   "/",
-  // body("itemUrl")
+  // body("itemImgURL")
   //   .isLength({ min: 8 })
   //   .withMessage("URLは8文字以上で入力してください"),
   // body("desc")

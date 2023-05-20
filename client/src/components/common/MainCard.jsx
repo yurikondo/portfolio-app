@@ -14,9 +14,9 @@ import { AvatarGroup, Box } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import HideImageIcon from "@mui/icons-material/HideImage";
 
-const MainCard = ({ desc, itemURL, user }) => {
+const MainCard = ({ desc, itemImgURL, user }) => {
   return (
-    <Card sx={{ width: "100%", mb:2 }}>
+    <Card sx={{ width: "100%", mb: 2 }}>
       <Box sx={{ display: "flex" }}>
         <Box sx={{ width: "30%", height: 250, flexShrink: 0 }}>
           <Box
@@ -30,7 +30,7 @@ const MainCard = ({ desc, itemURL, user }) => {
           >
             <CardMedia
               component="img"
-              image={itemURL}
+              image={itemImgURL}
               alt="商品の画像"
               sx={{
                 p: 2,
