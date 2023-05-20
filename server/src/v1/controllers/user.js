@@ -37,3 +37,71 @@ exports.updateBgImg = async (req, res) => {
     return res.status(500).json(err);
   }
 };
+
+exports.follow = async (req, res) => {
+  if (req.body.userId !== req.params.id) {
+    try {
+      const user = await User.findById(req.params.id);
+      const currentUser = await User.findById(req.body.userId);
+      //フォロワーに自分がいなかったらフォローできる
+      //配列なのでincludes関数が使える
+      if (!user.followers.includes(req.body.userId)) {
+        await user.updateOne({
+          //配列にpushする
+          $push: {
+            followers: req.body.userId,
+          },
+        });
+        await currentUser.updateOne({
+          $push: {
+            followings: req.params.id,
+          },
+        });
+      } else {
+        return res
+          .status(403)
+          .json("あなたはすでにこのユーザーをフォローしています❌");
+      }
+      return res.status(200).json("フォローしました🎉");
+    } catch (err) {
+      return res.status(500).json({error: err.message});
+    }
+  } else {
+    return res.status(500).json("自分自身をフォローできません❌");
+  }
+};
+
+exports.unfollow = async (req, res) => {
+  if (req.body.userId !== req.params.id) {
+    try {
+      const user = await User.findById(req.params.id);
+      console.log(user);
+      const currentUser = await User.findById(req.body.userId);
+      console.log(currentUser);
+      //フォロワーに自分がいたらフォロー解除できる
+      //配列なのでincludes関数が使える
+      if (user.followers.includes(req.body.userId)) {
+        await user.updateOne({
+          //配列にpushする
+          $pull: {
+            followers: req.body.userId,
+          },
+        });
+        await currentUser.updateOne({
+          $pull: {
+            followings: req.params.id,
+          },
+        });
+      } else {
+        return res
+          .status(403)
+          .json("このユーザーはフォロー解除できません❌");
+      }
+      return res.status(200).json("フォロー解除しました🎉");
+    } catch (err) {
+      return res.status(500).json({error: err.message});
+    }
+  } else {
+    return res.status(500).json("自分自身をフォロー解除できません❌");
+  }
+};
