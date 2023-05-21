@@ -46,7 +46,7 @@ export default function UserListItem() {
                     {user.username}
                   </Typography>
                   <br />
-                  {" — ダミーテキスト…"}
+                  {" — ダミーテキストダミーテキストダミー…"}
                 </React.Fragment>
               }
             />

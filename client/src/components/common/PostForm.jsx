@@ -9,6 +9,7 @@ import HideImageIcon from "@mui/icons-material/HideImage";
 const PostForm = () => {
   const [itemImgURL, setItemImgURL] = useState("");
   const [itemImgURLErrText, setItemImgURLErrText] = useState("");
+  const [desc, setDesc] = useState("");
   const [descErrText, setDescErrText] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -66,6 +67,8 @@ const PostForm = () => {
         itemImgURL,
         desc,
       });
+      setItemImgURL("");
+      setDesc("");
       setLoading(false);
       console.log("投稿に成功しました🎉");
     } catch (err) {
@@ -159,6 +162,7 @@ const PostForm = () => {
         error={descErrText !== ""}
         disabled={loading}
         inputProps={{ maxLength: 140 }}
+         // value={desc}
       />
       <LoadingButton
         sx={{ mt: 3, mb: 2 }}

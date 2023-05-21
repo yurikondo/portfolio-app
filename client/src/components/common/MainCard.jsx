@@ -23,7 +23,7 @@ const MainCard = ({ desc, itemImgURL, user }) => {
           <Box
             sx={{
               width: "100%",
-              backgroundColor: grey[800],
+              backgroundColor: grey[900],
               borderRadius: "3px",
               height: 250,
               position: "relative",

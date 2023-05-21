@@ -6,6 +6,8 @@ import BgImgPicker from "../components/common/pickers/BgImgPicker";
 import { Box, Button, Typography } from "@mui/material";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import defaultBgImg from "../assets/images/defaultBgImg.jpg";
+import { grey } from "@mui/material/colors";
+
 
 const Profile = () => {
   const [icon, setIcon] = useState("");
@@ -42,7 +44,8 @@ const Profile = () => {
         sx={{
           width: "100%",
           height: 200,
-          backgroundImage: `url(${defaultBgImg})`,
+          // backgroundImage: `url(${defaultBgImg})`,
+          backgroundColor: grey[800],
           backgroundSize: "cover",
           backgroundPosition: "center",
           position: "relative",
