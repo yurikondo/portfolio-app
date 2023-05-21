@@ -7,7 +7,7 @@ import { Box, Button, Typography } from "@mui/material";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import defaultBgImg from "../assets/images/defaultBgImg.jpg";
 import { grey } from "@mui/material/colors";
-
+// import InputDesc from "../components/common/InputDesc";
 
 const Profile = () => {
   const [icon, setIcon] = useState("");
@@ -83,6 +83,7 @@ const Profile = () => {
         <Typography variant="subtitle1" sx={{ marginTop: 1 }}>
           投稿数: 10
         </Typography>
+        {/* <InputDesc /> */}
         <Box sx={{ display: isShowBgImgPicker ? "block" : "none", mt: 3 }}>
           <BgImgPicker
             isShowBgImgPicker={isShowBgImgPicker}

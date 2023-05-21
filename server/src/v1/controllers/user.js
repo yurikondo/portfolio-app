@@ -27,6 +27,21 @@ exports.updateIcon = async (req, res) => {
   }
 };
 
+// exports.updateDesc = async (req, res) => {
+//   const { desc } = req.body;
+//   const user = req.user;
+
+//   try {
+//     const updatedUser = await User.findByIdAndUpdate(user._id, {
+//       desc: desc,
+//     });
+
+//     return res.status(200).json(updatedUser);
+//   } catch (err) {
+//     return res.status(500).json(err);
+//   }
+// };
+
 exports.updateBgImg = async (req, res) => {
   const { bgImg } = req.body;
   const user = req.user;
