@@ -5,6 +5,7 @@ import EmojiPicker from "../components/common/EmojiPicker";
 import BgImgPicker from "../components/common/BgImgPicker";
 import { Box, Button, Typography } from "@mui/material";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
+import defaultBgImg from "../assets/images/defaultBgImg.jpg";
 
 const Profile = () => {
   const [icon, setIcon] = useState("");
@@ -41,21 +42,33 @@ const Profile = () => {
         sx={{
           width: "100%",
           height: 200,
-          backgroundImage: `url(${bgImg})`,
+          backgroundImage: `url(${defaultBgImg})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           position: "relative",
         }}
       >
-        <Button
-          onClick={showBgImgPicker}
-          variant="contained"
-          size="large"
-          sx={{ zIndex: 100, position: "absolute", right: 5, bottom: 5 }}
-          startIcon={<AddAPhotoIcon fontSize="inherit" />}
+        <Box
+          sx={{
+            width: "100%",
+            height: 200,
+            backgroundImage: `url(${bgImg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            position: "relative",
+            position: "absolute",
+          }}
         >
-          画像を変更
-        </Button>
+          <Button
+            onClick={showBgImgPicker}
+            variant="contained"
+            size="large"
+            sx={{ zIndex: 100, position: "absolute", right: 5, bottom: 5 }}
+            startIcon={<AddAPhotoIcon fontSize="inherit" />}
+          >
+            画像を変更
+          </Button>
+        </Box>
       </Box>
       <Box
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
