@@ -25,13 +25,14 @@ exports.verifyToken = async (req, res, next) => {
   const tokenDecoded = tokenDecode(req);
   if (tokenDecoded) {
     //そのJWTと一致するユーザーを探してくる
-    const user = await User.findById(tokenDecoded.id);
-    if (!user) {
-      return res.status(401).json("権限がありません❌"); //401 不許可
-    }
-    req.user = user;
+    const loginUser = await User.findById(tokenDecoded.id);
+    // if (!user) {
+    //   return res.status(401).json("権限がありません❌"); 
+    // }
+    req.user = loginUser;
     next();
   } else {
-    return res.status(401).json("権限がありません❌"); //401 不許可
+    // return res.status(401).json("権限がありません❌");
+    next();
   }
 };
