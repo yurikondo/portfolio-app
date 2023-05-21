@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 import MainCard from "../components/common/MainCard";
 import PostForm from "../components/common/PostForm";
 import postApi from "../api/postApi";
 import UserListItem from "../components/common/UserListItem";
+import { Grid } from "@mui/material";
+import { setPost } from "../redux/features/postSlice";
 
 function Home() {
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
+  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.post.value);
 
   useEffect(() => {
     const getPosts = async () => {
       try {
         const res = await postApi.getAll();
-        setPosts(res);
+        dispatch(setPost(res));
+        // setPosts(res);
         console.log(res);
       } catch (err) {
         console.log(err);
       }
     };
     getPosts();
-  }, []);
+  }, [dispatch]);
 
   return (
     <Grid container spacing={3}>

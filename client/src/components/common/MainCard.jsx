@@ -2,9 +2,10 @@ import * as React from "react";
 import { useState } from "react";
 import MenuBtn from "./MenuBtn";
 import postApi from "../../api/postApi";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { format } from "timeago.js";
 import AvatarList from "./AvatarList";
+import { setPost } from "../../redux/features/postSlice";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -23,13 +24,17 @@ import HideImageIcon from "@mui/icons-material/HideImage";
 const MainCard = ({ postId, desc, itemImgURL, user, createdAt }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const loginUser = useSelector((state) => state.user.value);
+  const posts = useSelector((state) => state.post.value);
+  const dispatch = useDispatch();
+
   const settings = [
     {
       text: "投稿を削除",
       onClick: async () => {
         try {
           await postApi.delete(postId);
-          window.location.reload();
+          const newPosts = posts.filter((e) => e._id !== postId);
+          dispatch(setPost(newPosts));
         } catch (err) {
           console.log(err);
         }

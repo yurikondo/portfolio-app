@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import postApi from "../../api/postApi";
+import { useDispatch, useSelector } from "react-redux";
+import { setPost } from "../../redux/features/postSlice";
 import { LoadingButton } from "@mui/lab";
 import { Box, CardMedia, TextField } from "@mui/material";
 import { grey } from "@mui/material/colors";
@@ -12,6 +14,8 @@ const PostForm = () => {
   const [desc, setDesc] = useState("");
   const [descErrText, setDescErrText] = useState("");
   const [loading, setLoading] = useState(false);
+  const posts = useSelector((state) => state.post.value);
+  const dispatch = useDispatch();
 
   const onItemImgURLChange = async (e) => {
     setItemImgURLErrText("");
@@ -70,7 +74,8 @@ const PostForm = () => {
       setItemImgURL("");
       setDesc("");
       setLoading(false);
-      window.location.reload();
+      dispatch(setPost(posts));
+      // window.location.reload();
       console.log("投稿に成功しました🎉");
     } catch (err) {
       // server/routes/auth.jsのバリデーションに引っ掛かったら(レッスン55)
