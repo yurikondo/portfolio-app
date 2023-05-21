@@ -19,7 +19,6 @@ import {
 } from "@mui/material";
 
 const Sidebar = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
   // react-router-domのuseParamsでURLのパラメーターを受け取れる
   const user = useSelector((state) => state.user.value);
 
