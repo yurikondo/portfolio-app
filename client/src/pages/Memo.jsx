@@ -70,7 +70,6 @@ const Memo = () => {
 
   const deleteMemo = async () => {
     try {
-      const deletedMemo = await memoApi.delete(memoId);
       // 削除したメモ以外のメモを格納
       const newMemos = memos.filter((e) => e._id !== memoId);
       if (newMemos.length === 0) {

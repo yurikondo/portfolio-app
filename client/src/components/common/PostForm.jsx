@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import postApi from "../../api/postApi";
 import { LoadingButton } from "@mui/lab";
 import { Box, CardMedia, TextField } from "@mui/material";
@@ -63,7 +62,7 @@ const PostForm = () => {
 
     //投稿API
     try {
-      const res = await postApi.create({
+      await postApi.create({
         itemImgURL,
         desc,
       });

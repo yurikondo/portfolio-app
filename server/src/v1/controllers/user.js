@@ -1,6 +1,6 @@
 const User = require("../models/user");
 
-exports.getLatestUser = async (req, res) => {
+exports.getLatestUsers = async (req, res) => {
   try {
     //投稿を全取得
     const latestUsers = await User.find({}).sort({ createdAt: -1 }).limit(3);
