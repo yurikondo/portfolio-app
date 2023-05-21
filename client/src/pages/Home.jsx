@@ -30,6 +30,7 @@ function Home() {
             desc={post.desc}
             itemImgURL={post.itemImgURL}
             user={post.user}
+            createdAt={post.createdAt}
           />
         ))}
       </Grid>

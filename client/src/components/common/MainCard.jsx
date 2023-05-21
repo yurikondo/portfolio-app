@@ -1,4 +1,6 @@
 import * as React from "react";
+import { format } from "timeago.js";
+import AvatarList from "./AvatarList";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -13,9 +15,8 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Box } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import HideImageIcon from "@mui/icons-material/HideImage";
-import AvatarList from "./AvatarList";
 
-const MainCard = ({ desc, itemImgURL, user }) => {
+const MainCard = ({ desc, itemImgURL, user, createdAt }) => {
   return (
     <Card sx={{ width: "100%", mb: 2 }}>
       <Box sx={{ display: "flex" }}>
@@ -104,7 +105,7 @@ const MainCard = ({ desc, itemImgURL, user }) => {
               </IconButton>
               <AvatarList />
             </CardActions>
-            <Typography sx={{ mr: 3 }}>2023/05/01</Typography>
+            <Typography sx={{ mr: 3 }}>{format(createdAt)}</Typography>
           </Box>
         </Box>
       </Box>
