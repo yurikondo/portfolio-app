@@ -69,17 +69,17 @@ const PostForm = () => {
       setLoading(false);
       console.log("投稿に成功しました🎉");
     } catch (err) {
-      //server/routes/auth.jsのバリデーションに引っ掛かったら(レッスン55)
-      // const errors = err.data.errors;
+      // server/routes/auth.jsのバリデーションに引っ掛かったら(レッスン55)
+      const errors = err.data.errors;
 
-      // errors.forEach((err) => {
-      //   if (err.param === "itemImgURL") {
-      //     setItemImgURLErrText(err.msg);
-      //   }
-      //   if (err.param === "desc") {
-      //     setDescErrText(err.msg);
-      //   }
-      // });
+      errors.forEach((err) => {
+        if (err.param === "itemImgURL") {
+          setItemImgURLErrText(err.msg);
+        }
+        if (err.param === "desc") {
+          setDescErrText(err.msg);
+        }
+      });
       setLoading(false);
     }
   };
@@ -98,9 +98,6 @@ const PostForm = () => {
           borderRadius: "3px",
           height: 250,
           position: "relative",
-          // display: "flex",
-          // justifyContent: "center",
-          // alignItems: "center",
         }}
       >
         <ImageSearchIcon
@@ -152,7 +149,7 @@ const PostForm = () => {
       <TextField
         fullWidth
         id="desc"
-        label="コメント"
+        label="コメント（１２０字まで）"
         margin="normal"
         name="desc"
         multiline
@@ -161,6 +158,7 @@ const PostForm = () => {
         helperText={descErrText}
         error={descErrText !== ""}
         disabled={loading}
+        inputProps={{ maxLength: 140 }}
       />
       <LoadingButton
         sx={{ mt: 3, mb: 2 }}

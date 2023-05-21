@@ -7,14 +7,15 @@ const validation = require("../handlers/validation");
 //メモを作成
 router.post(
   "/",
-  // body("itemImgURL")
-  //   .isLength({ min: 8 })
-  //   .withMessage("URLは8文字以上で入力してください"),
-  // body("desc")
-  //   .isLength({ max: 100 })
-  //   .withMessage("コメントは100文字以内で入力してください"),
+  body("itemImgURL")
+    .isLength({ max: 500 })
+    .withMessage("URLは500文字以内で入力してください"),
+  body("desc")
+    .isLength({ max: 120 })
+    .withMessage("コメントは120文字以内で入力してください"),
 
   tokenHandler.verifyToken,
+
   //エラー文をerrorsに入れる
   validation.validate,
 
