@@ -5,8 +5,8 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import HomeIcon from "@mui/icons-material/Home";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
-import LoginIcon from '@mui/icons-material/Login';
-import HowToRegIcon from '@mui/icons-material/HowToReg';
+import LoginIcon from "@mui/icons-material/Login";
+import HowToRegIcon from "@mui/icons-material/HowToReg";
 import {
   Avatar,
   Box,
@@ -74,7 +74,7 @@ const Sidebar = () => {
             flexDirection: "column",
           }}
         >
-          {loginUser.username ? (
+          {loginUser.username && (
             <>
               <Divider />
               <Box sx={{ pt: "10px" }}>
@@ -89,11 +89,9 @@ const Sidebar = () => {
                 ))}
               </Box>
             </>
-          ) : (
-            <></>
           )}
           <Box>
-            {loginUser.username ? <Box sx={{ pt: "10px" }}></Box> : <></>}
+            {loginUser.username && <Box sx={{ pt: "10px" }}></Box>}
             <Divider />
             <Box sx={{ pt: "10px" }}>
               <SidebarListItem
