@@ -35,7 +35,7 @@ function Home() {
             postId={post._id}
             desc={post.desc}
             itemImgURL={post.itemImgURL}
-            user={post.user}
+            userId={post.user}
             createdAt={post.createdAt}
           />
         ))}

@@ -21,7 +21,7 @@ import { Box } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import HideImageIcon from "@mui/icons-material/HideImage";
 
-const MainCard = ({ postId, desc, itemImgURL, user, createdAt }) => {
+const MainCard = ({ postId, desc, itemImgURL, userId, createdAt }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const loginUser = useSelector((state) => state.user.value);
   const posts = useSelector((state) => state.post.value);
@@ -100,22 +100,37 @@ const MainCard = ({ postId, desc, itemImgURL, user, createdAt }) => {
           }}
         >
           <Box>
-            <CardHeader
-              avatar={
-                <Avatar
-                  sx={{
-                    width: 48,
-                    height: 48,
-                    fontSize: 24,
-                  }}
-                  aria-label="recipe"
-                >
-                  😝
-                </Avatar>
-              }
-              action={
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <CardHeader
+                avatar={
+                  <Avatar
+                    sx={{
+                      width: 48,
+                      height: 48,
+                      fontSize: 24,
+                    }}
+                    aria-label="recipe"
+                  >
+                    😝
+                  </Avatar>
+                }
+                title="ゆりです"
+              />
+              {userId === loginUser._id && (
                 <>
                   <IconButton
+                    sx={{
+                      width: 48,
+                      height: 48,
+                      fontSize: 24,
+                      mr: 1,
+                    }}
                     aria-label="settings"
                     onClick={handleOpenUserMenu}
                   >
@@ -127,9 +142,8 @@ const MainCard = ({ postId, desc, itemImgURL, user, createdAt }) => {
                     setAnchorElUser={setAnchorElUser}
                   />
                 </>
-              }
-              title="ゆりです"
-            />
+              )}
+            </Box>
             <CardContent sx={{ py: 0 }}>
               <Typography variant="body" color="text.secondary">
                 {desc}
@@ -147,12 +161,14 @@ const MainCard = ({ postId, desc, itemImgURL, user, createdAt }) => {
               <IconButton aria-label="この投稿をシェアする">
                 <ShareIcon />
               </IconButton>
-              <IconButton
-                aria-label="お気に入りに追加"
-                onClick={() => handleLike()}
-              >
-                <FavoriteIcon />
-              </IconButton>
+              {loginUser._id && (
+                <IconButton
+                  aria-label="お気に入りに追加"
+                  onClick={() => handleLike()}
+                >
+                  <FavoriteIcon />
+                </IconButton>
+              )}
               <AvatarList />
             </CardActions>
             <Typography sx={{ mr: 3 }}>{format(createdAt)}</Typography>
