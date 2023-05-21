@@ -1,5 +1,15 @@
 const User = require("../models/user");
 
+exports.getLatestUser = async (req, res) => {
+  try {
+    //投稿を全取得
+    const latestUsers = await User.find({}).sort({ createdAt: -1 }).limit(3);
+    return res.status(200).json(latestUsers);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
+
 exports.updateIcon = async (req, res) => {
   const { icon } = req.body;
   const user = req.user;
@@ -64,7 +74,7 @@ exports.follow = async (req, res) => {
       }
       return res.status(200).json("フォローしました🎉");
     } catch (err) {
-      return res.status(500).json({error: err.message});
+      return res.status(500).json({ error: err.message });
     }
   } else {
     return res.status(500).json("自分自身をフォローできません❌");
@@ -91,13 +101,11 @@ exports.unfollow = async (req, res) => {
           },
         });
       } else {
-        return res
-          .status(403)
-          .json("このユーザーはフォロー解除できません❌");
+        return res.status(403).json("このユーザーはフォロー解除できません❌");
       }
       return res.status(200).json("フォロー解除しました🎉");
     } catch (err) {
-      return res.status(500).json({error: err.message});
+      return res.status(500).json({ error: err.message });
     }
   } else {
     return res.status(500).json("自分自身をフォロー解除できません❌");
