@@ -37,7 +37,6 @@ const Sidebar = () => {
   };
 
   return (
-    /* https://mui.com/material-ui/react-drawer/ */
     /* open={true}は常に表示 */
     <Drawer
       container={window.document.body} //親コンテナを指定。window.document.bodyはHTMLの body 要素の直下に表示

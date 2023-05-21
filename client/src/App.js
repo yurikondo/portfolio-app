@@ -7,7 +7,6 @@ import { CssBaseline } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import AppLayout from "./components/layout/AppLayout";
 import Home from "./pages/Home";
-import Memo from "./pages/Memo";
 import Profile from "./pages/Profile";
 
 function App() {

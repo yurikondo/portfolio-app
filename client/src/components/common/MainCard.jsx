@@ -1,4 +1,6 @@
 import * as React from "react";
+import { useState } from "react";
+import MenuBtn from "./MenuBtn";
 import postApi from "../../api/postApi";
 import { useSelector } from "react-redux";
 import { format } from "timeago.js";
@@ -19,7 +21,21 @@ import { grey } from "@mui/material/colors";
 import HideImageIcon from "@mui/icons-material/HideImage";
 
 const MainCard = ({ postId, desc, itemImgURL, user, createdAt }) => {
+  const [anchorElUser, setAnchorElUser] = useState(null);
   const loginUser = useSelector((state) => state.user.value);
+  const settings = [
+    {
+      text: "投稿を削除",
+      onClick: async () => {
+        try {
+          await postApi.delete(postId);
+          window.location.reload();
+        } catch (err) {
+          console.log(err);
+        }
+      },
+    },
+  ];
 
   const handleLike = async () => {
     try {
@@ -28,6 +44,11 @@ const MainCard = ({ postId, desc, itemImgURL, user, createdAt }) => {
       console.log(err);
     }
   };
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
   return (
     <Card sx={{ width: "100%", mb: 2 }}>
       <Box sx={{ display: "flex" }}>
@@ -88,9 +109,19 @@ const MainCard = ({ postId, desc, itemImgURL, user, createdAt }) => {
                 </Avatar>
               }
               action={
-                <IconButton aria-label="settings">
-                  <MoreVertIcon />
-                </IconButton>
+                <>
+                  <IconButton
+                    aria-label="settings"
+                    onClick={handleOpenUserMenu}
+                  >
+                    <MoreVertIcon />
+                  </IconButton>
+                  <MenuBtn
+                    settings={settings}
+                    anchorElUser={anchorElUser}
+                    setAnchorElUser={setAnchorElUser}
+                  />
+                </>
               }
               title="ゆりです"
             />
