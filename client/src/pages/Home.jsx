@@ -3,6 +3,7 @@ import { Grid } from "@mui/material";
 import MainCard from "../components/common/MainCard";
 import PostForm from "../components/common/PostForm";
 import postApi from "../api/postApi";
+import UserListItem from "../components/common/UserListItem";
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -34,6 +35,7 @@ function Home() {
       </Grid>
       <Grid item xs={4}>
         <PostForm />
+        <UserListItem/>
       </Grid>
     </Grid>
   );
