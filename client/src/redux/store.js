@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./features/userSlice";
+import postReducer from "./features/postSlice";
 
 //レッスン70-73
 
@@ -9,5 +10,5 @@ import userReducer from "./features/userSlice";
 //storeの作り方
 //https://redux-toolkit.js.org/tutorials/quick-start#create-a-redux-store
 export const store = configureStore({
-  reducer: { user: userReducer },
+  reducer: { user: userReducer, post: postReducer },
 });
