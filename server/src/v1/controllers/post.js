@@ -96,7 +96,7 @@ exports.like = async (req, res) => {
           likes: req.body.userId,
         },
       });
-      return res.status(403).json("投稿のいいねを外しました🎉");
+      return res.status(200).json("投稿のいいねを外しました🎉");
     }
   } catch (err) {
     return res.status(500).json({ error: err.message });

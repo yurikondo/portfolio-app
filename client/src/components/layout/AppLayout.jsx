@@ -21,9 +21,11 @@ const AppLayout = () => {
       if (user) {
         dispatch(
           setUser({
+            _id: user._id,
             username: user.username,
             icon: user.icon,
             bgImg: user.bgImg,
+            desc: user.desc,
           })
         );
       }

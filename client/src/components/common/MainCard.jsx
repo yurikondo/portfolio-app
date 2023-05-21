@@ -1,4 +1,6 @@
 import * as React from "react";
+import postApi from "../../api/postApi";
+import { useSelector } from "react-redux";
 import { format } from "timeago.js";
 import AvatarList from "./AvatarList";
 import Card from "@mui/material/Card";
@@ -16,7 +18,16 @@ import { Box } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import HideImageIcon from "@mui/icons-material/HideImage";
 
-const MainCard = ({ desc, itemImgURL, user, createdAt }) => {
+const MainCard = ({ postId, desc, itemImgURL, user, createdAt }) => {
+  const loginUser = useSelector((state) => state.user.value);
+
+  const handleLike = async () => {
+    try {
+      await postApi.like(postId, { userId: loginUser._id });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <Card sx={{ width: "100%", mb: 2 }}>
       <Box sx={{ display: "flex" }}>
@@ -100,7 +111,10 @@ const MainCard = ({ desc, itemImgURL, user, createdAt }) => {
               <IconButton aria-label="この投稿をシェアする">
                 <ShareIcon />
               </IconButton>
-              <IconButton aria-label="お気に入りに追加">
+              <IconButton
+                aria-label="お気に入りに追加"
+                onClick={() => handleLike()}
+              >
                 <FavoriteIcon />
               </IconButton>
               <AvatarList />

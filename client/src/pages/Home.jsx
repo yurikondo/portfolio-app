@@ -27,6 +27,7 @@ function Home() {
         {posts.map((post) => (
           <MainCard
             key={post._id}
+            postId={post._id}
             desc={post.desc}
             itemImgURL={post.itemImgURL}
             user={post.user}
@@ -36,7 +37,7 @@ function Home() {
       </Grid>
       <Grid item xs={4}>
         <PostForm />
-        <UserListItem/>
+        <UserListItem />
       </Grid>
     </Grid>
   );
