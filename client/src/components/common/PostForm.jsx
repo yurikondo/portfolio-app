@@ -70,6 +70,7 @@ const PostForm = () => {
       setItemImgURL("");
       setDesc("");
       setLoading(false);
+      window.location.reload();
       console.log("投稿に成功しました🎉");
     } catch (err) {
       // server/routes/auth.jsのバリデーションに引っ掛かったら(レッスン55)
@@ -162,7 +163,7 @@ const PostForm = () => {
         error={descErrText !== ""}
         disabled={loading}
         inputProps={{ maxLength: 140 }}
-         // value={desc}
+        // value={desc}
       />
       <LoadingButton
         sx={{ mt: 3, mb: 2 }}
