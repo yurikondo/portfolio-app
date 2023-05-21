@@ -20,7 +20,7 @@ exports.create = async (req, res) => {
 exports.getAll = async (req, res) => {
   try {
     //投稿を全取得
-    const posts = await Post.find({});
+    const posts = await Post.find({}).sort({ createdAt: -1 }).limit(20);
     return res.status(200).json(posts);
   } catch (err) {
     return res.status(500).json(err);
