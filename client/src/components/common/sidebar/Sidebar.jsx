@@ -19,7 +19,7 @@ import {
 
 const Sidebar = () => {
   // react-router-domのuseParamsでURLのパラメーターを受け取れる
-  const user = useSelector((state) => state.user.value);
+  const loginUser = useSelector((state) => state.user.value);
 
   const apperListData = [
     { id: "home", text: "ホーム", icon: <HomeIcon />, path: "/" },
@@ -62,9 +62,9 @@ const Sidebar = () => {
             }}
           >
             {/* variant プロパティは、テキストの見出しの種類を指定 */}
-            <Avatar alt="ログインユーザーのアイコン">{user.icon}</Avatar>
+            <Avatar alt="ログインユーザーのアイコン">{loginUser.icon}</Avatar>
             <Typography variant="body1" fontWeight="700" sx={{ ml: 2 }}>
-              {user.username ? user.username : "ゲストユーザー"}
+              {loginUser.username ? loginUser.username : "ゲストユーザー"}
             </Typography>
           </Box>
         </ListItemButton>
@@ -75,7 +75,7 @@ const Sidebar = () => {
             flexDirection: "column",
           }}
         >
-          {user.username ? (
+          {loginUser.username ? (
             <>
               <Divider />
               <Box sx={{ pt: "10px" }}>
@@ -94,7 +94,7 @@ const Sidebar = () => {
             <></>
           )}
           <Box>
-            {user.username ? <Box sx={{ pt: "10px" }}></Box> : <></>}
+            {loginUser.username ? <Box sx={{ pt: "10px" }}></Box> : <></>}
             <Divider />
             <Box sx={{ pt: "10px" }}>
               <SidebarListItem
@@ -105,7 +105,7 @@ const Sidebar = () => {
                 // path={item.path}
               />
             </Box>
-            {user.username ? (
+            {loginUser.username ? (
               <SidebarListItem
                 key={13}
                 id={13}
