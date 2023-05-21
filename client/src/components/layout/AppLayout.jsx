@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/features/userSlice";
 import authUtils from "../../utils/authUtils";
-import Sidebar from "../common/Sidebar";
+import Sidebar from "../common/sidebar/Sidebar";
 import ResponsiveAppBar from "../common/ResponsiveAppBar";
 import { Box, Hidden } from "@mui/material";
 

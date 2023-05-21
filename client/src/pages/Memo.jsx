@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import memoApi from "../api/memoApi";
 import { useDispatch, useSelector } from "react-redux";
 import { setMemo } from "../redux/features/memoSlice";
-import EmojiPicker from "../components/common/EmojiPicker";
+import EmojiPicker from "../components/common/pickers/EmojiPicker";
 
 const Memo = () => {
   // react-router-domのuseParamsでURLのパラメーターを受け取れる

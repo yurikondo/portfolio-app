@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authApi from "../api/authApi";
-import EmojiPicker from "../components/common/EmojiPicker";
+import EmojiPicker from "../components/common/pickers/EmojiPicker";
 import { Button, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { LoadingButton } from "@mui/lab";

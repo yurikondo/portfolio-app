@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { setUser } from "../../redux/features/userSlice";
-import userApi from "../../api/userApi";
+import { setUser } from "../../../redux/features/userSlice";
+import userApi from "../../../api/userApi";
 import { ImageList, ImageListItem } from "@mui/material";
 
 const ImageGallery = (props) => {

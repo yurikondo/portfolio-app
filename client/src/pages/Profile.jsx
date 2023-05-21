@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import userApi from "../api/userApi";
-import EmojiPicker from "../components/common/EmojiPicker";
-import BgImgPicker from "../components/common/BgImgPicker";
+import EmojiPicker from "../components/common/pickers/EmojiPicker";
+import BgImgPicker from "../components/common/pickers/BgImgPicker";
 import { Box, Button, Typography } from "@mui/material";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import defaultBgImg from "../assets/images/defaultBgImg.jpg";
