@@ -114,8 +114,10 @@ const MainCard = ({ postId, desc, itemImgURL, userId, createdAt }) => {
                       width: 48,
                       height: 48,
                       fontSize: 24,
+                      // ".css-et1ao3-MuiTypography-root": { fontSize: "2rem" },
                     }}
-                    aria-label="recipe"
+                    aria-label="ユーザーネーム"
+                    variant="body1"
                   >
                     😝
                   </Avatar>
