@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import MainCard from "../components/common/MainCard";
 import postApi from "../api/postApi";
 import UserListItem from "../components/common/UserListItem";
-import { setPost } from "../redux/features/postSlice";
 import ProfileHeader from "../components/common/ProfileHeader";
 import { Box } from "@mui/material";
 import { Grid } from "@mui/material";
@@ -11,28 +9,25 @@ import { Grid } from "@mui/material";
 // import InputDesc from "../components/common/InputDesc";
 
 const Profile = () => {
-  const dispatch = useDispatch();
-  const posts = useSelector((state) => state.post.value);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const res = await postApi.getAll();
-        dispatch(setPost(res));
-        // setPosts(res);
+        const res = await postApi.getProfilePosts();
+        setPosts(res);
         console.log(res);
       } catch (err) {
         console.log(err);
       }
     };
     getPosts();
-  }, [dispatch]);
-
+  }, []);
 
   return (
     <Box>
       <ProfileHeader />
-      <Grid container spacing={3} sx={{ mt: 2 }}>
+      <Grid container spacing={3} sx={{ mt: 3 }}>
         <Grid item xs={8}>
           {posts.map((post) => (
             <MainCard

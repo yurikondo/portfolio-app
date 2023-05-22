@@ -25,6 +25,9 @@ router.post(
 //投稿を全て取得
 router.get("/", tokenHandler.verifyToken, postController.getAll);
 
+//ログインしているユーザーのプロフィールページの投稿を全て取得
+router.get("/profile", tokenHandler.verifyToken, postController.getProfilePosts);
+
 //投稿を取得
 router.get("/:postId", tokenHandler.verifyToken, postController.getOne);
 
