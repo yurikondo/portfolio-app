@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MainCard from "../components/common/MainCard";
 import PostForm from "../components/common/PostForm";
@@ -8,7 +8,6 @@ import { Grid } from "@mui/material";
 import { setPost } from "../redux/features/postSlice";
 
 function Home() {
-  // const [posts, setPosts] = useState([]);
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.post.value);
 
