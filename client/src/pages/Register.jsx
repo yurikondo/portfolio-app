@@ -158,6 +158,9 @@ const Register = () => {
       <Button component={Link} to="/login">
         すでにアカウントを持っていますか？ログイン
       </Button>
+      <Button component={Link} to="/">
+        ホーム画面へ戻る
+      </Button>
     </>
   );
 };

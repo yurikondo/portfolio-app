@@ -113,6 +113,9 @@ const Login = () => {
       <Button component={Link} to="/register">
         アカウントを持っていませんか？新規登録
       </Button>
+      <Button component={Link} to="/">
+        ホーム画面へ戻る
+      </Button>
     </>
   );
 };
