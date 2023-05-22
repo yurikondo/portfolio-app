@@ -9,6 +9,7 @@ import { setPost } from "../redux/features/postSlice";
 
 function Home() {
   const dispatch = useDispatch();
+  const loginUser = useSelector((state) => state.user.value);
   const posts = useSelector((state) => state.post.value);
 
   useEffect(() => {
@@ -40,7 +41,7 @@ function Home() {
         ))}
       </Grid>
       <Grid item xs={4}>
-        <PostForm />
+        {loginUser.username && <PostForm />}
         <UserListItem />
       </Grid>
     </Grid>
