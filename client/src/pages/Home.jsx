@@ -36,6 +36,7 @@ function Home() {
             desc={post.desc}
             itemImgURL={post.itemImgURL}
             userId={post.user}
+            likes={post.likes}
             createdAt={post.createdAt}
           />
         ))}

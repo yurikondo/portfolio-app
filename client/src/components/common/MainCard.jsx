@@ -21,7 +21,7 @@ import { Box } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import HideImageIcon from "@mui/icons-material/HideImage";
 
-const MainCard = ({ postId, desc, itemImgURL, userId, createdAt }) => {
+const MainCard = ({ postId, desc, itemImgURL, userId, likes, createdAt }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const loginUser = useSelector((state) => state.user.value);
   const posts = useSelector((state) => state.post.value);
@@ -53,6 +53,8 @@ const MainCard = ({ postId, desc, itemImgURL, userId, createdAt }) => {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+
+  const isLiked = likes.includes(loginUser._id);
 
   return (
     <Card sx={{ width: "100%", mb: 2 }}>
@@ -168,7 +170,11 @@ const MainCard = ({ postId, desc, itemImgURL, userId, createdAt }) => {
                   aria-label="お気に入りに追加"
                   onClick={() => handleLike()}
                 >
-                  <FavoriteIcon />
+                  <FavoriteIcon
+                    sx={{
+                      color: isLiked ? "hotpink" : "inherit",
+                    }}
+                  />
                 </IconButton>
               )}
               <AvatarList />
