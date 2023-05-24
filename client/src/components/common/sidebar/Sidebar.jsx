@@ -29,7 +29,12 @@ const Sidebar = () => {
       icon: <EmojiEmotionsIcon />,
       path: "profile",
     },
-    { id: "favorite", text: "お気に入り", icon: <FavoriteIcon /> },
+    {
+      id: "favorite",
+      text: "お気に入り",
+      icon: <FavoriteIcon />,
+      path: "favorite",
+    },
   ];
 
   const logout = () => {
