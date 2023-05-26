@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import AppLayout from "./components/layout/AppLayout";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
+import Followings from "./pages/Followings";
 import Favorite from "./pages/Favorite";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
@@ -27,6 +28,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path="profile" element={<Profile />} />
               <Route path="favorite" element={<Favorite />} />
+              <Route path="followings" element={<Followings />} />
             </Route>
             {/* AuthLayoutはLoginとRegisterに共通するコンポーネント */}
             <Route path="/" element={<AuthLayout />}>

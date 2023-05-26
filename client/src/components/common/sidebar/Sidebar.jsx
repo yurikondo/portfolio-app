@@ -35,6 +35,12 @@ const Sidebar = () => {
       icon: <FavoriteIcon />,
       path: "favorite",
     },
+    {
+      id: "followings",
+      text: "フォロー",
+      icon: <FavoriteIcon />,
+      path: "followings",
+    },
   ];
 
   const logout = () => {
