@@ -29,7 +29,6 @@ const InputDesc = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
-    console.log(data);
     dispatch(
       setUser({
         desc: data,

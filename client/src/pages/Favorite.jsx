@@ -15,7 +15,6 @@ const Favorite = () => {
   const loginUser = useSelector((state) => state.user.value);
   const navigate = useNavigate();
 
-  console.log(loginUser.username);
   if (!loginUser.username) {
     navigate("/");
   }
