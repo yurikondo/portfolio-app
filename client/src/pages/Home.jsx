@@ -17,7 +17,6 @@ function Home() {
       try {
         const res = await postApi.getAll();
         dispatch(setPost(res));
-        // setPosts(res);
         console.log(res);
       } catch (err) {
         console.log(err);

@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const User = require("../models/user");
 
 exports.create = async (req, res) => {
   const itemImgURL = req.body.itemImgURL;
@@ -21,6 +22,15 @@ exports.getAll = async (req, res) => {
   try {
     //投稿を全取得
     const posts = await Post.find({}).sort({ createdAt: -1 }).limit(20);
+    console.log(posts);
+    const selectUserInfoWithPosts = async (post) => {
+      return await User.findOne({ _id: post.user });
+    };
+    const promises = posts.map((post) => {
+      return selectUserInfoWithPosts(post);
+    });
+    const UserInfoWithPosts = await Promise.all(promises);
+    // アイコン情報はusersテーブルに持っている
     return res.status(200).json(posts);
   } catch (err) {
     return res.status(500).json(err);
