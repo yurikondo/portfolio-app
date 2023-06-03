@@ -22,7 +22,6 @@ exports.getAll = async (req, res) => {
   try {
     //投稿を全取得
     const posts = await Post.find({}).sort({ createdAt: -1 }).limit(20);
-    console.log(posts);
     const selectUserInfoWithPosts = async (post) => {
       return await User.findOne({ _id: post.user });
     };
@@ -102,7 +101,7 @@ exports.like = async (req, res) => {
     const post = await Post.findById(req.params.id);
     //まだいいねをしてなかったらいいねできる
     //配列なのでincludes関数が使える
-    console.log("テスト🚀");
+    console.log(post);
     if (!post.likes.includes(req.body.userId)) {
       await post.updateOne({
         //配列にpushする

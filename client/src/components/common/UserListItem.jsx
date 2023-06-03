@@ -18,7 +18,6 @@ export default function UserListItem() {
       try {
         const res = await userApi.getLatestUsers();
         setLatestUsers(res);
-        console.log(res);
       } catch (err) {
         console.log(err);
       }
