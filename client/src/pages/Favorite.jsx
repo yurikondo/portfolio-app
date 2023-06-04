@@ -31,14 +31,11 @@ const Favorite = () => {
   return (
     <Box>
       <Grid container spacing={3} sx={{ mt: 3 }}>
-        <Grid item xs={8}>
           {posts.map((post) => (
+        <Grid item xs={6}>
             <MainCard key={post._id} post={post} />
+        </Grid>
           ))}
-        </Grid>
-        <Grid item xs={4}>
-          <UserListItem />
-        </Grid>
       </Grid>
     </Box>
   );
