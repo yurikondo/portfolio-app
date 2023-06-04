@@ -9,8 +9,6 @@ import { Box } from "@mui/material";
 import { Grid } from "@mui/material";
 import userApi from "../api/userApi";
 
-// import InputDesc from "../components/common/InputDesc";
-
 const Profile = () => {
   const [posts, setPosts] = useState([]);
   const [followerUsers, setFollowerUsers] = useState([]);
@@ -37,7 +35,6 @@ const Profile = () => {
     const getFollowerUsers = async () => {
       try {
         const res = await userApi.getFollowerUsers();
-        console.log(res);
         setFollowerUsers(res);
       } catch (err) {
         console.log(err);

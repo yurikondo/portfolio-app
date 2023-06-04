@@ -4,10 +4,9 @@ import { useSelector } from "react-redux";
 import MainCard from "../components/common/maincard/MainCard";
 import postApi from "../api/postApi";
 import UserListItem from "../components/common/UserListItem";
-import { Box, Typography } from "@mui/material";
-import { Grid } from "@mui/material";
-import SellIcon from "@mui/icons-material/Sell";
+import { Box, Grid } from "@mui/material";
 import userApi from "../api/userApi";
+import ErrorText from "../components/common/ErrorText";
 
 const Followings = () => {
   const [posts, setPosts] = useState([]);
@@ -52,10 +51,7 @@ const Followings = () => {
           {loginUser.followings && loginUser.followings.length > 0 ? (
             posts.map((post) => <MainCard key={post._id} post={post} />)
           ) : (
-            <Box sx={{ display: "flex" }}>
-              <SellIcon sx={{ mr: 1 }} />
-              <Typography>まだフォロー中のユーザーはいません</Typography>
-            </Box>
+            <ErrorText text="まだフォロー中のユーザーはいません" />
           )}
         </Grid>
         <Grid item xs={4}>
