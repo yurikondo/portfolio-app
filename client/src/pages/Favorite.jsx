@@ -44,6 +44,7 @@ const Favorite = () => {
               itemImgURL={post.itemImgURL}
               userId={post.loginUser}
               createdAt={post.createdAt}
+              likes={post.likes}
             />
           ))}
         </Grid>

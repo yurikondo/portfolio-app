@@ -4,7 +4,6 @@ const router = require("express").Router();
 //レッスン52より
 router.use("/auth", require("./auth"));
 router.use("/user", require("./user"));
-router.use("/memo", require("./memo"));
 router.use("/post", require("./post"));
 
 module.exports = router;
