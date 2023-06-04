@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MenuBtn from "../MenuBtn";
 import { useState } from "react";
 import { setPost } from "../../../redux/features/postSlice";
@@ -9,12 +9,26 @@ import { Box } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import userApi from "../../../api/userApi";
 
 const UserHeader = ({ userId, postId }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const [postUser, setPostUser] = useState([]);
   const posts = useSelector((state) => state.post.value);
   const loginUser = useSelector((state) => state.user.value);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getPostUser = async () => {
+      try {
+        const res = await userApi.getOne(userId);
+        setPostUser(res);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getPostUser();
+  }, []);
 
   const settings = [
     {
@@ -54,10 +68,10 @@ const UserHeader = ({ userId, postId }) => {
             aria-label="ユーザーネーム"
             variant="body1"
           >
-            😝
+            {postUser.icon}
           </Avatar>
         }
-        title="ゆりです"
+        title={postUser.username}
       />
       {userId === loginUser._id && (
         <>

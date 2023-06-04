@@ -17,7 +17,15 @@ import { Box } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
 const MainCard = ({ post }) => {
-  const { postId, desc, itemImgURL, userId, likes, createdAt } = post;
+  const {
+    _id: postId,
+    user: userId,
+    desc,
+    itemImgURL,
+    likes,
+    createdAt,
+  } = post;
+
   const loginUser = useSelector((state) => state.user.value);
 
   const handleLike = async () => {

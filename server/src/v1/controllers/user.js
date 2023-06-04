@@ -1,5 +1,16 @@
 const User = require("../models/user");
 
+exports.getOne = async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const user = await User.findById(userId);
+    return res.status(200).json(user);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
+
 exports.getLatestUsers = async (req, res) => {
   try {
     //投稿を全取得
@@ -26,21 +37,6 @@ exports.updateIcon = async (req, res) => {
     return res.status(500).json(err);
   }
 };
-
-// exports.updateDesc = async (req, res) => {
-//   const { desc } = req.body;
-//   const user = req.user;
-
-//   try {
-//     const updatedUser = await User.findByIdAndUpdate(user._id, {
-//       desc: desc,
-//     });
-
-//     return res.status(200).json(updatedUser);
-//   } catch (err) {
-//     return res.status(500).json(err);
-//   }
-// };
 
 exports.updateBgImg = async (req, res) => {
   const { bgImg } = req.body;
@@ -125,3 +121,18 @@ exports.unfollow = async (req, res) => {
     return res.status(500).json("自分自身をフォロー解除できません❌");
   }
 };
+
+// exports.updateDesc = async (req, res) => {
+//   const { desc } = req.body;
+//   const user = req.user;
+
+//   try {
+//     const updatedUser = await User.findByIdAndUpdate(user._id, {
+//       desc: desc,
+//     });
+
+//     return res.status(200).json(updatedUser);
+//   } catch (err) {
+//     return res.status(500).json(err);
+//   }
+// };
