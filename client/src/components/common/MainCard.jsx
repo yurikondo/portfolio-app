@@ -21,7 +21,8 @@ import { Box } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import HideImageIcon from "@mui/icons-material/HideImage";
 
-const MainCard = ({ postId, desc, itemImgURL, userId, likes, createdAt }) => {
+const MainCard = ({ post }) => {
+  const { postId, desc, itemImgURL, userId, likes, createdAt } = post;
   const [anchorElUser, setAnchorElUser] = useState(null);
   const loginUser = useSelector((state) => state.user.value);
   const posts = useSelector((state) => state.post.value);

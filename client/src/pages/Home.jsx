@@ -28,15 +28,7 @@ function Home() {
     <Grid container spacing={3}>
       <Grid item xs={8}>
         {posts.map((post) => (
-          <MainCard
-            key={post._id}
-            postId={post._id}
-            desc={post.desc}
-            itemImgURL={post.itemImgURL}
-            userId={post.user}
-            likes={post.likes}
-            createdAt={post.createdAt}
-          />
+          <MainCard key={post._id} post={post} />
         ))}
       </Grid>
       <Grid item xs={4}>

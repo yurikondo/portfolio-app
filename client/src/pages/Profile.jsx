@@ -39,15 +39,7 @@ const Profile = () => {
       <Grid container spacing={3} sx={{ mt: 3 }}>
         <Grid item xs={8}>
           {posts.map((post) => (
-            <MainCard
-              key={post._id}
-              postId={post._id}
-              desc={post.desc}
-              itemImgURL={post.itemImgURL}
-              userId={post.loginUser}
-              createdAt={post.createdAt}
-              likes={post.likes}
-            />
+            <MainCard key={post._id} post={post} />
           ))}
         </Grid>
         <Grid item xs={4}>
