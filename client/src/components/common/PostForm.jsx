@@ -152,7 +152,6 @@ const PostForm = () => {
         helperText={itemImgURLErrText}
         error={itemImgURLErrText !== ""}
         disabled={loading}
-        // value={itemImgURL}
         onChange={onItemImgURLChange}
       />
       <TextField
@@ -168,7 +167,6 @@ const PostForm = () => {
         error={descErrText !== ""}
         disabled={loading}
         inputProps={{ maxLength: 140 }}
-        // value={desc}
       />
       <LoadingButton
         sx={{ mt: 3, mb: 2 }}

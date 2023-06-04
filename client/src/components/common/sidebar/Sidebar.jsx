@@ -110,7 +110,6 @@ const Sidebar = () => {
                 id={12}
                 text="このサイトをシェア"
                 icon={<ShareIcon />}
-                // path={item.path}
               />
             </Box>
             {loginUser.username ? (

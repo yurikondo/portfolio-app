@@ -117,7 +117,6 @@ const MainCard = ({ post }) => {
                       width: 48,
                       height: 48,
                       fontSize: 24,
-                      // ".css-et1ao3-MuiTypography-root": { fontSize: "2rem" },
                     }}
                     aria-label="ユーザーネーム"
                     variant="body1"

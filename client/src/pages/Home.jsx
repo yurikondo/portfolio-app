@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
+import { setPost } from "../redux/features/postSlice";
 import { useDispatch, useSelector } from "react-redux";
 import MainCard from "../components/common/MainCard";
 import PostForm from "../components/common/PostForm";
 import postApi from "../api/postApi";
 import UserListItem from "../components/common/UserListItem";
 import { Grid } from "@mui/material";
-import { setPost } from "../redux/features/postSlice";
 
 function Home() {
   const dispatch = useDispatch();

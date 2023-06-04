@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import MainCard from "../components/common/MainCard";
 import postApi from "../api/postApi";
@@ -6,8 +7,6 @@ import UserListItem from "../components/common/UserListItem";
 import ProfileHeader from "../components/common/ProfileHeader";
 import { Box } from "@mui/material";
 import { Grid } from "@mui/material";
-import authApi from "../api/authApi";
-import { useNavigate } from "react-router-dom";
 
 // import InputDesc from "../components/common/InputDesc";
 
@@ -25,7 +24,6 @@ const Profile = () => {
       try {
         const res = await postApi.getProfilePosts();
         setPosts(res);
-        console.log(res);
       } catch (err) {
         console.log(err);
       }

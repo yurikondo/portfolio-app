@@ -37,7 +37,6 @@ export default function UserListItem() {
               secondary={
                 <React.Fragment>
                   <Typography
-                    // sx={{ display: "inline" }}
                     component="span"
                     variant="body1"
                     color="text.primary"
