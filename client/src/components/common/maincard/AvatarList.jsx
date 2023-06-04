@@ -1,7 +1,8 @@
 import { Avatar, AvatarGroup } from "@mui/material";
 import React from "react";
 
-const AvatarList = () => {
+const AvatarList = ({likeUserIds}) => {
+
   return (
     <AvatarGroup max={4}>
       <Avatar alt="いいねしたユーザーのアイコン">😇</Avatar>

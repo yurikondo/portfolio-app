@@ -2,7 +2,7 @@ import * as React from "react";
 import postApi from "../../../api/postApi";
 import { useSelector } from "react-redux";
 import { format } from "timeago.js";
-import AvatarList from "../AvatarList";
+import AvatarList from "./AvatarList";
 import UserHeader from "./UserHeader";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -22,7 +22,7 @@ const MainCard = ({ post }) => {
     user: userId,
     desc,
     itemImgURL,
-    likes,
+    likes: likeUserIds,
     createdAt,
   } = post;
 
@@ -113,7 +113,7 @@ const MainCard = ({ post }) => {
                   />
                 </IconButton>
               )}
-              <AvatarList />
+              <AvatarList likeUserIds={likeUserIds} />
             </CardActions>
             <Typography sx={{ mr: 3 }}>{format(createdAt)}</Typography>
           </Box>
