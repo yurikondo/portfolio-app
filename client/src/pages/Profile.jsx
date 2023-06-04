@@ -7,11 +7,13 @@ import UserListItem from "../components/common/UserListItem";
 import ProfileHeader from "../components/common/ProfileHeader";
 import { Box } from "@mui/material";
 import { Grid } from "@mui/material";
+import userApi from "../api/userApi";
 
 // import InputDesc from "../components/common/InputDesc";
 
 const Profile = () => {
   const [posts, setPosts] = useState([]);
+  const [followerUsers, setFollowerUsers] = useState([]);
   const loginUser = useSelector((state) => state.user.value);
   const navigate = useNavigate();
 
@@ -31,6 +33,19 @@ const Profile = () => {
     getPosts();
   }, [navigate]);
 
+  useEffect(() => {
+    const getFollowerUsers = async () => {
+      try {
+        const res = await userApi.getFollowerUsers();
+        console.log(res);
+        setFollowerUsers(res);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getFollowerUsers();
+  }, []);
+
   return (
     <Box>
       <ProfileHeader />
@@ -41,7 +56,7 @@ const Profile = () => {
           ))}
         </Grid>
         <Grid item xs={4}>
-          <UserListItem />
+          <UserListItem users={followerUsers} />
         </Grid>
       </Grid>
     </Box>

@@ -22,18 +22,25 @@ exports.getLatestUsers = async (req, res) => {
 };
 
 exports.getFollowingUsers = async (req, res) => {
+  const loginUserId = req.user._id.toString();
   try {
-    const currentUser = await User.findById(req.user._id);
-    console.log(currentUser);
-    const followers = currentUser.followers;
-    console.log(followers);
-    const followingUsers = await User.find({ followers: { $in: req.user._id } });
-    console.log(followingUsers);
+    const followingUsers = await User.find({ followers: { $in: loginUserId} });
     return res.status(200).json(followingUsers);
   } catch (err) {
     return res.status(500).json(err);
   }
 };
+
+exports.getFollowerUsers = async (req, res) => {
+  const loginUserId = req.user._id.toString();
+  try {
+    const followerUsers = await User.find({ followings: { $in: loginUserId } });
+    return res.status(200).json(followerUsers);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
+
 
 exports.updateIcon = async (req, res) => {
   const { icon } = req.body;
