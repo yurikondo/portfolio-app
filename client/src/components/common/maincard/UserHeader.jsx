@@ -10,6 +10,7 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import userApi from "../../../api/userApi";
+import { Link } from "react-router-dom";
 
 const UserHeader = ({ userId, postId }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -58,6 +59,13 @@ const UserHeader = ({ userId, postId }) => {
       }}
     >
       <CardHeader
+        sx={{
+          cursor: userId === loginUser._id && "auto",
+          textDecoration: "none",
+          color: "inherit",
+        }}
+        component={Link}
+        to={userId !== loginUser._id ? "/userProfile" : ""}
         avatar={
           <Avatar
             sx={{

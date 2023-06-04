@@ -26,6 +26,7 @@ const AppLayout = () => {
             icon: user.icon,
             bgImg: user.bgImg,
             desc: user.desc,
+            followings: user.followings,
           })
         );
       }

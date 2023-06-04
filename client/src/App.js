@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Followings from "./pages/Followings";
 import Favorite from "./pages/Favorite";
+import UserProfile from "./pages/UserUserProfile";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { blue } from "@mui/material/colors";
@@ -29,6 +30,7 @@ function App() {
               <Route path="profile" element={<Profile />} />
               <Route path="favorite" element={<Favorite />} />
               <Route path="followings" element={<Followings />} />
+              <Route path="userProfile" element={<UserProfile />} />
             </Route>
             {/* AuthLayoutはLoginとRegisterに共通するコンポーネント */}
             <Route path="/" element={<AuthLayout />}>
