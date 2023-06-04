@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MenuBtn from "../MenuBtn";
-import { useState } from "react";
 import { setPost } from "../../../redux/features/postSlice";
 import { useSelector, useDispatch } from "react-redux";
 import postApi from "../../../api/postApi";
+import userApi from "../../../api/userApi";
+import { Link } from "react-router-dom";
 import CardHeader from "@mui/material/CardHeader";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import userApi from "../../../api/userApi";
-import { Link } from "react-router-dom";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 
 const UserHeader = ({ userId, postId }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -50,6 +50,14 @@ const UserHeader = ({ userId, postId }) => {
     setAnchorElUser(event.currentTarget);
   };
 
+  const handleFollow = async () => {
+    try {
+      await userApi.follow(userId);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -81,7 +89,7 @@ const UserHeader = ({ userId, postId }) => {
         }
         title={postUser.username}
       />
-      {userId === loginUser._id && (
+      {userId === loginUser._id ? (
         <>
           <IconButton
             sx={{
@@ -101,6 +109,17 @@ const UserHeader = ({ userId, postId }) => {
             setAnchorElUser={setAnchorElUser}
           />
         </>
+      ) : (
+        <Button
+          sx={{
+            mr: 2,
+          }}
+          variant="outlined"
+          startIcon={<NotificationsNoneIcon />}
+          onClick={handleFollow}
+        >
+          フォロー
+        </Button>
       )}
     </Box>
   );

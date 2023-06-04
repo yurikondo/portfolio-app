@@ -27,9 +27,10 @@ exports.verifyToken = async (req, res, next) => {
     //そのJWTと一致するユーザーを探してくる
     const loginUser = await User.findById(tokenDecoded.id);
     // if (!user) {
-    //   return res.status(401).json("権限がありません❌"); 
+    //   return res.status(401).json("権限がありません❌");
     // }
     req.user = loginUser;
+    // console.log(req.user);
     next();
   } else {
     // return res.status(401).json("権限がありません❌");
