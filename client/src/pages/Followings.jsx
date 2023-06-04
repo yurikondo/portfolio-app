@@ -51,7 +51,7 @@ const Followings = () => {
           {loginUser.followings && loginUser.followings.length > 0 ? (
             posts.map((post) => <MainCard key={post._id} post={post} />)
           ) : (
-            <ErrorText text="まだフォロー中のユーザーはいません" />
+            <ErrorText text="フォロー中のユーザーがいない or フォローしたユーザーはまだ投稿をしていません" />
           )}
         </Grid>
         <Grid item xs={4}>

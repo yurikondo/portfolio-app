@@ -8,9 +8,10 @@ import ProfileHeader from "../components/common/ProfileHeader";
 import { Box } from "@mui/material";
 import { Grid } from "@mui/material";
 import userApi from "../api/userApi";
+import ErrorText from "../components/common/ErrorText";
 
 const Profile = () => {
-  const [posts, setPosts] = useState([]);
+  const [loginUserPosts, setLoginUserPosts] = useState([]);
   const [followerUsers, setFollowerUsers] = useState([]);
   const loginUser = useSelector((state) => state.user.value);
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const Profile = () => {
     const getPosts = async () => {
       try {
         const res = await postApi.getProfilePosts();
-        setPosts(res);
+        setLoginUserPosts(res);
       } catch (err) {
         console.log(err);
       }
@@ -48,9 +49,12 @@ const Profile = () => {
       <ProfileHeader />
       <Grid container spacing={3} sx={{ mt: 3 }}>
         <Grid item xs={8}>
-          {posts.map((post) => (
+          {loginUserPosts.map((post) => (
             <MainCard key={post._id} post={post} />
           ))}
+          {loginUserPosts.length === 0 && (
+            <ErrorText text="まだあなたの投稿はありません" />
+          )}
         </Grid>
         <Grid item xs={4}>
           <UserListItem users={followerUsers} />
