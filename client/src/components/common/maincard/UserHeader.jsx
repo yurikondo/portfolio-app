@@ -65,7 +65,7 @@ const UserHeader = ({ userId, postId }) => {
           color: "inherit",
         }}
         component={Link}
-        to={userId !== loginUser._id ? "/userProfile" : ""}
+        to={userId !== loginUser._id ? `/user-profile/${postUser._id}` : ""}
         avatar={
           <Avatar
             sx={{
