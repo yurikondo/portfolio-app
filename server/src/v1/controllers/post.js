@@ -48,6 +48,21 @@ exports.getProfilePosts = async (req, res) => {
   }
 };
 
+exports.getFollowingUsersPosts = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+
+    const followings = user.followings;
+    const posts = await Post.find({ user: { $in: followings } })
+      .sort({ createdAt: -1 })
+      .limit(20);
+
+    return res.status(200).json(posts);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
+
 exports.getOne = async (req, res) => {
   // URLのパラメーターを取得
   const { postId } = req.params;

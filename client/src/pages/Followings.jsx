@@ -19,14 +19,14 @@ const Followings = () => {
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const res = await postApi.getProfilePosts();
+        const res = await postApi.getFollowingUsersPosts(loginUser._id);
         setPosts(res);
       } catch (err) {
         console.log(err);
       }
     };
     getPosts();
-  }, [navigate]);
+  }, [loginUser._id]);
 
   return (
     <Box>

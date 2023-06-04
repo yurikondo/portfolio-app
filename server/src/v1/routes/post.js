@@ -28,6 +28,9 @@ router.get("/", tokenHandler.verifyToken, postController.getAll);
 //ログインしているユーザーのプロフィールページの投稿を全て取得
 router.get("/profile", tokenHandler.verifyToken, postController.getProfilePosts);
 
+//ログインしているユーザーがフォローしているユーザーの投稿を全て取得
+router.get("/:userId/posts", tokenHandler.verifyToken, postController.getFollowingUsersPosts);
+
 //投稿を取得
 router.get("/:postId", tokenHandler.verifyToken, postController.getOne);
 
