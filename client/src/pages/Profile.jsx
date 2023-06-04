@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import MainCard from "../components/common/MainCard";
+import MainCard from "../components/common/maincard/MainCard";
 import postApi from "../api/postApi";
 import UserListItem from "../components/common/UserListItem";
 import ProfileHeader from "../components/common/ProfileHeader";

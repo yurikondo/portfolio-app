@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { setPost } from "../redux/features/postSlice";
 import { useDispatch, useSelector } from "react-redux";
-import MainCard from "../components/common/MainCard";
+import MainCard from "../components/common/maincard/MainCard";
 import PostForm from "../components/common/PostForm";
 import postApi from "../api/postApi";
 import UserListItem from "../components/common/UserListItem";

@@ -1,47 +1,24 @@
 import * as React from "react";
-import { useState } from "react";
-import MenuBtn from "./MenuBtn";
-import postApi from "../../api/postApi";
-import { useSelector, useDispatch } from "react-redux";
+import postApi from "../../../api/postApi";
+import { useSelector } from "react-redux";
 import { format } from "timeago.js";
-import AvatarList from "./AvatarList";
-import { setPost } from "../../redux/features/postSlice";
+import AvatarList from "../AvatarList";
+import UserHeader from "./UserHeader";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
+import CardActions from "@mui/material/CardActions";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Avatar from "@mui/material/Avatar";
+import HideImageIcon from "@mui/icons-material/HideImage";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Box } from "@mui/material";
 import { grey } from "@mui/material/colors";
-import HideImageIcon from "@mui/icons-material/HideImage";
 
 const MainCard = ({ post }) => {
   const { postId, desc, itemImgURL, userId, likes, createdAt } = post;
-  const [anchorElUser, setAnchorElUser] = useState(null);
   const loginUser = useSelector((state) => state.user.value);
-  const posts = useSelector((state) => state.post.value);
-  const dispatch = useDispatch();
-
-  const settings = [
-    {
-      text: "投稿を削除",
-      onClick: async () => {
-        try {
-          await postApi.delete(postId);
-          const newPosts = posts.filter((e) => e._id !== postId);
-          dispatch(setPost(newPosts));
-        } catch (err) {
-          console.log(err);
-        }
-      },
-    },
-  ];
 
   const handleLike = async () => {
     try {
@@ -49,10 +26,6 @@ const MainCard = ({ post }) => {
     } catch (err) {
       console.log(err);
     }
-  };
-
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const isLiked = likes.includes(loginUser._id);
@@ -95,7 +68,6 @@ const MainCard = ({ post }) => {
         </Box>
         <Box
           sx={{
-            // flexGrow: 1,
             width: "70%",
             display: "flex",
             flexDirection: "column",
@@ -103,51 +75,7 @@ const MainCard = ({ post }) => {
           }}
         >
           <Box>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <CardHeader
-                avatar={
-                  <Avatar
-                    sx={{
-                      width: 48,
-                      height: 48,
-                      fontSize: 24,
-                    }}
-                    aria-label="ユーザーネーム"
-                    variant="body1"
-                  >
-                    😝
-                  </Avatar>
-                }
-                title="ゆりです"
-              />
-              {userId === loginUser._id && (
-                <>
-                  <IconButton
-                    sx={{
-                      width: 48,
-                      height: 48,
-                      fontSize: 24,
-                      mr: 1,
-                    }}
-                    aria-label="settings"
-                    onClick={handleOpenUserMenu}
-                  >
-                    <MoreVertIcon />
-                  </IconButton>
-                  <MenuBtn
-                    settings={settings}
-                    anchorElUser={anchorElUser}
-                    setAnchorElUser={setAnchorElUser}
-                  />
-                </>
-              )}
-            </Box>
+            <UserHeader userId={userId} postId={postId} />
             <CardContent sx={{ py: 0 }}>
               <Typography variant="body" color="text.secondary">
                 {desc}
