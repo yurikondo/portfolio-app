@@ -95,22 +95,26 @@ exports.follow = async (req, res) => {
 };
 
 exports.unfollow = async (req, res) => {
-  if (req.body.userId !== req.params.id) {
+  const loginUserId = req.user._id.toString();
+  const userId = req.params.id;
+
+  if (loginUserId !== userId) {
     try {
       const user = await User.findById(req.params.id);
-      const currentUser = await User.findById(req.body.userId);
+      const currentUser = await User.findById(loginUserId);
+
       //フォロワーに自分がいたらフォロー解除できる
       //配列なのでincludes関数が使える
-      if (user.followers.includes(req.body.userId)) {
+      if (user.followers.includes(loginUserId)) {
         await user.updateOne({
           //配列にpushする
           $pull: {
-            followers: req.body.userId,
+            followers: loginUserId,
           },
         });
         await currentUser.updateOne({
           $pull: {
-            followings: req.params.id,
+            followings: userId,
           },
         });
       } else {

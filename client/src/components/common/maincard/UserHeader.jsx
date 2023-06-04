@@ -58,6 +58,14 @@ const UserHeader = ({ userId, postId }) => {
     }
   };
 
+  const handleUnfollow = async () => {
+    try {
+      await userApi.unfollow(userId);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -89,7 +97,7 @@ const UserHeader = ({ userId, postId }) => {
         }
         title={postUser.username}
       />
-      {userId === loginUser._id ? (
+      {userId === loginUser._id && (
         <>
           <IconButton
             sx={{
@@ -109,18 +117,36 @@ const UserHeader = ({ userId, postId }) => {
             setAnchorElUser={setAnchorElUser}
           />
         </>
-      ) : (
-        <Button
-          sx={{
-            mr: 2,
-          }}
-          variant="outlined"
-          startIcon={<NotificationsNoneIcon />}
-          onClick={handleFollow}
-        >
-          フォロー
-        </Button>
       )}
+      {userId !== loginUser._id &&
+        postUser.followers &&
+        !postUser.followers.includes(loginUser._id) && (
+          <Button
+            sx={{
+              mr: 2,
+            }}
+            variant="contained"
+            startIcon={<NotificationsNoneIcon />}
+            onClick={handleFollow}
+          >
+            フォローする
+          </Button>
+        )}
+
+      {userId !== loginUser._id &&
+        postUser.followers &&
+        postUser.followers.includes(loginUser._id) && (
+          <Button
+            sx={{
+              mr: 2,
+            }}
+            variant="outlined"
+            startIcon={<NotificationsNoneIcon />}
+            onClick={handleUnfollow}
+          >
+            フォロー解除
+          </Button>
+        )}
     </Box>
   );
 };
