@@ -1,6 +1,4 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
-import userApi from "../../api/userApi";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
@@ -10,24 +8,10 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
 
-export default function UserListItem() {
-  const [latestUsers, setLatestUsers] = useState([]);
-
-  useEffect(() => {
-    const getLatestUsers = async () => {
-      try {
-        const res = await userApi.getLatestUsers();
-        setLatestUsers(res);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getLatestUsers();
-  }, []);
-
+export default function UserListItem({ users }) {
   return (
     <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-      {latestUsers.map((user) => (
+      {users.map((user) => (
         <Box key={user._id}>
           <ListItem alignItems="flex-start">
             <ListItemAvatar>

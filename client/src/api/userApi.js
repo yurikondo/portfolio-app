@@ -3,6 +3,7 @@ import axiosClient from "./axiosClient";
 const userApi = {
   getOne: (userId) => axiosClient.get(`user/getOne/${userId}`),
   getLatestUsers: () => axiosClient.get("user/getLatestUsers"),
+  getFollowingUsers: () => axiosClient.get("user/getFollowingUsers"),
   updateIcon: (params) => axiosClient.put("user/updateIcon", params),
   updateBgImg: (params) => axiosClient.put("user/updateBgImg", params),
   follow: (id, params) => axiosClient.put(`user/${id}/follow`, params),

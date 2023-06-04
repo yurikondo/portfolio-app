@@ -116,7 +116,6 @@ exports.like = async (req, res) => {
     const post = await Post.findById(req.params.id);
     //まだいいねをしてなかったらいいねできる
     //配列なのでincludes関数が使える
-    console.log(post);
     if (!post.likes.includes(req.body.userId)) {
       await post.updateOne({
         //配列にpushする
