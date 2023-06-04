@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   Box,
   ListItem,
@@ -7,11 +7,18 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
+import { useState } from "react";
+import { useEffect } from "react";
 
-const SidebarListItem = ({ id, text, icon, path, onItemClick }) => {
-  // const [activeIndex, setActiveIndex] = useState("");
-
+const SidebarListItem = ({ text, icon, path, onItemClick }) => {
+  const [activeIndex, setActiveIndex] = useState("");
+  const { id } = useParams();
   const navigate = useNavigate();
+
+  // console.log(id);
+  // useEffect(() => {
+  //   setActiveIndex(paramsId);
+  // }, []);
 
   const handleClick = () => {
     if (onItemClick) {

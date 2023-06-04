@@ -36,7 +36,7 @@ const MainCard = ({ post }) => {
     }
   };
 
-  const isLiked = likes.includes(loginUser._id);
+  const isLiked = likeUserIds.includes(loginUser._id);
 
   return (
     <Card sx={{ width: "100%", mb: 2 }}>

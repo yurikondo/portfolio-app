@@ -106,16 +106,17 @@ const Sidebar = () => {
             <Divider />
             <Box sx={{ pt: "10px" }}>
               <SidebarListItem
-                key={12}
-                id={12}
+                key="share"
+                id="share"
                 text="このサイトをシェア"
                 icon={<ShareIcon />}
+                path="/share"
               />
             </Box>
             {loginUser.username ? (
               <SidebarListItem
-                key={13}
-                id={13}
+                key="logout"
+                id="logout"
                 text="ログアウト"
                 icon={<LogoutOutlined />}
                 onItemClick={logout}
@@ -124,15 +125,15 @@ const Sidebar = () => {
             ) : (
               <>
                 <SidebarListItem
-                  key={14}
-                  id={14}
+                  key="login"
+                  id="login"
                   text="ログイン"
                   icon={<LoginIcon />}
                   path="/login"
                 />
                 <SidebarListItem
-                  key={15}
-                  id={15}
+                  key="register"
+                  id="register"
                   text="新規会員登録"
                   icon={<HowToRegIcon />}
                   path="/register"
