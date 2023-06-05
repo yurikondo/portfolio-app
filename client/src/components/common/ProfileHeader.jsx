@@ -7,7 +7,7 @@ import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import { grey } from "@mui/material/colors";
 import { Box, Button, Typography } from "@mui/material";
 
-const ProfileHeader = () => {
+const ProfileHeader = ({ postsCount }) => {
   const [bgImg, setBgImg] = useState("");
   const [icon, setIcon] = useState("");
   const [isShowBgImgPicker, setIsShowBgImgPicker] = useState(false);
@@ -78,7 +78,7 @@ const ProfileHeader = () => {
           {loginUser.username}
         </Typography>
         <Typography variant="subtitle1" sx={{ marginTop: 1 }}>
-          投稿数: 10
+          投稿数: {postsCount}
         </Typography>
         {/* <InputDesc /> */}
         <Box sx={{ display: isShowBgImgPicker ? "block" : "none", mt: 3 }}>

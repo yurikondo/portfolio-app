@@ -5,10 +5,9 @@ import MainCard from "../components/common/maincard/MainCard";
 import postApi from "../api/postApi";
 import UserListItem from "../components/common/UserListItem";
 import ProfileHeader from "../components/common/ProfileHeader";
-import { Box } from "@mui/material";
-import { Grid } from "@mui/material";
 import userApi from "../api/userApi";
 import ErrorText from "../components/common/ErrorText";
+import { Box, Grid } from "@mui/material";
 
 const Profile = () => {
   const [loginUserPosts, setLoginUserPosts] = useState([]);
@@ -46,7 +45,7 @@ const Profile = () => {
 
   return (
     <Box>
-      <ProfileHeader />
+      <ProfileHeader postsCount={loginUserPosts.length} />
       <Grid container spacing={3} sx={{ mt: 3 }}>
         <Grid item xs={8}>
           {loginUserPosts.map((post) => (
@@ -58,6 +57,9 @@ const Profile = () => {
         </Grid>
         <Grid item xs={4}>
           <UserListItem users={followerUsers} />
+          {followerUsers.length === 0 && (
+            <ErrorText text="まだフォロワーはいません" />
+          )}
         </Grid>
       </Grid>
     </Box>
