@@ -7,7 +7,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import LoginIcon from "@mui/icons-material/Login";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
-import {
+import NotificationsIcon from '@mui/icons-material/Notifications';import {
   Avatar,
   Box,
   Divider,
@@ -38,7 +38,7 @@ const Sidebar = () => {
     {
       id: "followings",
       text: "フォロー",
-      icon: <FavoriteIcon />,
+      icon: <NotificationsIcon />,
       path: "followings",
     },
   ];
