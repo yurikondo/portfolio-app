@@ -25,7 +25,7 @@ const Sidebar = () => {
     { id: "home", text: "ホーム", icon: <HomeIcon />, path: "/" },
     {
       id: "profile",
-      text: "プロフィールページ",
+      text: "プロフィール",
       icon: <EmojiEmotionsIcon />,
       path: "profile",
     },
