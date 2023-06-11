@@ -119,7 +119,7 @@ exports.like = async (req, res) => {
           likes: req.body.userId,
         },
       });
-      return res.status(200).json({ likes: true });
+      return res.status(200).json({ isLiked: true });
       // すでにいいねが押されていたらいいねしているユーザーIDを取り除く
     } else {
       await post.updateOne({
@@ -128,7 +128,7 @@ exports.like = async (req, res) => {
           likes: req.body.userId,
         },
       });
-      return res.status(200).json({ likes: false });
+      return res.status(200).json({ isLiked: false });
     }
   } catch (err) {
     return res.status(500).json({ error: err.message });

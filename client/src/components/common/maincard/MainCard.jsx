@@ -30,8 +30,8 @@ const MainCard = ({ post }) => {
 
   const handleLike = async () => {
     try {
-      const result = await postApi.like(postId, { userId: loginUser._id });
-      if (result.likes) {
+      const res = await postApi.like(postId, { userId: loginUser._id });
+      if (res.isLiked) {
         setIsLiked(true);
       } else {
         setIsLiked(false);
