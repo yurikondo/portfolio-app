@@ -106,7 +106,7 @@ exports.follow = async (req, res) => {
           .status(403)
           .json("あなたはすでにこのユーザーをフォローしています❌");
       }
-      return res.status(200).json("フォローしました🎉");
+      return res.status(200).json({isFollow: true});
     } catch (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -141,7 +141,7 @@ exports.unfollow = async (req, res) => {
       } else {
         return res.status(403).json("このユーザーはフォロー解除できません❌");
       }
-      return res.status(200).json("フォロー解除しました🎉");
+      return res.status(200).json({isFollow: false});
     } catch (err) {
       return res.status(500).json({ error: err.message });
     }

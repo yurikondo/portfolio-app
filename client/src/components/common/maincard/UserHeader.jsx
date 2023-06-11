@@ -12,18 +12,20 @@ import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 
-const UserHeader = ({ userId, postId }) => {
+const UserHeader = ({ postUserId, postId }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [postUser, setPostUser] = useState([]);
   const posts = useSelector((state) => state.post.value);
   const loginUser = useSelector((state) => state.user.value);
+  const [isFollowing, setIsFollowing] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const getPostUser = async () => {
       try {
-        const res = await userApi.getOne(userId);
+        const res = await userApi.getOne(postUserId);
         setPostUser(res);
+        setIsFollowing(res.followers.includes(loginUser._id));
       } catch (err) {
         console.log(err);
       }
@@ -52,7 +54,11 @@ const UserHeader = ({ userId, postId }) => {
 
   const handleFollow = async () => {
     try {
-      await userApi.follow(userId);
+      const res = await userApi.follow(postUserId);
+      if (res.isFollow) {
+        setIsFollowing(true);
+        console.log("フォロー成功🎉");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -60,7 +66,11 @@ const UserHeader = ({ userId, postId }) => {
 
   const handleUnfollow = async () => {
     try {
-      await userApi.unfollow(userId);
+      const res = await userApi.unfollow(postUserId);
+      if (!res.isFollow) {
+        setIsFollowing(false);
+        console.log("フォロー解除🎉");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -76,12 +86,12 @@ const UserHeader = ({ userId, postId }) => {
     >
       <CardHeader
         sx={{
-          cursor: userId === loginUser._id && "auto",
+          cursor: postUserId === loginUser._id && "auto",
           textDecoration: "none",
           color: "inherit",
         }}
         component={Link}
-        to={userId !== loginUser._id ? `/user-profile/${postUser._id}` : ""}
+        to={postUserId !== loginUser._id ? `/user-profile/${postUser._id}` : ""}
         avatar={
           <Avatar
             sx={{
@@ -97,7 +107,7 @@ const UserHeader = ({ userId, postId }) => {
         }
         title={postUser.username}
       />
-      {userId === loginUser._id && (
+      {postUserId === loginUser._id && (
         <>
           <IconButton
             sx={{
@@ -118,9 +128,10 @@ const UserHeader = ({ userId, postId }) => {
           />
         </>
       )}
-      {userId !== loginUser._id &&
-        postUser.followers &&
-        !postUser.followers.includes(loginUser._id) && (
+      {postUserId !== loginUser._id &&
+        // postUser.followers &&
+        // !postUser.followers.includes(loginUser._id) && (
+        !isFollowing && (
           <Button
             sx={{
               mr: 2,
@@ -133,9 +144,10 @@ const UserHeader = ({ userId, postId }) => {
           </Button>
         )}
 
-      {userId !== loginUser._id &&
-        postUser.followers &&
-        postUser.followers.includes(loginUser._id) && (
+      {postUserId !== loginUser._id &&
+        // postUser.followers &&
+        // postUser.followers.includes(loginUser._id) && (
+        isFollowing && (
           <Button
             sx={{
               mr: 2,

@@ -86,7 +86,7 @@ const MainCard = ({ post }) => {
           }}
         >
           <Box>
-            <UserHeader userId={userId} postId={postId} />
+            <UserHeader postUserId={userId} postId={postId} />
             <CardContent sx={{ py: 0 }}>
               <Typography variant="body" color="text.secondary">
                 {desc}
