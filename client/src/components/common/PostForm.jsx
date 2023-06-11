@@ -67,14 +67,24 @@ const PostForm = () => {
 
     //投稿API
     try {
-      await postApi.create({
+      const result = await postApi.create({
         itemImgURL,
         desc,
       });
       setItemImgURL("");
       setDesc("");
       setLoading(false);
-      dispatch(setPost(posts));
+      // const newPost = {
+      //   _id: result._id,
+      //   user: result.user,
+      //   itemImgURL: result.itemImgURL,
+      //   title: result.title,
+      //   desc: result.desc,
+      // };
+      console.log(result);
+      const newpostsArray = [...posts, result];
+      console.log(newpostsArray);
+      dispatch(setPost(newpostsArray));
       // window.location.reload();
       console.log("投稿に成功しました🎉");
     } catch (err) {
