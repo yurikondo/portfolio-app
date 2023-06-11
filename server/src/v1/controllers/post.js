@@ -47,16 +47,13 @@ exports.getProfilePosts = async (req, res) => {
     return res.status(500).json(err);
   }
 };
-
 exports.getFollowingUsersPosts = async (req, res) => {
   try {
     const user = await User.findById(req.user._id);
-
     const followings = user.followings;
     const posts = await Post.find({ user: { $in: followings } })
       .sort({ createdAt: -1 })
       .limit(20);
-
     return res.status(200).json(posts);
   } catch (err) {
     return res.status(500).json(err);
@@ -89,7 +86,6 @@ exports.update = async (req, res) => {
       // 全ての項目を更新
       $set: req.body,
     });
-
     return res.status(200).json(updatedPost);
   } catch (err) {
     return res.status(500).json(err);
@@ -123,7 +119,7 @@ exports.like = async (req, res) => {
           likes: req.body.userId,
         },
       });
-      return res.status(200).json("投稿にいいねしました🎉");
+      return res.status(200).json({ likes: true });
       // すでにいいねが押されていたらいいねしているユーザーIDを取り除く
     } else {
       await post.updateOne({
@@ -132,7 +128,7 @@ exports.like = async (req, res) => {
           likes: req.body.userId,
         },
       });
-      return res.status(200).json("投稿のいいねを外しました🎉");
+      return res.status(200).json({ likes: false });
     }
   } catch (err) {
     return res.status(500).json({ error: err.message });

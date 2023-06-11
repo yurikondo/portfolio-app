@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import postApi from "../../../api/postApi";
 import { useSelector } from "react-redux";
 import { format } from "timeago.js";
@@ -22,21 +22,24 @@ const MainCard = ({ post }) => {
     user: userId,
     desc,
     itemImgURL,
-    likes: likeUserIds,
+    likes: likeUserIds, // ログインしているユーザーのidが入っていたらいいね中
     createdAt,
   } = post;
-
   const loginUser = useSelector((state) => state.user.value);
+  const [isLiked, setIsLiked] = useState(likeUserIds.includes(loginUser._id));
 
   const handleLike = async () => {
     try {
-      await postApi.like(postId, { userId: loginUser._id });
+      const result = await postApi.like(postId, { userId: loginUser._id });
+      if (result.likes) {
+        setIsLiked(true);
+      } else {
+        setIsLiked(false);
+      }
     } catch (err) {
       console.log(err);
     }
   };
-
-  const isLiked = likeUserIds.includes(loginUser._id);
 
   return (
     <Card sx={{ width: "100%", mb: 2 }}>
@@ -122,5 +125,4 @@ const MainCard = ({ post }) => {
     </Card>
   );
 };
-
 export default MainCard;
