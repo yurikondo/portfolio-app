@@ -4,7 +4,7 @@ const postController = require("../controllers/post");
 const tokenHandler = require("../handlers/tokenHandler");
 const validation = require("../handlers/validation");
 
-//メモを作成
+//投稿を作成
 router.post(
   "/",
   body("itemImgURL")
@@ -25,8 +25,11 @@ router.post(
 //投稿を全て取得
 router.get("/", tokenHandler.verifyToken, postController.getAll);
 
-//ログインしているユーザーのプロフィールページの投稿を全て取得
+//ログインしているユーザーの投稿を全て取得
 router.get("/profile", tokenHandler.verifyToken, postController.getProfilePosts);
+
+//ログインしているユーザーいいねしている投稿を全て取得
+router.get("/favorite", tokenHandler.verifyToken, postController.getLikedPosts);
 
 //ログインしているユーザーがフォローしているユーザーの投稿を全て取得
 router.get("/:userId/posts", tokenHandler.verifyToken, postController.getFollowingUsersPosts);

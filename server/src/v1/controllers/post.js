@@ -38,8 +38,9 @@ exports.getAll = async (req, res) => {
 
 exports.getProfilePosts = async (req, res) => {
   try {
+    const loginUserId = req.user._id.toString();
     //ログインしているユーザーの投稿を全取得
-    const posts = await Post.find({ user: req.user._id })
+    const posts = await Post.find({ user: loginUserId })
       .sort({ createdAt: -1 })
       .limit(20);
     return res.status(200).json(posts);
@@ -47,6 +48,19 @@ exports.getProfilePosts = async (req, res) => {
     return res.status(500).json(err);
   }
 };
+
+exports.getLikedPosts = async (req, res) => {
+  try {
+    const loginUserId = req.user._id.toString();
+    const likedPosts = await Post.find({ likes: loginUserId })
+      .sort({ createdAt: -1 })
+      .limit(20);
+    return res.status(200).json(likedPosts);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
+
 exports.getFollowingUsersPosts = async (req, res) => {
   try {
     const user = await User.findById(req.user._id);

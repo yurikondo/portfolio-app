@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MainCard from "../components/common/maincard/MainCard";
 import postApi from "../api/postApi";
 import UserListItem from "../components/common/UserListItem";
 import ProfileHeader from "../components/common/ProfileHeader";
 import userApi from "../api/userApi";
 import ErrorText from "../components/common/ErrorText";
+import { setPost } from "../redux/features/postSlice";
 import { Box, Grid } from "@mui/material";
 
 const Profile = () => {
   const [loginUserPosts, setLoginUserPosts] = useState([]);
   const [followerUsers, setFollowerUsers] = useState([]);
+  const dispatch = useDispatch();
   const loginUser = useSelector((state) => state.user.value);
+  const posts = useSelector((state) => state.post.value);
+
   const navigate = useNavigate();
 
   if (!loginUser.username) {
@@ -24,12 +28,13 @@ const Profile = () => {
       try {
         const res = await postApi.getProfilePosts();
         setLoginUserPosts(res);
+        dispatch(setPost(res));
       } catch (err) {
         console.log(err);
       }
     };
     getPosts();
-  }, [navigate]);
+  }, [dispatch]);
 
   useEffect(() => {
     const getFollowerUsers = async () => {

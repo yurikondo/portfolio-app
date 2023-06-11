@@ -129,8 +129,6 @@ const UserHeader = ({ postUserId, postId }) => {
         </>
       )}
       {postUserId !== loginUser._id &&
-        // postUser.followers &&
-        // !postUser.followers.includes(loginUser._id) && (
         !isFollowing && (
           <Button
             sx={{
@@ -145,8 +143,6 @@ const UserHeader = ({ postUserId, postId }) => {
         )}
 
       {postUserId !== loginUser._id &&
-        // postUser.followers &&
-        // postUser.followers.includes(loginUser._id) && (
         isFollowing && (
           <Button
             sx={{

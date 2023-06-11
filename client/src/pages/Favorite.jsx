@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import MainCard from "../components/common/maincard/MainCard";
 import postApi from "../api/postApi";
-import UserListItem from "../components/common/UserListItem";
-import { Box } from "@mui/material";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
 const Favorite = () => {
   const [posts, setPosts] = useState([]);
@@ -19,8 +17,9 @@ const Favorite = () => {
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const res = await postApi.getProfilePosts();
+        const res = await postApi.getLikedPosts();
         setPosts(res);
+        console.log(res);
       } catch (err) {
         console.log(err);
       }
@@ -31,11 +30,11 @@ const Favorite = () => {
   return (
     <Box>
       <Grid container spacing={3} sx={{ mt: 3 }}>
-          {posts.map((post) => (
-        <Grid item xs={6}>
+        {posts.map((post) => (
+          <Grid item xs={6}>
             <MainCard key={post._id} post={post} />
-        </Grid>
-          ))}
+          </Grid>
+        ))}
       </Grid>
     </Box>
   );
