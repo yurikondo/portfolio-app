@@ -20,6 +20,16 @@ exports.getLatestUsers = async (req, res) => {
     return res.status(500).json(err);
   }
 };
+exports.getUsersByIds = async (req, res) => {
+  const { likeUserIds } = req.query;
+  console.log(likeUserIds);
+  try {
+    const users = await User.find({ _id: { $in: likeUserIds } });
+    return res.status(200).json(users);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
 
 exports.getFollowingUsers = async (req, res) => {
   const loginUserId = req.user._id.toString();
@@ -143,18 +153,3 @@ exports.unfollow = async (req, res) => {
     return res.status(500).json("自分自身をフォロー解除できません❌");
   }
 };
-
-// exports.updateDesc = async (req, res) => {
-//   const { desc } = req.body;
-//   const user = req.user;
-
-//   try {
-//     const updatedUser = await User.findByIdAndUpdate(user._id, {
-//       desc: desc,
-//     });
-
-//     return res.status(200).json(updatedUser);
-//   } catch (err) {
-//     return res.status(500).json(err);
-//   }
-// };
