@@ -42,6 +42,10 @@ const MainCard = ({ post }) => {
     }
   };
 
+  const openItemURL = () => {
+    window.open(itemURL, "_blank");
+  };
+
   return (
     <Card sx={{ width: "100%", mb: 2 }}>
       <Box sx={{ display: "flex" }}>
@@ -64,7 +68,9 @@ const MainCard = ({ post }) => {
                 width: "100%",
                 height: 250,
                 objectFit: "contain",
+                cursor: "pointer",
               }}
+              onClick={openItemURL}
             />
             <HideImageIcon
               sx={{
