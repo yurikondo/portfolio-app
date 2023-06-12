@@ -7,6 +7,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
+import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 
 export default function UserListItem({ users }) {
   return (
@@ -28,7 +29,17 @@ export default function UserListItem({ users }) {
                     {user.username}
                   </Typography>
                   <br />
-                  {" — ダミーテキストダミーテキストダミー…"}
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <CalendarMonthOutlinedIcon
+                      sx={{ fontSize: "16px !important", mr: "5px" }}
+                    />
+                    {new Date(user.createdAt).toLocaleDateString("ja-JP")}
+                  </Box>
                 </React.Fragment>
               }
             />
