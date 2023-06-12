@@ -21,6 +21,7 @@ const MainCard = ({ post }) => {
     _id: postId,
     user: userId,
     desc,
+    itemURL,
     itemImgURL,
     likes: likeUserIds, // ログインしているユーザーのidが入っていたらいいね中
     createdAt,

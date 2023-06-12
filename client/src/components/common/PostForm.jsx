@@ -39,6 +39,7 @@ const PostForm = () => {
 
   //フォームから入力されたデータを取得するための処理
   const handleSubmit = async (e) => {
+    // const inputAmazonURL = e.target.value;
     setItemImgURLErrText("");
     setDescErrText("");
 
@@ -49,6 +50,7 @@ const PostForm = () => {
 
     //textFieldのname属性で指定
     const desc = data.get("desc").trim();
+    const itemURL = data.get("itemURL").trim();
 
     let error = false;
 
@@ -68,6 +70,7 @@ const PostForm = () => {
     //投稿API
     try {
       const result = await postApi.create({
+        itemURL,
         itemImgURL,
         desc,
       });
@@ -154,10 +157,10 @@ const PostForm = () => {
       </Box>
       <TextField
         fullWidth
-        id="itemImgURL"
+        id="itemURL"
         label="Amazon商品のURL"
         margin="normal"
-        name="itemImgURL"
+        name="itemURL"
         required
         helperText={itemImgURLErrText}
         error={itemImgURLErrText !== ""}

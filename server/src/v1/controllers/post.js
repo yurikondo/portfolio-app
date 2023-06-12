@@ -2,14 +2,16 @@ const Post = require("../models/post");
 const User = require("../models/user");
 
 exports.create = async (req, res) => {
+  const itemURL = req.body.itemURL;
   const itemImgURL = req.body.itemImgURL;
   const desc = req.body.desc;
   try {
     //投稿の新規作成
     const post = await Post.create({
       user: req.user._id,
-      itemImgURL: itemImgURL,
-      desc: desc,
+      itemURL,
+      itemImgURL,
+      desc,
     });
     return res.status(201).json(post);
   } catch (err) {
