@@ -24,7 +24,7 @@ exports.getLatestUsers = async (req, res) => {
 exports.getFollowingUsers = async (req, res) => {
   const loginUserId = req.user._id.toString();
   try {
-    const followingUsers = await User.find({ followers: { $in: loginUserId} });
+    const followingUsers = await User.find({ followers: { $in: loginUserId } });
     return res.status(200).json(followingUsers);
   } catch (err) {
     return res.status(500).json(err);
@@ -40,7 +40,6 @@ exports.getFollowerUsers = async (req, res) => {
     return res.status(500).json(err);
   }
 };
-
 
 exports.updateIcon = async (req, res) => {
   const { icon } = req.body;
@@ -64,11 +63,6 @@ exports.updateBgImg = async (req, res) => {
   const user = req.user;
 
   try {
-    if (bgImg === "") {
-      req.body.bgImg =
-        "https://pixabay.com/get/g8e041aa4548c8a7c93a04000433929f7d8a03ecb6cbd0e7458921d2f003a990c392343a0b4695449a47589dcbc569e6cdb82812ae03ee798fcc1b50264f3a3b2_640.jpg?w=164&h=100&fit=crop&auto=format&dpr=2";
-    }
-
     const updatedUser = await User.findByIdAndUpdate(user._id, {
       bgImg: bgImg,
     });
@@ -106,7 +100,7 @@ exports.follow = async (req, res) => {
           .status(403)
           .json("あなたはすでにこのユーザーをフォローしています❌");
       }
-      return res.status(200).json({isFollow: true});
+      return res.status(200).json({ isFollow: true });
     } catch (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -141,7 +135,7 @@ exports.unfollow = async (req, res) => {
       } else {
         return res.status(403).json("このユーザーはフォロー解除できません❌");
       }
-      return res.status(200).json({isFollow: false});
+      return res.status(200).json({ isFollow: false });
     } catch (err) {
       return res.status(500).json({ error: err.message });
     }

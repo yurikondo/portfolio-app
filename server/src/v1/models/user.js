@@ -19,6 +19,7 @@ const userSchema = new mongoose.Schema(
     },
     bgImg: {
       type: String,
+      default: "https://i.gyazo.com/c61a9b7c43d4024fd1e5c7f91d9f16ea.jpg",
     },
     followers: {
       type: Array,
