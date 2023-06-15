@@ -27,7 +27,11 @@ const ImageGallery = (props) => {
   };
 
   return (
-    <ImageList sx={{ width: "100%", height: "100%" }} cols={3} rowHeight={164}>
+    <ImageList
+      sx={{ width: "100%", height: "100%", zIndex: 1000 }}
+      cols={3}
+      rowHeight={164}
+    >
       {fetchData.map((data) => (
         <ImageListItem key={data.id} sx={{ cursor: "pointer" }}>
           <img

@@ -1,10 +1,11 @@
 import React, { useRef, useState } from "react";
-import { Box, Button } from "@mui/material";
+import { Alert, Box, Button, Typography } from "@mui/material";
+import ImageGallery from "./ImageGallery";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import ImageGallery from "./ImageGallery";
+import { grey } from "@mui/material/colors";
 
 const BgImgPicker = ({ isShowBgImgPicker, setIsShowBgImgPicker }) => {
   const [fetchData, setFetchData] = useState([]);
@@ -39,7 +40,7 @@ const BgImgPicker = ({ isShowBgImgPicker, setIsShowBgImgPicker }) => {
         </IconButton>
         <InputBase
           sx={{ ml: 1, flex: 1 }}
-          placeholder="画像を検索"
+          placeholder="ねこ"
           inputProps={{ "aria-label": "画像を検索" }}
           inputRef={ref}
         />
@@ -47,11 +48,12 @@ const BgImgPicker = ({ isShowBgImgPicker, setIsShowBgImgPicker }) => {
           検索
         </Button>
       </Paper>
-      <ImageGallery
-        fetchData={fetchData}
-        isShowBgImgPicker={isShowBgImgPicker}
-        setIsShowBgImgPicker={setIsShowBgImgPicker}
-      />
+      {!fetchData.length && (
+        <Alert severity="info">
+          探したい画像をキーワードで入力してください
+        </Alert>
+      )}
+      <ImageGallery fetchData={fetchData} />
     </Box>
   );
 };

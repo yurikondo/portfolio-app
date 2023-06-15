@@ -81,7 +81,7 @@ const ProfileHeader = ({ postsCount }) => {
           投稿数: {postsCount}
         </Typography>
         {/* <InputDesc /> */}
-        <Box sx={{ display: isShowBgImgPicker ? "block" : "none", mt: 3 }}>
+        <Box sx={{ display: isShowBgImgPicker ? "block" : "none", mt: 3, position: "absolute" }}>
           <BgImgPicker
             isShowBgImgPicker={isShowBgImgPicker}
             setIsShowBgImgPicker={setIsShowBgImgPicker}
