@@ -2,7 +2,6 @@ const User = require("../models/user");
 
 exports.getOne = async (req, res) => {
   const userId = req.params.userId;
-
   try {
     const user = await User.findById(userId);
     return res.status(200).json(user);
@@ -21,9 +20,9 @@ exports.getLatestUsers = async (req, res) => {
   }
 };
 exports.getUsersByIds = async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { likeUserIds } = req.body;
-  console.log(likeUserIds);
+  // console.log(likeUserIds);
   try {
     const users = await User.find({ _id: { $in: likeUserIds } });
     return res.status(200).json(users);

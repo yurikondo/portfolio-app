@@ -10,7 +10,6 @@ const userApi = {
   updateBgImg: (params) => axiosClient.put("user/updateBgImg", params),
   follow: (id, params) => axiosClient.put(`user/${id}/follow`, params),
   unfollow: (id, params) => axiosClient.put(`user/${id}/unfollow`, params),
-  // updateDesc: (params) => axiosClient.put("user/updateDesc", params),
 };
 
 export default userApi;

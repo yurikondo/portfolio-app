@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Followings from "./pages/Followings";
 import Favorite from "./pages/Favorite";
-import UserProfile from "./pages/UserUserProfile";
+import UserProfile from "./pages/UserProfile";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { blue } from "@mui/material/colors";

@@ -13,6 +13,8 @@ import { Box, Grid } from "@mui/material";
 const Profile = () => {
   const [loginUserPosts, setLoginUserPosts] = useState([]);
   const [followerUsers, setFollowerUsers] = useState([]);
+  const [bgImg, setBgImg] = useState("");
+  const [icon, setIcon] = useState("");
   const dispatch = useDispatch();
   const loginUser = useSelector((state) => state.user.value);
   const posts = useSelector((state) => state.post.value);
@@ -48,9 +50,29 @@ const Profile = () => {
     getFollowerUsers();
   }, []);
 
+  useEffect(() => {
+    if (loginUser.bgImg) {
+      setBgImg(loginUser.bgImg);
+    }
+  }, [loginUser.bgImg]);
+
+  useEffect(() => {
+    if (loginUser.icon) {
+      setIcon(loginUser.icon);
+    }
+  }, [loginUser.icon]);
+
   return (
     <Box>
-      <ProfileHeader postsCount={loginUserPosts.length} />
+      <ProfileHeader
+        profile
+        userName={loginUser.username}
+        postsCount={loginUserPosts.length}
+        bgImg={bgImg}
+        setBgImg={setBgImg}
+        icon={icon}
+        setIcon={setIcon}
+      />
       <Grid container spacing={3} sx={{ mt: 3 }}>
         <Grid item xs={8}>
           {loginUserPosts.map((post) => (

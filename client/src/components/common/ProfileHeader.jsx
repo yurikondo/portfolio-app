@@ -7,23 +7,10 @@ import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import { grey } from "@mui/material/colors";
 import { Box, Button, Typography } from "@mui/material";
 
-const ProfileHeader = ({ postsCount }) => {
-  const [bgImg, setBgImg] = useState("");
-  const [icon, setIcon] = useState("");
+const ProfileHeader = (props) => {
+  const { profile, userName, postsCount, bgImg, icon, setIcon } = props;
   const [isShowBgImgPicker, setIsShowBgImgPicker] = useState(false);
   const loginUser = useSelector((state) => state.user.value);
-
-  useEffect(() => {
-    if (loginUser.bgImg) {
-      setBgImg(loginUser.bgImg);
-    }
-  }, [loginUser.bgImg]);
-
-  useEffect(() => {
-    if (loginUser.icon) {
-      setIcon(loginUser.icon);
-    }
-  }, [loginUser.icon]);
 
   const onIconChange = async (newIcon) => {
     setIcon(newIcon);
@@ -59,29 +46,37 @@ const ProfileHeader = ({ postsCount }) => {
             position: "absolute",
           }}
         >
-          <Button
-            onClick={showBgImgPicker}
-            variant="contained"
-            size="large"
-            sx={{ zIndex: 100, position: "absolute", right: 5, bottom: 5 }}
-            startIcon={<AddAPhotoIcon fontSize="inherit" />}
-          >
-            画像を変更
-          </Button>
+          {profile && (
+            <Button
+              onClick={showBgImgPicker}
+              variant="contained"
+              size="large"
+              sx={{ zIndex: 100, position: "absolute", right: 5, bottom: 5 }}
+              startIcon={<AddAPhotoIcon fontSize="inherit" />}
+            >
+              画像を変更
+            </Button>
+          )}
         </Box>
       </Box>
       <Box
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
-        <EmojiPicker icon={icon} onChange={onIconChange} sx={{ mt: -5 }} />
+        <EmojiPicker profile icon={icon} onChange={onIconChange} sx={{ mt: -5 }} />
         <Typography variant="h4" sx={{ marginTop: 2 }}>
-          {loginUser.username}
+          {userName}
         </Typography>
         <Typography variant="subtitle1" sx={{ marginTop: 1 }}>
           投稿数: {postsCount}
         </Typography>
         {/* <InputDesc /> */}
-        <Box sx={{ display: isShowBgImgPicker ? "block" : "none", mt: 3, position: "absolute" }}>
+        <Box
+          sx={{
+            display: isShowBgImgPicker ? "block" : "none",
+            mt: 3,
+            position: "absolute",
+          }}
+        >
           <BgImgPicker
             isShowBgImgPicker={isShowBgImgPicker}
             setIsShowBgImgPicker={setIsShowBgImgPicker}
