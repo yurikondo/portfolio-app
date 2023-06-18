@@ -21,7 +21,8 @@ exports.getLatestUsers = async (req, res) => {
   }
 };
 exports.getUsersByIds = async (req, res) => {
-  const { likeUserIds } = req.query;
+  console.log(req.body);
+  const { likeUserIds } = req.body;
   console.log(likeUserIds);
   try {
     const users = await User.find({ _id: { $in: likeUserIds } });

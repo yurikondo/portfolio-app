@@ -29,7 +29,7 @@ export default function UserListItem({ users }) {
                     {user.username}
                   </Typography>
                   <br />
-                  <Box
+                  {/* <Box
                     sx={{
                       display: "flex",
                       alignItems: "center",
@@ -37,9 +37,9 @@ export default function UserListItem({ users }) {
                   >
                     <CalendarMonthOutlinedIcon
                       sx={{ fontSize: "16px !important", mr: "5px" }}
-                    />
+                    /> */}
                     {new Date(user.createdAt).toLocaleDateString("ja-JP")}
-                  </Box>
+                  {/* </Box> */}
                 </React.Fragment>
               }
             />
