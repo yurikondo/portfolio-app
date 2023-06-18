@@ -1,13 +1,11 @@
 import { useSelector } from "react-redux";
 import SidebarListItem from "./SidebarListItem";
+import { pageListData } from "../../../utils/pageListData";
 import LogoutOutlined from "@mui/icons-material/LogoutOutlined";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
-import HomeIcon from "@mui/icons-material/Home";
-import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import LoginIcon from "@mui/icons-material/Login";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
-import NotificationsIcon from '@mui/icons-material/Notifications';import {
+import {
   Avatar,
   Box,
   Divider,
@@ -20,29 +18,6 @@ import NotificationsIcon from '@mui/icons-material/Notifications';import {
 const Sidebar = () => {
   // react-router-domのuseParamsでURLのパラメーターを受け取れる
   const loginUser = useSelector((state) => state.user.value);
-
-  const apperListData = [
-    { id: "home", text: "ホーム", icon: <HomeIcon />, path: "/" },
-    {
-      id: "profile",
-      text: "プロフィール",
-      icon: <EmojiEmotionsIcon />,
-      path: "profile",
-    },
-    {
-      id: "favorite",
-      text: "お気に入り",
-      icon: <FavoriteIcon />,
-      path: "favorite",
-    },
-    {
-      id: "followings",
-      text: "フォロー",
-      icon: <NotificationsIcon />,
-      path: "followings",
-    },
-  ];
-
   const logout = () => {
     localStorage.removeItem("token");
   };
@@ -89,13 +64,12 @@ const Sidebar = () => {
             <>
               <Divider />
               <Box sx={{ pt: "10px" }}>
-                {apperListData.map((item) => (
+                {pageListData.map(({ id, text, icon, path }) => (
                   <SidebarListItem
-                    key={item.id}
-                    id={item.id}
-                    text={item.text}
-                    icon={item.icon}
-                    path={item.path}
+                    key={id}
+                    text={text}
+                    icon={icon}
+                    path={path}
                   />
                 ))}
               </Box>

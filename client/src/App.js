@@ -30,7 +30,7 @@ function App() {
               <Route path="profile" element={<Profile />} />
               <Route path="favorite" element={<Favorite />} />
               <Route path="followings" element={<Followings />} />
-              <Route path="user-profile/:userId" element={<UserProfile />} />
+              <Route path="user/:userId" element={<UserProfile />} />
             </Route>
             {/* AuthLayoutはLoginとRegisterに共通するコンポーネント */}
             <Route path="/" element={<AuthLayout />}>

@@ -89,9 +89,10 @@ const UserHeader = ({ postUserId, postId }) => {
           cursor: postUserId === loginUser._id && "auto",
           textDecoration: "none",
           color: "inherit",
+          cursor: "pointer",
         }}
         component={Link}
-        to={postUserId !== loginUser._id ? `/user-profile/${postUser._id}` : ""}
+        to={postUserId !== loginUser._id ? `/user/${postUserId}` : "profile" }
         avatar={
           <Avatar
             sx={{
@@ -128,33 +129,31 @@ const UserHeader = ({ postUserId, postId }) => {
           />
         </>
       )}
-      {postUserId !== loginUser._id &&
-        !isFollowing && (
-          <Button
-            sx={{
-              mr: 2,
-            }}
-            variant="contained"
-            startIcon={<NotificationsNoneIcon />}
-            onClick={handleFollow}
-          >
-            フォローする
-          </Button>
-        )}
+      {postUserId !== loginUser._id && !isFollowing && (
+        <Button
+          sx={{
+            mr: 2,
+          }}
+          variant="contained"
+          startIcon={<NotificationsNoneIcon />}
+          onClick={handleFollow}
+        >
+          フォローする
+        </Button>
+      )}
 
-      {postUserId !== loginUser._id &&
-        isFollowing && (
-          <Button
-            sx={{
-              mr: 2,
-            }}
-            variant="outlined"
-            startIcon={<NotificationsNoneIcon />}
-            onClick={handleUnfollow}
-          >
-            フォロー解除
-          </Button>
-        )}
+      {postUserId !== loginUser._id && isFollowing && (
+        <Button
+          sx={{
+            mr: 2,
+          }}
+          variant="outlined"
+          startIcon={<NotificationsNoneIcon />}
+          onClick={handleUnfollow}
+        >
+          フォロー解除
+        </Button>
+      )}
     </Box>
   );
 };

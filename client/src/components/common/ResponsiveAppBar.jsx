@@ -2,7 +2,8 @@ import * as React from "react";
 import MenuBtn from "./MenuBtn";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { pageListData } from "../../utils/pageListData";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -22,7 +23,6 @@ function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const navigate = useNavigate();
-  const pages = ["ホーム", "プロフィール", "お気に入り"];
   const settings = [
     {
       text: "ログアウト",
@@ -97,9 +97,14 @@ function ResponsiveAppBar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {pageListData.map(({ id, text, path }) => (
+                <MenuItem
+                  key={id}
+                  onClick={handleCloseNavMenu}
+                  component={Link}
+                  to={path}
+                >
+                  <Typography textAlign="center">{text}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -124,13 +129,15 @@ function ResponsiveAppBar() {
             AmaPost
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
+            {pageListData.map(({ id, text, path }) => (
               <Button
-                key={page}
+                key={id}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, display: "block", color: "white" }}
+                component={Link}
+                to={path}
               >
-                {page}
+                {text}
               </Button>
             ))}
           </Box>
