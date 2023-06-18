@@ -34,23 +34,23 @@ const UserProfile = () => {
     getUser();
   }, [navigate]);
 
-  // useEffect(() => {
-  //   const getPosts = async () => {
-  //     try {
-  //       const res = await postApi.getProfilePosts();
-  //       setPosts(res);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   getPosts();
-  // }, [navigate]);
+  useEffect(() => {
+    const getPosts = async () => {
+      try {
+        const res = await postApi.getSingleUserPosts(userId);
+        setPosts(res);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getPosts();
+  }, [navigate]);
 
   return (
     <Box>
       <ProfileHeader
         userName={user.username}
-        // postsCount={loginUserPosts.length}
+        postsCount={posts.length}
         bgImg={user.bgImg}
         setBgImg={setBgImg}
         icon={user.icon}
@@ -58,9 +58,9 @@ const UserProfile = () => {
       />
       <Grid container spacing={3} sx={{ mt: 3 }}>
         <Grid item xs={8}>
-          {/* {posts.map((post) => (
+          {posts.map((post) => (
             <MainCard key={post._id} post={post} />
-          ))} */}
+          ))}
         </Grid>
         <Grid item xs={4}>
           {/* <UserListItem /> */}

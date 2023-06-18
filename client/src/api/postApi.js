@@ -4,6 +4,7 @@ const postApi = {
   create: (params) => axiosClient.post("post", params),
   getAll: () => axiosClient.get("post"),
   getProfilePosts: () => axiosClient.get("post/profile"),
+  getSingleUserPosts: (userId) => axiosClient.get(`post/profile/${userId}`),
   getLikedPosts: () => axiosClient.get("post/favorite"),
   getFollowingUsersPosts: (userId) => axiosClient.get(`post/${userId}/posts`),
   getOne: (id) => axiosClient.get(`post/${id}`),

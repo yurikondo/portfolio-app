@@ -28,6 +28,9 @@ router.get("/", tokenHandler.verifyToken, postController.getAll);
 //ログインしているユーザーの投稿を全て取得
 router.get("/profile", tokenHandler.verifyToken, postController.getProfilePosts);
 
+//他のユーザーの投稿を全て取得
+router.get("/profile/:userId", tokenHandler.verifyToken, postController.getSingleUserPosts);
+
 //ログインしているユーザーいいねしている投稿を全て取得
 router.get("/favorite", tokenHandler.verifyToken, postController.getLikedPosts);
 

@@ -51,6 +51,19 @@ exports.getProfilePosts = async (req, res) => {
   }
 };
 
+exports.getSingleUserPosts = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const posts = await Post.find({ user: userId })
+      .sort({ createdAt: -1 })
+      .limit(20);
+    return res.status(200).json(posts);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
+
+
 exports.getLikedPosts = async (req, res) => {
   try {
     const loginUserId = req.user._id.toString();
@@ -92,7 +105,6 @@ exports.getOne = async (req, res) => {
 exports.update = async (req, res) => {
   // URLのパラメーターを取得
   const { postId } = req.params;
-  const { desc } = req.body;
   try {
     //投稿の内容を取得
     const post = await Post.findOne({ user: req.user._id, _id: postId });
