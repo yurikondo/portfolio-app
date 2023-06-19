@@ -47,7 +47,7 @@ function Home() {
       </Grid>
       <Grid item md={4} sx={{ display: { xs: "none", md: "block" } }}>
         {loginUser.username && <PostForm />}
-        <UserListItem users={latestUsers} />
+        <UserListItem users={latestUsers} loginUser={loginUser} />
       </Grid>
     </Grid>
   );

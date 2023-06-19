@@ -20,9 +20,7 @@ exports.getLatestUsers = async (req, res) => {
   }
 };
 exports.getUsersByIds = async (req, res) => {
-  // console.log(req.body);
   const { likeUserIds } = req.body;
-  // console.log(likeUserIds);
   try {
     const users = await User.find({ _id: { $in: likeUserIds } });
     return res.status(200).json(users);
@@ -45,6 +43,16 @@ exports.getFollowerUsers = async (req, res) => {
   const loginUserId = req.user._id.toString();
   try {
     const followerUsers = await User.find({ followings: { $in: loginUserId } });
+    return res.status(200).json(followerUsers);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
+
+exports.getSingleUserFollowerUsers = async (req, res) => {
+  const userId = req.params.userId;
+  try {
+    const followerUsers = await User.find({ followings: { $in: userId } });
     return res.status(200).json(followerUsers);
   } catch (err) {
     return res.status(500).json(err);

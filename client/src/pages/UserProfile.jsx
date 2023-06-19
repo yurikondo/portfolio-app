@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
 import MainCard from "../components/common/maincard/MainCard";
 import postApi from "../api/postApi";
 import UserListItem from "../components/common/UserListItem";
@@ -8,6 +7,7 @@ import ProfileHeader from "../components/common/ProfileHeader";
 import { Box } from "@mui/material";
 import { Grid } from "@mui/material";
 import userApi from "../api/userApi";
+import ErrorText from "../components/common/ErrorText";
 
 const UserProfile = () => {
   const { userId } = useParams();
@@ -15,12 +15,8 @@ const UserProfile = () => {
   const [posts, setPosts] = useState([]);
   const [bgImg, setBgImg] = useState("");
   const [icon, setIcon] = useState("");
-  const loginUser = useSelector((state) => state.user.value);
+  const [followerUsers, setFollowerUsers] = useState([]);
   const navigate = useNavigate();
-
-  if (!loginUser.username) {
-    navigate("/");
-  }
 
   useEffect(() => {
     const getUser = async () => {
@@ -44,7 +40,19 @@ const UserProfile = () => {
       }
     };
     getPosts();
-  }, [navigate]);
+  }, [navigate, userId]);
+
+  useEffect(() => {
+    const getSingleUserFollowerUsers = async () => {
+      try {
+        const res = await userApi.getSingleUserFollowerUsers(userId);
+        setFollowerUsers(res);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getSingleUserFollowerUsers();
+  }, []);
 
   return (
     <Box>
@@ -61,9 +69,17 @@ const UserProfile = () => {
           {posts.map((post) => (
             <MainCard key={post._id} post={post} />
           ))}
+          {posts.length === 0 && (
+            <ErrorText text={`まだ${user.username}さんの投稿はありません`} />
+          )}
         </Grid>
         <Grid item xs={4}>
-          {/* <UserListItem /> */}
+          <UserListItem users={followerUsers} />
+          {followerUsers.length === 0 && (
+            <ErrorText
+              text={`まだ${user.username}さんのフォロワーはいません`}
+            />
+          )}
         </Grid>
       </Grid>
     </Box>

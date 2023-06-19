@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import Avatar from "@mui/material/Avatar";
@@ -8,7 +9,9 @@ import { Box } from "@mui/material";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import { grey } from "@mui/material/colors";
 
-export default function UserListItem({ users, loginUser }) {
+export default function UserListItem({ users }) {
+  const loginUser = useSelector((state) => state.user.value);
+
   return (
     <List sx={{ width: "100%", bgcolor: "background.paper" }}>
       {users.map((user) => (
