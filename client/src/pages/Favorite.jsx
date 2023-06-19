@@ -36,7 +36,7 @@ const Favorite = () => {
           </Grid>
         )}
         {likedPosts.map((post) => (
-          <Grid item xs={6}>
+          <Grid item xs={12} md={6}>
             <MainCard key={post._id} post={post} />
           </Grid>
         ))}

@@ -93,7 +93,7 @@ const UserProfile = () => {
         setIcon={setIcon}
       />
       <Grid container spacing={3} sx={{ mt: 3 }}>
-        <Grid item xs={8}>
+        <Grid item xs={12} md={8}>
           {posts.map((post) => (
             <MainCard key={post._id} post={post} />
           ))}
@@ -101,7 +101,7 @@ const UserProfile = () => {
             <ErrorText text={`まだ${user.username}さんの投稿はありません`} />
           )}
         </Grid>
-        <Grid item xs={4}>
+        <Grid item md={4} sx={{ display: { xs: "none", md: "block" } }}>
           {isFollowing ? (
             <Button
               sx={{

@@ -73,7 +73,7 @@ const Profile = () => {
         setIcon={setIcon}
       />
       <Grid container spacing={3} sx={{ mt: 3 }}>
-        <Grid item xs={8}>
+        <Grid item xs={12} md={8}>
           {loginUserPosts.map((post) => (
             <MainCard key={post._id} post={post} />
           ))}
@@ -81,7 +81,7 @@ const Profile = () => {
             <ErrorText text="まだあなたの投稿はありません" />
           )}
         </Grid>
-        <Grid item xs={4}>
+        <Grid item md={4} sx={{ display: { xs: "none", md: "block" } }}>
           <UserListItem users={followerUsers} />
           {followerUsers.length === 0 && (
             <ErrorText text="まだフォロワーはいません" />
