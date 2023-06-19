@@ -8,7 +8,7 @@ import { grey } from "@mui/material/colors";
 import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import HideImageIcon from "@mui/icons-material/HideImage";
 
-const PostForm = () => {
+const PostForm = ({ isShowModal }) => {
   const [itemImgURL, setItemImgURL] = useState("");
   const [itemImgURLErrText, setItemImgURLErrText] = useState("");
   const [desc, setDesc] = useState("");
@@ -79,6 +79,7 @@ const PostForm = () => {
       setLoading(false);
       const newpostsArray = [...posts, result];
       dispatch(setPost(newpostsArray));
+      isShowModal(false);
       console.log("投稿に成功しました🎉");
     } catch (err) {
       // server/routes/auth.jsのバリデーションに引っ掛かったら(レッスン55)
@@ -142,6 +143,8 @@ const PostForm = () => {
             width: "100%",
             height: "100%",
             objectFit: "contain",
+            position: "relative",
+            zIndex: 1000,
           }}
         />
       </Box>

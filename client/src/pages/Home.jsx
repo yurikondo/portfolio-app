@@ -5,11 +5,14 @@ import MainCard from "../components/common/maincard/MainCard";
 import PostForm from "../components/common/PostForm";
 import postApi from "../api/postApi";
 import UserListItem from "../components/common/UserListItem";
-import { Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import userApi from "../api/userApi";
+import Modal from "../components/common/ModalForm";
 
 function Home() {
   const [latestUsers, setLatestUsers] = useState([]);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
   const dispatch = useDispatch();
   const loginUser = useSelector((state) => state.user.value);
   const posts = useSelector((state) => state.post.value);
@@ -41,6 +44,18 @@ function Home() {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} md={8}>
+        <Box sx={{ width: "100%", display: "flex", justifyContent: "end" }}>
+          <Button
+            onClick={handleOpen}
+            sx={{
+              display: { xs: "block", md: "none" },
+              mb: "10px",
+            }}
+          >
+            新しい投稿する
+          </Button>
+        </Box>
+        <Modal open={open} setOpen={setOpen} />
         {posts.map((post) => (
           <MainCard key={post._id} post={post} />
         ))}
