@@ -6,11 +6,10 @@ import postApi from "../../../api/postApi";
 import userApi from "../../../api/userApi";
 import { Link } from "react-router-dom";
 import CardHeader from "@mui/material/CardHeader";
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 
 const UserHeader = ({ postUserId, postId }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -52,30 +51,6 @@ const UserHeader = ({ postUserId, postId }) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleFollow = async () => {
-    try {
-      const res = await userApi.follow(postUserId);
-      if (res.isFollow) {
-        setIsFollowing(true);
-        console.log("フォロー成功🎉");
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleUnfollow = async () => {
-    try {
-      const res = await userApi.unfollow(postUserId);
-      if (!res.isFollow) {
-        setIsFollowing(false);
-        console.log("フォロー解除🎉");
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   return (
     <Box
       sx={{
@@ -92,7 +67,7 @@ const UserHeader = ({ postUserId, postId }) => {
           cursor: "pointer",
         }}
         component={Link}
-        to={postUserId !== loginUser._id ? `/user/${postUserId}` : "profile" }
+        to={postUserId !== loginUser._id ? `/user/${postUserId}` : "profile"}
         avatar={
           <Avatar
             sx={{
@@ -128,31 +103,6 @@ const UserHeader = ({ postUserId, postId }) => {
             setAnchorElUser={setAnchorElUser}
           />
         </>
-      )}
-      {postUserId !== loginUser._id && !isFollowing && (
-        <Button
-          sx={{
-            mr: 2,
-          }}
-          variant="contained"
-          startIcon={<NotificationsNoneIcon />}
-          onClick={handleFollow}
-        >
-          フォローする
-        </Button>
-      )}
-
-      {postUserId !== loginUser._id && isFollowing && (
-        <Button
-          sx={{
-            mr: 2,
-          }}
-          variant="outlined"
-          startIcon={<NotificationsNoneIcon />}
-          onClick={handleUnfollow}
-        >
-          フォロー解除
-        </Button>
       )}
     </Box>
   );

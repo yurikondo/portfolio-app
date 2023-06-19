@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import MainCard from "../components/common/maincard/MainCard";
 import postApi from "../api/postApi";
 import UserListItem from "../components/common/UserListItem";
 import ProfileHeader from "../components/common/ProfileHeader";
-import { Box } from "@mui/material";
-import { Grid } from "@mui/material";
 import userApi from "../api/userApi";
 import ErrorText from "../components/common/ErrorText";
+import { Box, Button, Grid } from "@mui/material";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 
 const UserProfile = () => {
   const { userId } = useParams();
@@ -15,7 +16,9 @@ const UserProfile = () => {
   const [posts, setPosts] = useState([]);
   const [bgImg, setBgImg] = useState("");
   const [icon, setIcon] = useState("");
+  const [isFollowing, setIsFollowing] = useState(false);
   const [followerUsers, setFollowerUsers] = useState([]);
+  const loginUser = useSelector((state) => state.user.value);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,12 +26,13 @@ const UserProfile = () => {
       try {
         const res = await userApi.getOne(userId);
         setUser(res);
+        setIsFollowing(res.followers.includes(loginUser._id));
       } catch (err) {
         console.log(err);
       }
     };
     getUser();
-  }, [navigate]);
+  }, []);
 
   useEffect(() => {
     const getPosts = async () => {
@@ -54,6 +58,30 @@ const UserProfile = () => {
     getSingleUserFollowerUsers();
   }, []);
 
+  const handleFollow = async () => {
+    try {
+      const res = await userApi.follow(userId);
+      if (res.isFollow) {
+        setIsFollowing(true);
+        console.log("フォロー成功🎉");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUnfollow = async () => {
+    try {
+      const res = await userApi.unfollow(userId);
+      if (!res.isFollow) {
+        setIsFollowing(false);
+        console.log("フォロー解除🎉");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Box>
       <ProfileHeader
@@ -74,6 +102,29 @@ const UserProfile = () => {
           )}
         </Grid>
         <Grid item xs={4}>
+          {isFollowing ? (
+            <Button
+              sx={{
+                mr: 2,
+              }}
+              variant="outlined"
+              startIcon={<NotificationsNoneIcon />}
+              onClick={handleUnfollow}
+            >
+              フォロー解除
+            </Button>
+          ) : (
+            <Button
+              sx={{
+                mr: 2,
+              }}
+              variant="contained"
+              startIcon={<NotificationsNoneIcon />}
+              onClick={handleFollow}
+            >
+              フォローする
+            </Button>
+          )}
           <UserListItem users={followerUsers} />
           {followerUsers.length === 0 && (
             <ErrorText

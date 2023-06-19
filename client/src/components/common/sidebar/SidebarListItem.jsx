@@ -15,14 +15,8 @@ const SidebarListItem = ({ text, icon, path, onItemClick }) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // console.log(id);
-  // useEffect(() => {
-  //   setActiveIndex(paramsId);
-  // }, []);
-
   const handleClick = () => {
     if (onItemClick) {
-      // setActiveIndex(e.id)
       onItemClick();
     }
     if (path) {
@@ -36,7 +30,6 @@ const SidebarListItem = ({ text, icon, path, onItemClick }) => {
         component={Link}
         to={path}
         onClick={handleClick}
-        // selected={id === activeIndex}
       >
         <Box
           sx={{
