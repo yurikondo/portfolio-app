@@ -1,50 +1,56 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
+import { grey } from "@mui/material/colors";
 
-export default function UserListItem({ users }) {
+export default function UserListItem({ users, loginUser }) {
   return (
-    <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+    <List sx={{ width: "100%", bgcolor: "background.paper" }}>
       {users.map((user) => (
-        <Box key={user._id}>
-          <ListItem alignItems="flex-start">
-            <ListItemAvatar>
-              <Avatar alt="ユーザーアイコン">{user.icon}</Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    component="span"
-                    variant="body1"
-                    color="text.primary"
-                  >
-                    {user.username}
-                  </Typography>
-                  <br />
-                  {/* <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    <CalendarMonthOutlinedIcon
-                      sx={{ fontSize: "16px !important", mr: "5px" }}
-                    /> */}
-                    {new Date(user.createdAt).toLocaleDateString("ja-JP")}
-                  {/* </Box> */}
-                </React.Fragment>
-              }
+        <Box key={user._id} sx={{ pt: "10px", width: "100%" }}>
+          <Box
+            component={Link}
+            to={user._id !== loginUser._id ? `/user/${user._id}` : "profile"}
+            sx={{
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              textDecoration: "none",
+            }}
+          >
+            <Avatar alt="ユーザーアイコン">{user.icon}</Avatar>
+            <Typography
+              component="span"
+              variant="body1"
+              color="text.primary"
+              sx={{ ml: "10px" }}
+            >
+              {user.username}
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              pl: "13px",
+              pt: "5px",
+              pb: "10px",
+              color: grey[500],
+            }}
+          >
+            <CalendarMonthOutlinedIcon
+              sx={{ fontSize: "16px !important", mr: "5px" }}
             />
-          </ListItem>
-          <Divider variant="inset" component="li" />
+            <Typography>
+              {new Date(user.createdAt).toLocaleDateString("ja-JP")}
+            </Typography>
+          </Box>
+          <Divider sx={{ width: "100%" }} />
         </Box>
       ))}
     </List>
