@@ -14,7 +14,6 @@ const Followings = () => {
   const loginUser = useSelector((state) => state.user.value);
   const navigate = useNavigate();
 
-  // console.log(loginUser._id);
   if (!loginUser.username) {
     navigate("/");
   }
@@ -35,7 +34,6 @@ const Followings = () => {
     const getFollowingUsers = async () => {
       try {
         const res = await userApi.getFollowingUsers();
-        console.log(res);
         setFollowingUsers(res);
       } catch (err) {
         console.log(err);

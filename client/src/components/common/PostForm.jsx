@@ -77,18 +77,8 @@ const PostForm = () => {
       setItemImgURL("");
       setDesc("");
       setLoading(false);
-      // const newPost = {
-      //   _id: result._id,
-      //   user: result.user,
-      //   itemImgURL: result.itemImgURL,
-      //   title: result.title,
-      //   desc: result.desc,
-      // };
-      console.log(result);
       const newpostsArray = [...posts, result];
-      console.log(newpostsArray);
       dispatch(setPost(newpostsArray));
-      // window.location.reload();
       console.log("投稿に成功しました🎉");
     } catch (err) {
       // server/routes/auth.jsのバリデーションに引っ掛かったら(レッスン55)

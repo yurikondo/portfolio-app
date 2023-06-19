@@ -10,7 +10,6 @@ const AvatarList = ({ likeUserIds }) => {
       try {
         const res = await userApi.getUsersByIds({ likeUserIds: likeUserIds });
         const users = res.data;
-        // console.log(users);
         setLikedUsers(users);
       } catch (error) {
         console.log(error);
