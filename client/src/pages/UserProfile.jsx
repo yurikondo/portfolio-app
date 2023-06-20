@@ -7,7 +7,7 @@ import UserListItem from "../components/common/UserListItem";
 import ProfileHeader from "../components/common/ProfileHeader";
 import userApi from "../api/userApi";
 import ErrorText from "../components/common/ErrorText";
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 
 const UserProfile = () => {
@@ -63,6 +63,9 @@ const UserProfile = () => {
       const res = await userApi.follow(userId);
       if (res.isFollow) {
         setIsFollowing(true);
+        // console.log(loginUser);
+        // console.log(...followerUsers);
+        // setFollowerUsers(loginUser, ...followerUsers);
         console.log("フォロー成功🎉");
       }
     } catch (err) {
@@ -102,29 +105,32 @@ const UserProfile = () => {
           )}
         </Grid>
         <Grid item md={4} sx={{ display: { xs: "none", md: "block" } }}>
-          {isFollowing ? (
-            <Button
-              sx={{
-                mr: 2,
-              }}
-              variant="outlined"
-              startIcon={<NotificationsNoneIcon />}
-              onClick={handleUnfollow}
-            >
-              フォロー解除
-            </Button>
-          ) : (
-            <Button
-              sx={{
-                mr: 2,
-              }}
-              variant="contained"
-              startIcon={<NotificationsNoneIcon />}
-              onClick={handleFollow}
-            >
-              フォローする
-            </Button>
-          )}
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            {isFollowing ? (
+              <Button
+                sx={{
+                  mr: 2,
+                }}
+                variant="outlined"
+                startIcon={<NotificationsNoneIcon />}
+                onClick={handleUnfollow}
+              >
+                フォロー解除
+              </Button>
+            ) : (
+              <Button
+                sx={{
+                  mr: 2,
+                }}
+                variant="contained"
+                startIcon={<NotificationsNoneIcon />}
+                onClick={handleFollow}
+              >
+                フォローする
+              </Button>
+            )}
+            <Typography>{followerUsers.length} フォロワー</Typography>
+          </Box>
           <UserListItem users={followerUsers} />
           {followerUsers.length === 0 && (
             <ErrorText

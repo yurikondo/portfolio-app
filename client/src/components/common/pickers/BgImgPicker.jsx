@@ -24,7 +24,7 @@ const BgImgPicker = ({ isShowBgImgPicker, setIsShowBgImgPicker }) => {
   };
 
   return (
-    <Box sx={{ width: 500, height: 450 }}>
+    <Box sx={{ width: 500, height: 450, position: "relative" }}>
       <Paper
         component="form"
         sx={{
@@ -53,7 +53,10 @@ const BgImgPicker = ({ isShowBgImgPicker, setIsShowBgImgPicker }) => {
           探したい画像をキーワードで入力してください
         </Alert>
       )}
-      <ImageGallery fetchData={fetchData} />
+      <ImageGallery
+        fetchData={fetchData}
+        sx={{ position: "absolute", zIndex: 1000 }}
+      />
     </Box>
   );
 };
