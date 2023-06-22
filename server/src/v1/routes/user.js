@@ -23,10 +23,15 @@ router.get(
   tokenHandler.verifyToken,
   userController.getFollowerUsers
 );
-router.get(
-  "/getSingleUserFollowerUsers/:userId",
+// router.get(
+//   "/getSingleUserFollowerUsers/:userId",
+//   tokenHandler.verifyToken,
+//   userController.getSingleUserFollowerUsers
+// );
+router.post(
+  "/getUsersByIds",
   tokenHandler.verifyToken,
-  userController.getSingleUserFollowerUsers
+  userController.getUsersByIds
 );
 router.put("/updateIcon", tokenHandler.verifyToken, userController.updateIcon);
 router.put(

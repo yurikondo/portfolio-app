@@ -6,8 +6,9 @@ const userApi = {
   getUsersByIds: (params) => axiosClient.get("user/getUsersByIds", params),
   getFollowingUsers: () => axiosClient.get("user/getFollowingUsers"),
   getFollowerUsers: () => axiosClient.get("user/getFollowerUsers"),
-  getSingleUserFollowerUsers: (userId) =>
-    axiosClient.get(`user/getSingleUserFollowerUsers/${userId}`),
+  // getSingleUserFollowerUsers: (userId) =>
+  //   axiosClient.get(`user/getSingleUserFollowerUsers/${userId}`),
+  getUsersByIds: (params) => axiosClient.post("user/getUsersByIds", params),
   updateIcon: (params) => axiosClient.put("user/updateIcon", params),
   updateBgImg: (params) => axiosClient.put("user/updateBgImg", params),
   follow: (id, params) => axiosClient.put(`user/${id}/follow`, params),
