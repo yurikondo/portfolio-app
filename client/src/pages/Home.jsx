@@ -5,13 +5,14 @@ import MainCard from "../components/common/maincard/MainCard";
 import PostForm from "../components/common/PostForm";
 import postApi from "../api/postApi";
 import UserListItem from "../components/common/UserListItem";
-import { Box, Button, Grid } from "@mui/material";
 import userApi from "../api/userApi";
 import Modal from "../components/common/ModalForm";
+import { Box, Button, Grid } from "@mui/material";
 
 function Home() {
   const [latestUsers, setLatestUsers] = useState([]);
-  const [open, setOpen] = React.useState(false);
+  const [latestPosts, setLatestPosts] = useState([]);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const dispatch = useDispatch();
   const loginUser = useSelector((state) => state.user.value);
@@ -21,13 +22,14 @@ function Home() {
     const getPosts = async () => {
       try {
         const res = await postApi.getAll();
+        setLatestPosts(res);
         dispatch(setPost(res));
       } catch (err) {
         console.log(err);
       }
     };
     getPosts();
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     const getLatestUsers = async () => {
@@ -56,12 +58,14 @@ function Home() {
           </Button>
         </Box>
         <Modal open={open} setOpen={setOpen} />
-        {posts.map((post) => (
+        {latestPosts.map((post) => (
           <MainCard key={post._id} post={post} />
         ))}
       </Grid>
       <Grid item md={4} sx={{ display: { xs: "none", md: "block" } }}>
-        {loginUser.username && <PostForm />}
+        {loginUser.username && (
+          <PostForm posts={latestPosts} setPosts={setLatestPosts} />
+        )}
         <UserListItem users={latestUsers} loginUser={loginUser} />
       </Grid>
     </Grid>

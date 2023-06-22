@@ -8,13 +8,13 @@ import { grey } from "@mui/material/colors";
 import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import HideImageIcon from "@mui/icons-material/HideImage";
 
-const PostForm = ({ isShowModal }) => {
+const PostForm = ({ isShowModal, posts, setPosts }) => {
   const [itemImgURL, setItemImgURL] = useState("");
   const [itemImgURLErrText, setItemImgURLErrText] = useState("");
   const [desc, setDesc] = useState("");
   const [descErrText, setDescErrText] = useState("");
   const [loading, setLoading] = useState(false);
-  const posts = useSelector((state) => state.post.value);
+  // const posts = useSelector((state) => state.post.value);
   const dispatch = useDispatch();
 
   const onItemImgURLChange = async (e) => {
@@ -77,8 +77,9 @@ const PostForm = ({ isShowModal }) => {
       setItemImgURL("");
       setDesc("");
       setLoading(false);
-      const newpostsArray = [...posts, result];
-      dispatch(setPost(newpostsArray));
+      const newPostsArray = [...posts, result];
+      dispatch(setPost(newPostsArray));
+      setPosts(newPostsArray);
       isShowModal(false);
       console.log("投稿に成功しました🎉");
     } catch (err) {
