@@ -14,7 +14,6 @@ const PostForm = ({ isShowModal, posts, setPosts }) => {
   const [desc, setDesc] = useState("");
   const [descErrText, setDescErrText] = useState("");
   const [loading, setLoading] = useState(false);
-  // const posts = useSelector((state) => state.post.value);
   const dispatch = useDispatch();
 
   const onItemImgURLChange = async (e) => {
@@ -83,7 +82,7 @@ const PostForm = ({ isShowModal, posts, setPosts }) => {
       isShowModal(false);
       console.log("投稿に成功しました🎉");
     } catch (err) {
-      // server/routes/auth.jsのバリデーションに引っ掛かったら(レッスン55)
+      // server/routes/auth.jsのバリデーションに引っ掛かったら
       const errors = err.data.errors;
 
       errors.forEach((err) => {

@@ -16,7 +16,6 @@ function Home() {
   const handleOpen = () => setOpen(true);
   const dispatch = useDispatch();
   const loginUser = useSelector((state) => state.user.value);
-  const posts = useSelector((state) => state.post.value);
 
   useEffect(() => {
     const getPosts = async () => {
@@ -29,7 +28,7 @@ function Home() {
       }
     };
     getPosts();
-  }, []);
+  }, [latestPosts]);
 
   useEffect(() => {
     const getLatestUsers = async () => {
