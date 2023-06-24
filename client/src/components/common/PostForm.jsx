@@ -3,7 +3,7 @@ import postApi from "../../api/postApi";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "../../redux/features/postSlice";
 import { LoadingButton } from "@mui/lab";
-import { Box, CardMedia, TextField } from "@mui/material";
+import { Box, CardMedia, TextField, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import HideImageIcon from "@mui/icons-material/HideImage";
@@ -123,16 +123,20 @@ const PostForm = ({ isShowModal, posts, setPosts }) => {
           }}
           fontSize="large"
         />
-        <HideImageIcon
+        <Box
           sx={{
-            display: itemImgURL ? "block" : "none",
+            display: itemImgURL ? "flex" : "none",
+            alignItems: "center",
+            flexDirection: "column",
             position: "absolute",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
           }}
-          fontSize="large"
-        />
+        >
+          <HideImageIcon fontSize="large" />
+          <Typography sx={{ mt: 1 }}>画像なし</Typography>
+        </Box>
         <CardMedia
           component="img"
           image={itemImgURL}
