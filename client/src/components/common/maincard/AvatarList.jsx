@@ -21,12 +21,9 @@ const AvatarList = ({ likeUserIds }) => {
 
   return (
     <AvatarGroup max={4}>
-      <Avatar alt="いいねしたユーザーのアイコン">😇</Avatar>
-      <Avatar alt="いいねしたユーザーのアイコン">😇</Avatar>
-      <Avatar alt="いいねしたユーザーのアイコン">😇</Avatar>
-      <Avatar alt="いいねしたユーザーのアイコン">😇</Avatar>
-      <Avatar alt="いいねしたユーザーのアイコン">😇</Avatar>
-      <Avatar alt="いいねしたユーザーのアイコン">😇</Avatar>
+      {likedUsers.map((likedUser) => (
+        <Avatar alt="いいねしたユーザーのアイコン">{likedUser.icon}</Avatar>
+      ))}
     </AvatarGroup>
   );
 };
