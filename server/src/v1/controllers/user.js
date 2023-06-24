@@ -19,6 +19,7 @@ exports.getLatestUsers = async (req, res) => {
     return res.status(500).json(err);
   }
 };
+
 exports.getUsersByIds = async (req, res) => {
   const { likeUserIds } = req.body;
   try {
@@ -49,22 +50,10 @@ exports.getFollowerUsers = async (req, res) => {
   }
 };
 
-// exports.getSingleUserFollowerUsers = async (req, res) => {
-//   const userId = req.params.userId;
-//   try {
-//     const followerUsers = await User.find({ followings: { $in: userId } });
-//     return res.status(200).json(followerUsers);
-//   } catch (err) {
-//     return res.status(500).json(err);
-//   }
-// };
-
 exports.getUsersByIds = async (req, res) => {
   const { likeUserIds } = req.body;
-  console.log(likeUserIds);
   try {
     const users = await User.find({ _id: { $in: likeUserIds } });
-    console.log("users情報" + users);
     return res.status(200).json(users);
   } catch (err) {
     return res.status(500).json(err);
