@@ -2,7 +2,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
+const path = require("path");
 require("dotenv").config();
 const cors = require("cors");
 
@@ -25,6 +26,12 @@ try {
 } catch (err) {
   console.log(err);
 }
+
+app.use(express.static(path.join(__dirname, "../client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
 
 app.listen(PORT, () => {
   console.log("ローカルサーバー起動中🚀");
