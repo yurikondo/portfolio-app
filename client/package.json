@@ -24,7 +24,8 @@
     "react-scripts": "5.0.0",
     "styled-components": "^5.3.9",
     "timeago.js": "^4.0.0-beta.3",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "typescript": "4.9.5"
   },
   "scripts": {
     "start": "react-scripts start",
