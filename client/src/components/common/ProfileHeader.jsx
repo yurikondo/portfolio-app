@@ -62,14 +62,18 @@ const ProfileHeader = (props) => {
       <Box
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
-        <EmojiPicker profile icon={icon} onChange={onIconChange} sx={{ mt: -5 }} />
+        <EmojiPicker
+          icon={icon}
+          onChange={onIconChange}
+          sx={{ mt: -5 }}
+          profile={profile}
+        />
         <Typography variant="h4" sx={{ marginTop: 2 }}>
           {userName}
         </Typography>
         <Typography variant="subtitle1" sx={{ marginTop: 1 }}>
           投稿数: {postsCount}
         </Typography>
-        {/* <InputDesc /> */}
         <Box
           sx={{
             display: isShowBgImgPicker ? "block" : "none",

@@ -98,7 +98,7 @@ const Register = () => {
           flexDirection: "column",
         }}
       >
-        <EmojiPicker icon={icon} onChange={onIconChange} />
+        <EmojiPicker icon={icon} onChange={onIconChange} profile={true} />
         <Typography variant="body1" sx={{ my: 3 }}>
           👆 アイコン選択
         </Typography>

@@ -4,7 +4,7 @@ import Picker from "@emoji-mart/react";
 
 // npm i @emoji-mart/react
 // https://www.npmjs.com/package/emoji-mart
-const EmojiPicker = ({ icon, onChange }) => {
+const EmojiPicker = ({ icon, onChange, profile }) => {
   const [selectedEmoji, setSelectedEmoji] = useState();
   const [isShowPicker, setIsShowPicker] = useState(false);
 
@@ -12,7 +12,11 @@ const EmojiPicker = ({ icon, onChange }) => {
     setSelectedEmoji(icon);
   }, [icon]);
 
-  const showPicker = () => setIsShowPicker(!isShowPicker);
+  const showPicker = () => {
+    if (profile) {
+      setIsShowPicker(!isShowPicker);
+    }
+  };
 
   const selectEmoji = (e) => {
     const emojiCode = e.unified.split("-");

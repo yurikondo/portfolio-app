@@ -64,13 +64,13 @@ const Profile = () => {
   return (
     <Box>
       <ProfileHeader
-        profile
         userName={loginUser.username}
         postsCount={loginUserPosts.length}
         bgImg={bgImg}
         setBgImg={setBgImg}
         icon={icon}
         setIcon={setIcon}
+        profile={true}
       />
       <Grid container spacing={3} sx={{ mt: 3 }}>
         <Grid item xs={12} md={8}>
