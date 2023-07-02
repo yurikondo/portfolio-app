@@ -21,7 +21,10 @@ app.use("/api/v1", require("./src/v1/routes"));
 
 //DB接続(https://mongoosejs.com/docs/connections.html)
 try {
-  mongoose.connect(process.env.MONGODB_URL);
+  mongoose.connect(
+    process.env.MONGODB_URL ||
+      "mongodb+srv://yuri:yuri@cluster0.bdt9t6s.mongodb.net/"
+  );
   console.log("DBと接続中🚀");
 } catch (err) {
   console.log(err);
