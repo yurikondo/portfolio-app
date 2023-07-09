@@ -1,7 +1,7 @@
 /* axiosはAPIを叩くためのライブラリ */
 import axios from "axios";
 
-const BASE_URL = "http://localhost:4000/api/v1";
+const BASE_URL = "https://amapost-5d413f7c5092.herokuapp.com/api/v1";
 
 //ローカルストレージからトークンを取得
 const getToken = () => {
