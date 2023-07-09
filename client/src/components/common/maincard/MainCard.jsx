@@ -108,9 +108,15 @@ const MainCard = ({ post }) => {
             }}
           >
             <CardActions disableSpacing>
-              <IconButton aria-label="この投稿をシェアする">
-                <ShareIcon />
-              </IconButton>
+              <a
+                href={`https://twitter.com/share?url=${itemURL}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <IconButton aria-label="この投稿をシェアする">
+                  <ShareIcon />
+                </IconButton>
+              </a>
               {loginUser._id && (
                 <IconButton
                   aria-label="お気に入りに追加"
