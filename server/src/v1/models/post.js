@@ -17,10 +17,6 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    title: {
-      type: String,
-      default: "",
-    },
     desc: {
       type: String,
       required: true,

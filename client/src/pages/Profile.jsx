@@ -41,7 +41,6 @@ const Profile = () => {
     const getFollowerUsers = async () => {
       try {
         const res = await userApi.getFollowerUsers();
-        console.log(res);
         setFollowerUsers(res);
       } catch (err) {
         console.log(err);
