@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import SidebarListItem from "./SidebarListItem";
 import { pageListData } from "../../../utils/pageListData";
 import LogoutOutlined from "@mui/icons-material/LogoutOutlined";
-import ShareIcon from "@mui/icons-material/Share";
 import LoginIcon from "@mui/icons-material/Login";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
+import TwitterIcon from '@mui/icons-material/Twitter';
 import {
   Avatar,
   Box,
@@ -82,9 +82,9 @@ const Sidebar = () => {
               <SidebarListItem
                 key="share"
                 id="share"
-                text="このサイトをシェア"
-                icon={<ShareIcon />}
-                path="/share"
+                text="Twitterでシェア"
+                icon={<TwitterIcon />}
+                path="https://twitter.com/share?url=https://amapost-5d413f7c5092.herokuapp.com"
               />
             </Box>
             {loginUser.username ? (

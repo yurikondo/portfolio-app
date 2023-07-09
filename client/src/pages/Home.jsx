@@ -44,11 +44,6 @@ function Home() {
     getLatestUsers();
   }, []);
 
-  // const resetForm = () => {
-  //   setItemImgURL("");
-  //   setDesc("");
-  // };
-
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} md={8}>
@@ -75,9 +70,6 @@ function Home() {
             setPosts={setLatestPosts}
             showModal={showModal}
             isShowModal={isShowModal}
-            // resetForm={resetForm}
-            // itemImgURL={itemImgURL}
-            // setItemImgURL={setItemImgURL}
           />
         )}
         <UserListItem users={latestUsers} loginUser={loginUser} />

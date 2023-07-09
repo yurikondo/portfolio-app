@@ -8,9 +8,9 @@ import {
   ListItemText,
 } from "@mui/material";
 import { useState } from "react";
-import { useEffect } from "react";
 
-const SidebarListItem = ({ text, icon, path, onItemClick }) => {
+const SidebarListItem = (props) => {
+  const { text, icon, path, onItemClick } = props;
   const [activeIndex, setActiveIndex] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
@@ -26,11 +26,7 @@ const SidebarListItem = ({ text, icon, path, onItemClick }) => {
 
   return (
     <ListItem disablePadding>
-      <ListItemButton
-        component={Link}
-        to={path}
-        onClick={handleClick}
-      >
+      <ListItemButton component={Link} to={path} onClick={handleClick}>
         <Box
           sx={{
             width: "100%",
