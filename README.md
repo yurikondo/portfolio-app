@@ -2,6 +2,8 @@
 # AMAPOST
 
 Amazon商品URLとコメントを投稿して、おすすめの商品をユーザーとシェアできるSNSアプリです。
+https://amapost-5d413f7c5092.herokuapp.com/
+![画像](https://i.gyazo.com/5dfad8faaf933b58495cb6baee9eaf72.png)
 
 
 ## テスト用アカウント
