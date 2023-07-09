@@ -7,12 +7,15 @@ const path = require("path");
 require("dotenv").config();
 const cors = require("cors");
 
+// corsの設定を追加
+app.use(cors());
+
 //https://www.npmjs.com/package/cors
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//   })
+// );
 
 app.use(express.json());
 //routesにアクセスするときは/api/v1をつける
