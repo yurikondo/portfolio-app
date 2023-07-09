@@ -23,11 +23,11 @@ router.get(
   tokenHandler.verifyToken,
   userController.getFollowerUsers
 );
-// router.get(
-//   "/getSingleUserFollowerUsers/:userId",
-//   tokenHandler.verifyToken,
-//   userController.getSingleUserFollowerUsers
-// );
+router.get(
+  "/getFollowingUserIds",
+  tokenHandler.verifyToken,
+  userController.getFollowingUserIds
+);
 router.post(
   "/getUsersByIds",
   tokenHandler.verifyToken,

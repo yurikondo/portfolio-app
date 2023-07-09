@@ -40,6 +40,17 @@ exports.getFollowingUsers = async (req, res) => {
   }
 };
 
+exports.getFollowingUserIds = async (req, res) => {
+  const { userId } = req.body;
+  try {
+    const followingUsers = await User.find({ followers: { $in: userId } });
+    return res.status(200).json(followingUsers);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
+
+
 exports.getFollowerUsers = async (req, res) => {
   const loginUserId = req.user._id.toString();
   try {

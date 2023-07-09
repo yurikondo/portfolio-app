@@ -8,7 +8,6 @@ const InputDesc = () => {
   const [isClick, setIsClick] = useState(false);
   const [inputDecs, setInputDecs] = useState("");
   const user = useSelector((state) => state.user.value);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (user.desc) {

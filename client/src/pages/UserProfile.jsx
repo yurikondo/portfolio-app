@@ -3,9 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import MainCard from "../components/common/maincard/MainCard";
 import postApi from "../api/postApi";
+import userApi from "../api/userApi";
 import UserListItem from "../components/common/UserListItem";
 import ProfileHeader from "../components/common/ProfileHeader";
-import userApi from "../api/userApi";
 import ErrorText from "../components/common/ErrorText";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
@@ -17,6 +17,7 @@ const UserProfile = () => {
   const [bgImg, setBgImg] = useState("");
   const [icon, setIcon] = useState("");
   const [isFollowing, setIsFollowing] = useState(false);
+  const [followerUserIds, setFollowerUserIds] = useState([]);
   const [followerUsers, setFollowerUsers] = useState([]);
   const loginUser = useSelector((state) => state.user.value);
   const navigate = useNavigate();
@@ -25,7 +26,10 @@ const UserProfile = () => {
     const getUser = async () => {
       try {
         const res = await userApi.getOne(userId);
+        // console.log(res);
         setUser(res);
+        // console.log(res.followers.includes(loginUser._id));
+        // console.log(loginUser); //undefinedになる
         setIsFollowing(res.followers.includes(loginUser._id));
       } catch (err) {
         console.log(err);
@@ -47,24 +51,37 @@ const UserProfile = () => {
   }, [navigate, userId]);
 
   useEffect(() => {
-    const getSingleUserFollowerUsers = async () => {
+    const getFollowingUserIds = async () => {
       try {
-        const res = await userApi.getSingleUserFollowerUsers(userId);
-        setFollowerUsers(res);
+        console.log(userId);
+        const res = await userApi.getFollowingUserIds(userId);
+        console.log(res);
+        setFollowerUserIds(res);
+        // console.log(followerUserIds);
       } catch (err) {
         console.log(err);
       }
     };
-    getSingleUserFollowerUsers();
+    getFollowingUserIds();
   }, []);
+
+  // useEffect(() => {
+  //   const getUsersByIds = async () => {
+  //     try {
+  //       const res = await userApi.getUsersByIds(userId);
+  //       setFollowerUsers(res);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   getUsersByIds();
+  // }, []);
 
   const handleFollow = async () => {
     try {
       const res = await userApi.follow(userId);
       if (res.isFollow) {
         setIsFollowing(true);
-        // console.log(loginUser);
-        // console.log(...followerUsers);
         // setFollowerUsers(loginUser, ...followerUsers);
         console.log("フォロー成功🎉");
       }
