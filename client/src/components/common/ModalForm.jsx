@@ -15,18 +15,18 @@ const style = {
   p: 4,
 };
 
-const ModalForm = ({ open, setOpen }) => {
-  const handleClose = () => setOpen(false);
+const ModalForm = ({ showModal, isShowModal }) => {
+  const handleClose = () => isShowModal(false);
 
   return (
     <Modal
-      open={open}
+    showModal={showModal}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <PostForm isShowModal={setOpen}/>
+        <PostForm isShowModal={isShowModal}/>
       </Box>
     </Modal>
   );

@@ -12,8 +12,8 @@ import { Box, Button, Grid } from "@mui/material";
 function Home() {
   const [latestUsers, setLatestUsers] = useState([]);
   const [latestPosts, setLatestPosts] = useState([]);
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const [showModal, isShowModal] = useState(false);
+  const handleOpen = () => isShowModal(true);
   const dispatch = useDispatch();
   const loginUser = useSelector((state) => state.user.value);
 
@@ -56,14 +56,19 @@ function Home() {
             新しい投稿する
           </Button>
         </Box>
-        <Modal open={open} setOpen={setOpen} />
+        <Modal showModal={showModal} isShowModal={isShowModal} />
         {latestPosts.map((post) => (
           <MainCard key={post._id} post={post} />
         ))}
       </Grid>
       <Grid item md={4} sx={{ display: { xs: "none", md: "block" } }}>
         {loginUser.username && (
-          <PostForm posts={latestPosts} setPosts={setLatestPosts} />
+          <PostForm
+            posts={latestPosts}
+            setPosts={setLatestPosts}
+            showModal={showModal}
+            isShowModal={isShowModal}
+          />
         )}
         <UserListItem users={latestUsers} loginUser={loginUser} />
       </Grid>

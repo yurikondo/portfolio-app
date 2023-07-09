@@ -84,6 +84,7 @@ const PostForm = ({ isShowModal, posts, setPosts }) => {
     } catch (err) {
       // server/routes/auth.jsのバリデーションに引っ掛かったら
       const errors = err.data.errors;
+      
 
       errors.forEach((err) => {
         if (err.param === "itemImgURL") {
