@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import postApi from "../../api/postApi";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setPost } from "../../redux/features/postSlice";
 import { LoadingButton } from "@mui/lab";
 import { Box, Button, CardMedia, TextField, Typography } from "@mui/material";
@@ -9,10 +9,9 @@ import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import HideImageIcon from "@mui/icons-material/HideImage";
 
 const PostForm = (props) => {
-  const { isShowModal, posts, setPosts, resetForm, itemImgURL, setItemImgURL } =
-    props;
-  // const [itemImgURL, setItemImgURL] = useState("");
-  // const [desc, setDesc] = useState("");
+  const { isShowModal, posts, setPosts } = props;
+  const [itemImgURL, setItemImgURL] = useState("");
+  const [desc, setDesc] = useState("");
   const [itemImgURLErrText, setItemImgURLErrText] = useState("");
   const [descErrText, setDescErrText] = useState("");
   const [loading, setLoading] = useState(false);
@@ -75,9 +74,8 @@ const PostForm = (props) => {
         itemImgURL,
         desc,
       });
-      // setItemImgURL("");
-      // setDesc("");
-      resetForm();
+      setItemImgURL("");
+      setDesc("");
       setLoading(false);
       const newPostsArray = [...posts, result];
       dispatch(setPost(newPostsArray));
@@ -172,6 +170,7 @@ const PostForm = (props) => {
         label="Amazon商品のURL"
         margin="normal"
         name="itemURL"
+        value={itemImgURL}
         required
         helperText={itemImgURLErrText}
         error={itemImgURLErrText !== ""}
@@ -182,6 +181,7 @@ const PostForm = (props) => {
         fullWidth
         id="desc"
         label="コメント（１２０字まで）"
+        value={desc}
         margin="normal"
         name="desc"
         multiline
@@ -191,6 +191,9 @@ const PostForm = (props) => {
         error={descErrText !== ""}
         disabled={loading}
         inputProps={{ maxLength: 140 }}
+        onChange={(e) => {
+          setDesc(e.target.value);
+        }}
       />
       <LoadingButton
         sx={{ mt: 3, mb: 2 }}
