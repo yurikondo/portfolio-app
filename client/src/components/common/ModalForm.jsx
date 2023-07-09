@@ -20,13 +20,13 @@ const ModalForm = ({ showModal, isShowModal }) => {
 
   return (
     <Modal
-    showModal={showModal}
+      open={showModal}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <PostForm isShowModal={isShowModal}/>
+        <PostForm isShowModal={isShowModal} />
       </Box>
     </Modal>
   );
