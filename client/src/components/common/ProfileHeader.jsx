@@ -54,7 +54,7 @@ const ProfileHeader = (props) => {
               sx={{ zIndex: 100, position: "absolute", right: 5, bottom: 5 }}
               startIcon={<AddAPhotoIcon fontSize="inherit" />}
             >
-              画像を変更
+              変更
             </Button>
           )}
         </Box>
