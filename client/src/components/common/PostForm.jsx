@@ -3,7 +3,7 @@ import postApi from "../../api/postApi";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "../../redux/features/postSlice";
 import { LoadingButton } from "@mui/lab";
-import { Box, CardMedia, TextField, Typography } from "@mui/material";
+import { Box, Button, CardMedia, TextField, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import HideImageIcon from "@mui/icons-material/HideImage";
@@ -84,7 +84,6 @@ const PostForm = ({ isShowModal, posts, setPosts }) => {
     } catch (err) {
       // server/routes/auth.jsのバリデーションに引っ掛かったら
       const errors = err.data.errors;
-      
 
       errors.forEach((err) => {
         if (err.param === "itemImgURL") {
@@ -153,6 +152,17 @@ const PostForm = ({ isShowModal, posts, setPosts }) => {
           }}
         />
       </Box>
+      <Button
+        component="a"
+        href="https://www.amazon.co.jp/"
+        target="_blank"
+        rel="noopener noreferrer"
+        sx={{
+          marginTop: "10px",
+        }}
+      >
+        Amazonトップページへ
+      </Button>
       <TextField
         fullWidth
         id="itemURL"
