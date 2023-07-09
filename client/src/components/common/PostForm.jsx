@@ -8,10 +8,12 @@ import { grey } from "@mui/material/colors";
 import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import HideImageIcon from "@mui/icons-material/HideImage";
 
-const PostForm = ({ isShowModal, posts, setPosts }) => {
-  const [itemImgURL, setItemImgURL] = useState("");
+const PostForm = (props) => {
+  const { isShowModal, posts, setPosts, resetForm, itemImgURL, setItemImgURL } =
+    props;
+  // const [itemImgURL, setItemImgURL] = useState("");
+  // const [desc, setDesc] = useState("");
   const [itemImgURLErrText, setItemImgURLErrText] = useState("");
-  const [desc, setDesc] = useState("");
   const [descErrText, setDescErrText] = useState("");
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -73,8 +75,9 @@ const PostForm = ({ isShowModal, posts, setPosts }) => {
         itemImgURL,
         desc,
       });
-      setItemImgURL("");
-      setDesc("");
+      // setItemImgURL("");
+      // setDesc("");
+      resetForm();
       setLoading(false);
       const newPostsArray = [...posts, result];
       dispatch(setPost(newPostsArray));

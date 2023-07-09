@@ -13,6 +13,8 @@ function Home() {
   const [latestUsers, setLatestUsers] = useState([]);
   const [latestPosts, setLatestPosts] = useState([]);
   const [showModal, isShowModal] = useState(false);
+  const [itemImgURL, setItemImgURL] = useState("");
+  const [desc, setDesc] = useState("");
   const handleOpen = () => isShowModal(true);
   const dispatch = useDispatch();
   const loginUser = useSelector((state) => state.user.value);
@@ -42,6 +44,11 @@ function Home() {
     getLatestUsers();
   }, []);
 
+  const resetForm = () => {
+    setItemImgURL("");
+    setDesc("");
+  };
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} md={8}>
@@ -68,6 +75,9 @@ function Home() {
             setPosts={setLatestPosts}
             showModal={showModal}
             isShowModal={isShowModal}
+            resetForm={resetForm}
+            itemImgURL={itemImgURL}
+            setItemImgURL={setItemImgURL}
           />
         )}
         <UserListItem users={latestUsers} loginUser={loginUser} />
