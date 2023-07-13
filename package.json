@@ -22,9 +22,9 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.3",
     "nodemon": "^2.0.22",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "next": "^12.0.0" // 追加
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "proxy": "http://localhost:4000/api"
 }
