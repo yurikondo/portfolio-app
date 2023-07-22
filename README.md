@@ -61,6 +61,3 @@ https://amapost-5d413f7c5092.herokuapp.com/
 
 #### フォローページ
 - フォローしているユーザーとその投稿を新規順に表示
-
-## データベース構造
-![DB](https://i.gyazo.com/93b2d01d0e399320ddea1596b003bb83.png)

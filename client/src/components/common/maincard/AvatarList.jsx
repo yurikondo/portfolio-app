@@ -5,19 +5,19 @@ import userApi from "../../../api/userApi";
 const AvatarList = ({ likeUserIds }) => {
   const [likedUsers, setLikedUsers] = useState([]);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const res = await userApi.getUsersByIds({ likeUserIds: likeUserIds });
-        const users = res;
-        setLikedUsers(users);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchUsers = async () => {
+  //     try {
+  //       const res = await userApi.getUsersByIds({ likeUserIds: likeUserIds });
+  //       const users = res;
+  //       setLikedUsers(users);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
 
-    fetchUsers();
-  }, [likeUserIds]);
+  //   fetchUsers();
+  // }, [likeUserIds]);
 
   return (
     <AvatarGroup max={4}>

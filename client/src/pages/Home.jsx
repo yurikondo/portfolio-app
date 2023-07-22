@@ -13,8 +13,6 @@ function Home() {
   const [latestUsers, setLatestUsers] = useState([]);
   const [latestPosts, setLatestPosts] = useState([]);
   const [showModal, isShowModal] = useState(false);
-  // const [itemImgURL, setItemImgURL] = useState("");
-  // const [desc, setDesc] = useState("");
   const handleOpen = () => isShowModal(true);
   const dispatch = useDispatch();
   const loginUser = useSelector((state) => state.user.value);
@@ -30,7 +28,7 @@ function Home() {
       }
     };
     getPosts();
-  }, [latestPosts]);
+  }, []);
 
   useEffect(() => {
     const getLatestUsers = async () => {

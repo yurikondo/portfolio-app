@@ -129,7 +129,7 @@ const MainCard = ({ post }) => {
                   />
                 </IconButton>
               )}
-              <AvatarList likeUserIds={likeUserIds} />
+              {/* <AvatarList likeUserIds={likeUserIds} /> */}
             </CardActions>
             <Typography sx={{ mr: 3 }}>{format(createdAt)}</Typography>
           </Box>
